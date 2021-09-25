@@ -1,7 +1,10 @@
-# Popsicle Game for Software Engineering Class
+# Popsicle Game
 
 ## Authors:
 Raihanah Nabilah Fatinah, Valeria Estefania Barco Santana, James Pierog, Yoon Sangho
+
+## Course:
+YSC3232 Software Engineering
 
 ## University:
 Yale-NUS College, Singapore
