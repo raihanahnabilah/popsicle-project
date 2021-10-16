@@ -18,7 +18,9 @@ public class TestSyrup {
         SyrupPosition p1 = new SyrupPosition(4,2);
         System.out.println(d1.getPosition());
         System.out.println(p1);
-        assert (d1.getPosition() == p1);
+        assert (d1.getPosition().getX() == p1.getX());
+        assert (d1.getPosition().getY() == p1.getY());
+        org.junit.Assert.assertEquals(p1.toString(), d1.getPosition().toString());
     }
 
 
