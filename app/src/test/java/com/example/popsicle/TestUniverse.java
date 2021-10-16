@@ -14,9 +14,12 @@ public class TestUniverse {
         System.out.println(u.getCharacterA().getPos());
         CharacterPosition testing = new CharacterPosition(5,10);
         System.out.println(testing);
+        System.out.println(testing.getX());
+        System.out.println(testing.getY());
 
-//        Assert.assertEquals(new CharacterPosition(5,10), u.getCharacterA().getPos());
-
+//       this test the position
+        assert(testing.getX() == u.getCharacterA().getPos().getX());
+        assert(testing.getY() == u.getCharacterA().getPos().getY());
 //        u.AStepRight();
 //        Assert.assertEquals(new CharacterPosition(10,10), u.characterA.getPos());
 //        u.AStepDown();
