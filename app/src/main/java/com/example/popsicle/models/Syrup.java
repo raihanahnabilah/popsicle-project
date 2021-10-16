@@ -6,7 +6,7 @@ public class Syrup {
     public Syrup(float x, float y) {
         this.pos = new SyrupPosition(x,y);
     }
-    public void move(Motion m) {
+    public void move(SyrupMotion m) {
         this.pos.add(m);
     }
     public SyrupPosition getPosition() {
