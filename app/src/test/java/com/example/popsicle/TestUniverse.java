@@ -2,44 +2,55 @@ package com.example.popsicle;
 
 import com.example.popsicle.models.CharacterPosition;
 import com.example.popsicle.models.Universe;
+import com.google.common.annotations.VisibleForTesting;
 
-import org.junit.Assert;
 import org.junit.Test;
 
 public class TestUniverse {
     @Test
     public void create_and_move_characterA() {
         Universe u = new Universe();
-        u.AStepLeft();
-        System.out.println(u.getCharacterA().getPos());
-        CharacterPosition testing = new CharacterPosition(5,10);
-        System.out.println(testing);
-        System.out.println(testing.getX());
-        System.out.println(testing.getY());
 
-//       this test the position
-        assert(testing.getX() == u.getCharacterA().getPos().getX());
-        assert(testing.getY() == u.getCharacterA().getPos().getY());
-//        u.AStepRight();
-//        Assert.assertEquals(new CharacterPosition(10,10), u.characterA.getPos());
-//        u.AStepDown();
-//        Assert.assertEquals(new CharacterPosition(10,5), u.characterA.getPos());
-//        u.AStepUp();
-//        Assert.assertEquals(new CharacterPosition(10,10), u.characterA.getPos());
+        u.AStepLeft();
+        CharacterPosition Aleft = new CharacterPosition(5,10);
+        assert(Aleft.getX() == u.getCharacterA().getPos().getX());
+        assert(Aleft.getY() == u.getCharacterA().getPos().getY());
+        org.junit.Assert.assertEquals(Aleft.toString(), u.getCharacterA().getPos().toString());
+
+        u.AStepRight();
+        CharacterPosition ARight = new CharacterPosition(10,10);
+        org.junit.Assert.assertEquals(ARight.toString(), u.getCharacterA().getPos().toString());
+
+        u.AStepDown();
+        CharacterPosition ADown = new CharacterPosition(10,5);
+        org.junit.Assert.assertEquals(ADown.toString(), u.getCharacterA().getPos().toString());
+
+        u.AStepUp();
+        CharacterPosition AUp = new CharacterPosition(10,10);
+        org.junit.Assert.assertEquals(AUp.toString(), u.getCharacterA().getPos().toString());
     }
 
-//    @Test
-//    public void create_and_move_characterB() {
-//        Universe u = new Universe();
-//        u.BStepLeft();
-//        Assert.assertEquals(new CharacterPosition(45,10), u.characterA.getPos());
-//        u.BStepRight();
-//        Assert.assertEquals(new CharacterPosition(50,10), u.characterA.getPos());
-//        u.BStepDown();
-//        Assert.assertEquals(new CharacterPosition(50,5), u.characterA.getPos());
-//        u.BStepUp();
-//        Assert.assertEquals(new CharacterPosition(10,10), u.characterA.getPos());
-//    }
+    @Test
+    public void create_and_move_characterB() {
+        Universe u = new Universe();
 
+        u.BStepLeft();
+        CharacterPosition Bleft = new CharacterPosition(45,10);
+        assert(Bleft.getX() == u.getCharacterB().getPos().getX());
+        assert(Bleft.getY() == u.getCharacterB().getPos().getY());
+        org.junit.Assert.assertEquals(Bleft.toString(), u.getCharacterB().getPos().toString());
+
+        u.BStepRight();
+        CharacterPosition BRight = new CharacterPosition(50,10);
+        org.junit.Assert.assertEquals(BRight.toString(), u.getCharacterB().getPos().toString());
+
+        u.BStepDown();
+        CharacterPosition BDown = new CharacterPosition(50,5);
+        org.junit.Assert.assertEquals(BDown.toString(), u.getCharacterB().getPos().toString());
+
+        u.BStepUp();
+        CharacterPosition BUp = new CharacterPosition(50,10);
+        org.junit.Assert.assertEquals(BUp.toString(), u.getCharacterB().getPos().toString());
+    }
 
 }

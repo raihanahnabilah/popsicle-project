@@ -19,19 +19,18 @@ public class CharacterPosition {
 
     public void addLeft(){
         this.x = this.x - 5;
-        this.y = this.y;
     }
 
-    public CharacterPosition addRight(){
-        return new CharacterPosition(this.x + 5, this.y);
+    public void addRight(){
+        this.x = this.x + 5;
     }
 
-    public CharacterPosition addUp(){
-        return new CharacterPosition(this.x, this.y + 5);
+    public void addUp(){
+        this.y = this.y + 5;
     }
 
-    public CharacterPosition addDown(){
-        return new CharacterPosition(this.x, this.y - 5);
+    public void addDown(){
+        this.y = this.y - 5;
     }
 
     @Override
