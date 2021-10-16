@@ -1,5 +1,8 @@
 package com.example.popsicle.rendering;
 
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.util.Log;
@@ -29,7 +32,7 @@ public class GraphicsRenderer implements Universe.Callback, SurfaceHolder.Callba
     public void surfaceCreated(@NonNull SurfaceHolder surfaceHolder) {
         Log.d(TAG, "start surfaceCreated");
         this.holder = surfaceHolder;
-        this.drawSurfaceView();
+        drawSurfaceView();
     }
 
     @Override

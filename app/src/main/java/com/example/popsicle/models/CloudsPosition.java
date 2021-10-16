@@ -1,9 +1,9 @@
 package com.example.popsicle.models;
 
-public class CandyPosition {
+public class CloudsPosition {
     private float x,y;
 
-    public CandyPosition(float x, float y){
+    public CloudsPosition(float x, float y){
         this.x = x;
         this.y = y;
     }

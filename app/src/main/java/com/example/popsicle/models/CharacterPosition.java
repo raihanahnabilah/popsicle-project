@@ -17,9 +17,21 @@ public class CharacterPosition {
         return y;
     }
 
-    // TODO: Check with Prof. The charaacter's position will be updated when the "Add" function is called.
-    public CharacterPosition add(CharacterPosition p){
-        return new CharacterPosition(this.x + p.x, this.y + p.y);
+    public void addLeft(){
+        this.x = this.x - 5;
+        this.y = this.y;
+    }
+
+    public CharacterPosition addRight(){
+        return new CharacterPosition(this.x + 5, this.y);
+    }
+
+    public CharacterPosition addUp(){
+        return new CharacterPosition(this.x, this.y + 5);
+    }
+
+    public CharacterPosition addDown(){
+        return new CharacterPosition(this.x, this.y - 5);
     }
 
     @Override

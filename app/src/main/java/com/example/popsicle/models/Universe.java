@@ -1,49 +1,126 @@
 package com.example.popsicle.models;
 
 import android.util.Log;
+import android.view.SurfaceView;
 
+
+import com.example.popsicle.rendering.GraphicsRenderer;
 
 import java.util.Collection;
 import java.util.List;
 import java.util.Vector;
 
 public class Universe {
-    List<CharacterA> dataA; // TODO: Is this the correct type?
-    List<CharacterB> dataB;
-    // TODO: Implement how the character moves.
-    // In the Ball lab, the motion is essentially the gravity. But I want it to move following the
-    // users movement.
-    CharacterMotion userInput;
 
     public static final String TAG = "Universe";
+    private final Character characterA;
+    private final Character characterB;
+    private final Candy candyA;
+    private final Candy candyB;
+    private final Clouds cloudsA1;
+    private final Clouds cloudsA2;
+    private final Clouds cloudsB1;
+    private final Clouds cloudsB2;
 
     public Universe(){
-        this (new CharacterMotion(0, 5f));
+        this.characterA = new Character(10,10);
+        this.candyA = new Candy(10,5);
+        this.cloudsA1 = new Clouds(10,50);
+        this.cloudsA2 = new Clouds(10,0);
+
+        this.characterB = new Character(50,10);
+        this.candyB = new Candy(50,5);
+        this.cloudsB1 = new Clouds(50,0);
+        this.cloudsB2 = new Clouds(50,50);
     }
 
-    public Universe(CharacterMotion x){
-        dataA = new Vector<>();
-        dataB = new Vector<>();
-        userInput = x;
+    public Character getCharacterA() {
+        return characterA;
     }
 
-    public void addCharacterA(float x, float y){
-        dataA.add(new CharacterA (x,y));
+    public Character getCharacterB() {
+        return characterB;
     }
 
-    public void addCharacterA(CharacterPosition pos){
-        this.addCharacterA(pos.getX(), pos.getY());
+    public Candy getCandyA() {
+        return candyA;
     }
 
-    public Collection<CharacterA> getCharacterA() {
-        return dataA;
+    public Candy getCandyB() {
+        return candyB;
     }
 
-    public Collection<CharacterB> getCharacterB() {
-        return dataB;
+    public Clouds getCloudsA1() {
+        return cloudsA1;
     }
 
-    // TODO: Implement a function to move the characters
+    public Clouds getCloudsA2() {
+        return cloudsA2;
+    }
+
+    public Clouds getCloudsB1() {
+        return cloudsB1;
+    }
+
+    public Clouds getCloudsB2() {
+        return cloudsB2;
+    }
+
+    public void AStepLeft() {
+        characterA.moveLeft();
+//        castChanges();
+    }
+
+    public void AStepRight() {
+        characterA.moveRight();
+//        castChanges();
+    }
+
+    public void AStepUp() {
+        characterA.moveUp();
+//        castChanges();
+    }
+
+    public void AStepDown() {
+        characterA.moveDown();
+//        castChanges();
+    }
+
+
+    public void BStepLeft() {
+        characterB.moveLeft();
+//        castChanges();
+    }
+
+    public void BStepRight() {
+        characterB.moveRight();
+//        castChanges();
+    }
+
+    public void BStepUp() {
+        characterB.moveUp();
+//        castChanges();
+    }
+
+    public void BStepDown() {
+        characterB.moveDown();
+//        castChanges();
+    }
+
+    @Override
+    public String toString() {
+        return "Universe{" +
+                "characterA=" + characterA +
+                ", characterB=" + characterB +
+                ", candyA=" + candyA +
+                ", candyB=" + candyB +
+                ", cloudsA1=" + cloudsA1 +
+                ", cloudsA2=" + cloudsA2 +
+                ", cloudsB1=" + cloudsB1 +
+                ", cloudsB2=" + cloudsB2 +
+                ", callback=" + callback +
+                '}';
+    }
 
 
     /**
