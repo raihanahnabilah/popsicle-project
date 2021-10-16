@@ -21,6 +21,7 @@ public class Universe {
     private final Clouds cloudsA2;
     private final Clouds cloudsB1;
     private final Clouds cloudsB2;
+    List<Syrup> data;
 
     public Universe(){
         this.characterA = new Character(10,10);
@@ -32,6 +33,7 @@ public class Universe {
         this.candyB = new Candy(50,5);
         this.cloudsB1 = new Clouds(50,0);
         this.cloudsB2 = new Clouds(50,50);
+        data = new Vector<>();
     }
 
     public Character getCharacterA() {

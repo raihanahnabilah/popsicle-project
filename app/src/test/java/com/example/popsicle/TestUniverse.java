@@ -2,7 +2,7 @@ package com.example.popsicle;
 
 import com.example.popsicle.models.CharacterPosition;
 import com.example.popsicle.models.Universe;
-import com.google.common.annotations.VisibleForTesting;
+//import com.google.common.annotations.VisibleForTesting;
 
 import org.junit.Test;
 

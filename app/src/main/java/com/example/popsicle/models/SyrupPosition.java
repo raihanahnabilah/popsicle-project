@@ -20,13 +20,7 @@ public class SyrupPosition {
         if (p != null) return x == p.x && y == p.y;
         return false;
     }
-    @Override
-    public String toString() {
-        return "Position{" +
-                "x=" + x +
-                ", y=" + y +
-                '}';
-    }
+
     public float getX() {
         return x;
     }
@@ -34,4 +28,11 @@ public class SyrupPosition {
         return y;
     }
 
+    @Override
+    public String toString() {
+        return "SyrupPosition{" +
+                "x=" + x +
+                ", y=" + y +
+                '}';
+    }
 }
