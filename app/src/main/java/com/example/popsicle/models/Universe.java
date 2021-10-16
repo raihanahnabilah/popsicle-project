@@ -36,7 +36,7 @@ public class Universe {
         this.candyB = new Candy(1850,150);
         this.cloudsB1 = new Clouds(1850,-100);
         this.cloudsB2 = new Clouds(1850,250);
-        data = new Vector<>();
+//        data = new Vector<>();
     }
 
     public Character getCharacterA() {
