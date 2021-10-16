@@ -21,7 +21,10 @@ public class Universe {
     private final Clouds cloudsA2;
     private final Clouds cloudsB1;
     private final Clouds cloudsB2;
-    List<Syrup> data;
+    List<Syrup> syrupA1;
+    List<Syrup> syrupB1;
+    List<Syrup> syrupA2;
+    List<Syrup> syrupB2;
 
     public Universe(){
         this.characterA = new Character(350,150);
