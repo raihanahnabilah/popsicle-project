@@ -82,7 +82,6 @@ public class Universe {
 
 
     public void CharacterMove (CharacterPosition pos, Character character){
-        System.out.println(pos);
         if (pos.getY() >= 730 && pos.getY() <= 855){
             if (pos.getX() >= 1900 && pos.getX() <= 2040){
                 character.moveRight();
