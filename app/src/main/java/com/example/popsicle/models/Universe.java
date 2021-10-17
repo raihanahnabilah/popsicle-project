@@ -80,45 +80,59 @@ public class Universe {
         return cloudsB2;
     }
 
+
+    public void CharacterMove (CharacterPosition pos, Character character){
+        System.out.println(pos);
+        if (pos.getY() >= 730 && pos.getY() <= 855){
+            if (pos.getX() >= 1900 && pos.getX() <= 2040){
+                character.moveRight();
+                castChanges();
+            } else if (pos.getX() >= 1660 && pos.getX() <= 1800){
+                character.moveLeft();
+                castChanges();
+            }
+        } else if (pos.getX() >= 1780 && pos.getX() <= 1920){
+            if (pos.getY() >= 645 && pos.getY() <= 730){
+                character.moveUp();
+                castChanges();
+            } else if (pos.getY() >= 860 && pos.getY() <= 940){
+                character.moveDown();
+                castChanges();
+            }
+        }
+    }
+
     public void AStepLeft() {
         characterA.moveLeft();
-//        castChanges();
     }
 
     public void AStepRight() {
         characterA.moveRight();
-//        castChanges();
     }
 
     public void AStepUp() {
         characterA.moveUp();
-//        castChanges();
     }
 
     public void AStepDown() {
         characterA.moveDown();
-//        castChanges();
     }
 
 
     public void BStepLeft() {
         characterB.moveLeft();
-//        castChanges();
     }
 
     public void BStepRight() {
         characterB.moveRight();
-//        castChanges();
     }
 
     public void BStepUp() {
         characterB.moveUp();
-//        castChanges();
     }
 
     public void BStepDown() {
         characterB.moveDown();
-//        castChanges();
     }
 
     @Override
@@ -167,7 +181,7 @@ public class Universe {
         callback = c;
     }
 
-    public void addCallBack (Callback c ) {
+    public void addCallBack(Callback c) {
         this.callback = c;
     }
 
