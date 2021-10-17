@@ -18,19 +18,19 @@ public class CharacterPosition {
     }
 
     public void addLeft(){
-        this.x = this.x - 5;
+        this.x = this.x - 20;
     }
 
     public void addRight(){
-        this.x = this.x + 5;
+        this.x = this.x + 20;
     }
 
     public void addUp(){
-        this.y = this.y + 5;
+        this.y = this.y - 20;
     }
 
     public void addDown(){
-        this.y = this.y - 5;
+        this.y = this.y + 20;
     }
 
     @Override
