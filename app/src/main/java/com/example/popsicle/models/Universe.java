@@ -30,12 +30,12 @@ public class Universe {
         this.characterA = new Character(350,150);
         this.candyA = new Candy(200,150);
         this.cloudsA1 = new Clouds(200,-100);
-        this.cloudsA2 = new Clouds(200,250);
+        this.cloudsA2 = new Clouds(200,500);
 
         this.characterB = new Character(1700,150);
         this.candyB = new Candy(1850,150);
         this.cloudsB1 = new Clouds(1850,-100);
-        this.cloudsB2 = new Clouds(1850,250);
+        this.cloudsB2 = new Clouds(1850,500);
 //        data = new Vector<>();
     }
 
