@@ -101,45 +101,45 @@ public class GraphicsRenderer implements Universe.Callback, SurfaceHolder.Callba
 
         // Drawing character A
         Character charA = universe.getCharacterA();
-        int posA_x1 = (int) (charA.getPos().getX() - 100);
-        int posA_y2 = (int) (charA.getPos().getY() + 100);
-        int posA_x2 = (int) (charA.getPos().getX() + 100);
-        int posA_y1 = (int) (charA.getPos().getY() - 100);
+        int charA_x1 = (int) (charA.getPos().getX() - 100);
+        int charA_y2 = (int) (charA.getPos().getY() + 100);
+        int charA_x2 = (int) (charA.getPos().getX() + 100);
+        int charA_y1 = (int) (charA.getPos().getY() - 100);
 
-        Rect boundsA = new Rect(posA_x1, posA_y1, posA_x2, posA_y2);
+        Rect boundsA = new Rect(charA_x1, charA_y1, charA_x2, charA_y2);
         Bitmap scaledA_bmp = Bitmap.createScaledBitmap(this.characterA_bitmap, boundsA.width(), boundsA.height(), true);
         canvas.drawBitmap(scaledA_bmp, boundsA.left, boundsA.bottom, elementsPaint);
 
         // Drawing character B
         Character charB = universe.getCharacterB();
-        int posB_x1 = (int) (charB.getPos().getX() - 100);
-        int posB_y2 = (int) (charB.getPos().getY() + 100);
-        int posB_x2 = (int) (charB.getPos().getX() + 100);
-        int posB_y1 = (int) (charB.getPos().getY() - 100);
+        int charB_x1 = (int) (charB.getPos().getX() - 100);
+        int charB_y2 = (int) (charB.getPos().getY() + 100);
+        int charB_x2 = (int) (charB.getPos().getX() + 100);
+        int charB_y1 = (int) (charB.getPos().getY() - 100);
 
-        Rect boundsB = new Rect(posB_x1, posB_y1, posB_x2, posB_y2);
+        Rect boundsB = new Rect(charB_x1, charB_y1, charB_x2, charB_y2);
         Bitmap scaledB_bmp = Bitmap.createScaledBitmap(this.characterB_bitmap, boundsB.width(), boundsB.height(), true);
         canvas.drawBitmap(scaledB_bmp, boundsB.left, boundsB.bottom, elementsPaint);
 
         // Drawing candy A
         Candy candyA = universe.getCandyA();
-        int poscan_x1 = (int) (candyA.getPos().getX() - 100);
-        int poscan_y2 = (int) (candyA.getPos().getY() + 100);
-        int poscan_x2 = (int) (candyA.getPos().getX() + 100);
-        int poscan_y1 = (int) (candyA.getPos().getY() - 100);
+        int canA_x1 = (int) (candyA.getPos().getX() - 100);
+        int canA_y2 = (int) (candyA.getPos().getY() + 100);
+        int canA_x2 = (int) (candyA.getPos().getX() + 100);
+        int canA_y1 = (int) (candyA.getPos().getY() - 100);
 
-        Rect boundscanA = new Rect(poscan_x1, poscan_y1, poscan_x2, poscan_y2);
+        Rect boundscanA = new Rect(canA_x1, canA_y1, canA_x2, canA_y2);
         Bitmap scaledcanA_bmp = Bitmap.createScaledBitmap(this.candyA_bitmap, boundscanA.width(), boundscanA.height(), true);
         canvas.drawBitmap(scaledcanA_bmp, boundscanA.left, boundscanA.bottom, elementsPaint);
 
         // Drawing candy B
         Candy candyB = universe.getCandyB();
-        int poscanB_x1 = (int) (candyB.getPos().getX() - 100);
-        int poscanB_y2 = (int) (candyB.getPos().getY() + 100);
-        int poscanB_x2 = (int) (candyB.getPos().getX() + 100);
-        int poscanB_y1 = (int) (candyB.getPos().getY() - 100);
+        int canB_x1 = (int) (candyB.getPos().getX() - 100);
+        int canB_y2 = (int) (candyB.getPos().getY() + 100);
+        int canB_x2 = (int) (candyB.getPos().getX() + 100);
+        int canB_y1 = (int) (candyB.getPos().getY() - 100);
 
-        Rect boundscanB = new Rect(poscanB_x1, poscanB_y1, poscanB_x2, poscanB_y2);
+        Rect boundscanB = new Rect(canB_x1, canB_y1, canB_x2, canB_y2);
         Bitmap scaledcanB_bmp = Bitmap.createScaledBitmap(this.candyB_bitmap, boundscanB.width(), boundscanB.height(), true);
         canvas.drawBitmap(scaledcanB_bmp, boundscanB.left, boundscanB.bottom, elementsPaint);
 
@@ -231,11 +231,6 @@ public class GraphicsRenderer implements Universe.Callback, SurfaceHolder.Callba
         Rect boundsRight = new Rect(right_x1, right_y1, right_x2, right_y2);
         Bitmap ScaledBMPCRight = Bitmap.createScaledBitmap(this.buttonRight_bitmap, boundsRight.width(), boundsRight.height(), true);
         canvas.drawBitmap(ScaledBMPCRight, boundsRight.left, boundsRight.bottom, elementsPaint);
-
-
-
-
-
 
     }
 
