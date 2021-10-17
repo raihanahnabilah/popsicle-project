@@ -210,29 +210,27 @@ public class GraphicsRenderer implements Universe.Callback, SurfaceHolder.Callba
         Bitmap ScaledBMPCDown = Bitmap.createScaledBitmap(this.buttonDown_bitmap, boundsDown.width(), boundsDown.height(), true);
         canvas.drawBitmap(ScaledBMPCDown, boundsDown.left, boundsDown.bottom, elementsPaint);
 
-//        // Drawing Console Button Left
-//        Console up = universe.getUpButton();
-//        int up_x1 = (int) (up.getPos().getX() - 100);
-//        int up_y2 = (int) (up.getPos().getY() + 100);
-//        int up_x2 = (int) (up.getPos().getX() + 100);
-//        int up_y1 = (int) (up.getPos().getY() - 100);
-//
-//        Rect boundsUp = new Rect(up_x1, up_y1, up_x2, up_y2);
-//        Bitmap ScaledBMPCUp = Bitmap.createScaledBitmap(this.buttonUp_bitmap, boundsUp.width(), boundsUp.height(), true);
-//        canvas.drawBitmap(ScaledBMPCUp, boundsUp.left, boundsUp.bottom, elementsPaint);
-//
-//
-//
-//        // Drawing Console Button Right
-//        Console up = universe.getUpButton();
-//        int up_x1 = (int) (up.getPos().getX() - 100);
-//        int up_y2 = (int) (up.getPos().getY() + 100);
-//        int up_x2 = (int) (up.getPos().getX() + 100);
-//        int up_y1 = (int) (up.getPos().getY() - 100);
-//
-//        Rect boundsUp = new Rect(up_x1, up_y1, up_x2, up_y2);
-//        Bitmap ScaledBMPCUp = Bitmap.createScaledBitmap(this.buttonUp_bitmap, boundsUp.width(), boundsUp.height(), true);
-//        canvas.drawBitmap(ScaledBMPCUp, boundsUp.left, boundsUp.bottom, elementsPaint);
+        // Drawing Console Button Left
+        Console left = universe.getLeftButton();
+        int left_x1 = (int) (left.getPos().getX() - 70);
+        int left_y2 = (int) (left.getPos().getY() + 70);
+        int left_x2 = (int) (left.getPos().getX() + 70);
+        int left_y1 = (int) (left.getPos().getY() - 70);
+
+        Rect boundsLeft = new Rect(left_x1, left_y1, left_x2, left_y2);
+        Bitmap ScaledBMPCLeft = Bitmap.createScaledBitmap(this.buttonLeft_bitmap, boundsLeft.width(), boundsLeft.height(), true);
+        canvas.drawBitmap(ScaledBMPCLeft, boundsLeft.left, boundsLeft.bottom, elementsPaint);
+
+        // Drawing Console Button Right
+        Console right = universe.getRightButton();
+        int right_x1 = (int) (right.getPos().getX() - 70);
+        int right_y2 = (int) (right.getPos().getY() + 70);
+        int right_x2 = (int) (right.getPos().getX() + 70);
+        int right_y1 = (int) (right.getPos().getY() - 70);
+
+        Rect boundsRight = new Rect(right_x1, right_y1, right_x2, right_y2);
+        Bitmap ScaledBMPCRight = Bitmap.createScaledBitmap(this.buttonRight_bitmap, boundsRight.width(), boundsRight.height(), true);
+        canvas.drawBitmap(ScaledBMPCRight, boundsRight.left, boundsRight.bottom, elementsPaint);
 
 
 

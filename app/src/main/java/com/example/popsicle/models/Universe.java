@@ -41,12 +41,10 @@ public class Universe {
         this.cloudsB1 = new Clouds(1850,-50);
         this.cloudsB2 = new Clouds(1500,650);
 
-        this.upButton = new Console(1800,550);
-        this.downButton = new Console(1800,750);
-        this.leftButton = new Console(1650,700);
-        this.rightButton = new Console(1950,700);
-
-
+        this.upButton = new Console(1850,550);
+        this.downButton = new Console(1850,750);
+        this.leftButton = new Console(1730,650);
+        this.rightButton = new Console(1970,650);
 //        data = new Vector<>();
     }
 
