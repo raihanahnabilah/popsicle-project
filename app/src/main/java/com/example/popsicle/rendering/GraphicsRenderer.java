@@ -14,7 +14,6 @@ import androidx.annotation.NonNull;
 import com.example.popsicle.R;
 import com.example.popsicle.models.Candy;
 import com.example.popsicle.models.Character;
-import com.example.popsicle.models.CharacterPosition;
 import com.example.popsicle.models.Clouds;
 import com.example.popsicle.models.Universe;
 
@@ -133,7 +132,7 @@ public class GraphicsRenderer implements Universe.Callback, SurfaceHolder.Callba
         Bitmap scaledcanB_bmp = Bitmap.createScaledBitmap(this.candyB_bitmap, boundscanB.width(), boundscanB.height(), true);
         canvas.drawBitmap(scaledcanB_bmp, boundscanB.left, boundscanB.bottom, elementsPaint);
 
-        // Drawing cloud A
+        // Drawing cloud A1
         Clouds cloudA1 = universe.getCloudsA1();
         int cloudA1_x1 = (int) (cloudA1.getPos().getX() - 100);
         int cloudA1_y2 = (int) (cloudA1.getPos().getY() + 100);
@@ -144,16 +143,38 @@ public class GraphicsRenderer implements Universe.Callback, SurfaceHolder.Callba
         Bitmap ScaledBMPCloudA1 = Bitmap.createScaledBitmap(this.cloud_bitmap, boundsCloudA1.width(), boundsCloudA1.height(), true);
         canvas.drawBitmap(ScaledBMPCloudA1, boundsCloudA1.left, boundsCloudA1.bottom, elementsPaint);
 
-        // Drawing cloud B
+        // Drawing cloud A2
+        Clouds cloudA2 = universe.getCloudsA2();
+        int cloudA2_x1 = (int) (cloudA2.getPos().getX() - 100);
+        int cloudA2_y2 = (int) (cloudA2.getPos().getY() + 100);
+        int cloudA2_x2 = (int) (cloudA2.getPos().getX() + 100);
+        int cloudA2_y1 = (int) (cloudA2.getPos().getY() - 100);
+
+        Rect boundsCloudA2 = new Rect(cloudA2_x1, cloudA2_y1, cloudA2_x2, cloudA2_y2);
+        Bitmap ScaledBMPCloudA2 = Bitmap.createScaledBitmap(this.cloud_bitmap, boundsCloudA2.width(), boundsCloudA2.height(), true);
+        canvas.drawBitmap(ScaledBMPCloudA2, boundsCloudA2.left, boundsCloudA2.bottom, elementsPaint);
+
+        // Drawing cloud B1
         Clouds cloudB1 = universe.getCloudsB1();
         int cloudB1_x1 = (int) (cloudB1.getPos().getX() - 100);
         int cloudB1_y2 = (int) (cloudB1.getPos().getY() + 100);
         int cloudB1_x2 = (int) (cloudB1.getPos().getX() + 100);
         int cloudB1_y1 = (int) (cloudB1.getPos().getY() - 100);
 
-        Rect boundsCloudA2 = new Rect(cloudB1_x1, cloudB1_y1, cloudB1_x2, cloudB1_y2);
-        Bitmap ScaledBMPCloudA2 = Bitmap.createScaledBitmap(this.cloud_bitmap, boundscanB.width(), boundscanB.height(), true);
-        canvas.drawBitmap(ScaledBMPCloudA2, boundsCloudA2.left, boundsCloudA2.bottom, elementsPaint);
+        Rect boundsCloudB1 = new Rect(cloudB1_x1, cloudB1_y1, cloudB1_x2, cloudB1_y2);
+        Bitmap ScaledBMPCloudB1 = Bitmap.createScaledBitmap(this.cloud_bitmap, boundsCloudB1.width(), boundsCloudB1.height(), true);
+        canvas.drawBitmap(ScaledBMPCloudB1, boundsCloudB1.left, boundsCloudB1.bottom, elementsPaint);
+
+        // Drawing cloud B2
+        Clouds cloudB2 = universe.getCloudsB2();
+        int cloudB2_x1 = (int) (cloudB2.getPos().getX() - 100);
+        int cloudB2_y2 = (int) (cloudB2.getPos().getY() + 100);
+        int cloudB2_x2 = (int) (cloudB2.getPos().getX() + 100);
+        int cloudB2_y1 = (int) (cloudB2.getPos().getY() - 100);
+
+        Rect boundsCloudB2 = new Rect(cloudB2_x1, cloudB2_y1, cloudB2_x2, cloudB2_y2);
+        Bitmap ScaledBMPCloudB2 = Bitmap.createScaledBitmap(this.cloud_bitmap, boundsCloudB2.width(), boundsCloudB2.height(), true);
+        canvas.drawBitmap(ScaledBMPCloudB2, boundsCloudB2.left, boundsCloudB2.bottom, elementsPaint);
 
 
 
