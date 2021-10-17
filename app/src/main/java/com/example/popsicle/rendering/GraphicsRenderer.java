@@ -8,6 +8,7 @@ import android.graphics.Paint;
 import android.graphics.Rect;
 import android.util.Log;
 import android.view.SurfaceHolder;
+import android.widget.Button;
 
 import androidx.annotation.NonNull;
 
@@ -15,6 +16,7 @@ import com.example.popsicle.R;
 import com.example.popsicle.models.Candy;
 import com.example.popsicle.models.Character;
 import com.example.popsicle.models.Clouds;
+import com.example.popsicle.models.Console;
 import com.example.popsicle.models.Universe;
 
 public class GraphicsRenderer implements Universe.Callback, SurfaceHolder.Callback{
@@ -27,6 +29,11 @@ public class GraphicsRenderer implements Universe.Callback, SurfaceHolder.Callba
     private Bitmap candyA_bitmap;
     private Bitmap candyB_bitmap;
     private Bitmap cloud_bitmap;
+    private Bitmap buttonUp_bitmap;
+    private Bitmap buttonDown_bitmap;
+    private Bitmap buttonLeft_bitmap;
+    private Bitmap buttonRight_bitmap;
+
 
     public GraphicsRenderer(Universe u, Resources context){
         this.universe = u;
@@ -35,6 +42,10 @@ public class GraphicsRenderer implements Universe.Callback, SurfaceHolder.Callba
         this.candyA_bitmap = BitmapFactory.decodeResource(context, R.mipmap.popsicle_a);
         this.candyB_bitmap = BitmapFactory.decodeResource(context, R.mipmap.popsicle_b);
         this.cloud_bitmap = BitmapFactory.decodeResource(context, R.mipmap.cloud);
+        this.buttonUp_bitmap = BitmapFactory.decodeResource(context, R.mipmap.up);
+        this.buttonDown_bitmap = BitmapFactory.decodeResource(context, R.mipmap.down);
+        this.buttonLeft_bitmap = BitmapFactory.decodeResource(context, R.mipmap.left);
+        this.buttonRight_bitmap = BitmapFactory.decodeResource(context, R.mipmap.right);
     }
 
     /**
@@ -175,6 +186,56 @@ public class GraphicsRenderer implements Universe.Callback, SurfaceHolder.Callba
         Rect boundsCloudB2 = new Rect(cloudB2_x1, cloudB2_y1, cloudB2_x2, cloudB2_y2);
         Bitmap ScaledBMPCloudB2 = Bitmap.createScaledBitmap(this.cloud_bitmap, boundsCloudB2.width(), boundsCloudB2.height(), true);
         canvas.drawBitmap(ScaledBMPCloudB2, boundsCloudB2.left, boundsCloudB2.bottom, elementsPaint);
+
+
+        // Drawing Console Button Up
+        Console up = universe.getUpButton();
+        int up_x1 = (int) (up.getPos().getX() - 70);
+        int up_y2 = (int) (up.getPos().getY() + 70);
+        int up_x2 = (int) (up.getPos().getX() + 70);
+        int up_y1 = (int) (up.getPos().getY() - 70);
+
+        Rect boundsUp = new Rect(up_x1, up_y1, up_x2, up_y2);
+        Bitmap ScaledBMPCUp = Bitmap.createScaledBitmap(this.buttonUp_bitmap, boundsUp.width(), boundsUp.height(), true);
+        canvas.drawBitmap(ScaledBMPCUp, boundsUp.left, boundsUp.bottom, elementsPaint);
+
+        // Drawing Console Button Down
+        Console down = universe.getDownButton();
+        int down_x1 = (int) (down.getPos().getX() - 70);
+        int down_y2 = (int) (down.getPos().getY() + 70);
+        int down_x2 = (int) (down.getPos().getX() + 70);
+        int down_y1 = (int) (down.getPos().getY() - 70);
+
+        Rect boundsDown = new Rect(down_x1, down_y1, down_x2, down_y2);
+        Bitmap ScaledBMPCDown = Bitmap.createScaledBitmap(this.buttonDown_bitmap, boundsDown.width(), boundsDown.height(), true);
+        canvas.drawBitmap(ScaledBMPCDown, boundsDown.left, boundsDown.bottom, elementsPaint);
+
+//        // Drawing Console Button Left
+//        Console up = universe.getUpButton();
+//        int up_x1 = (int) (up.getPos().getX() - 100);
+//        int up_y2 = (int) (up.getPos().getY() + 100);
+//        int up_x2 = (int) (up.getPos().getX() + 100);
+//        int up_y1 = (int) (up.getPos().getY() - 100);
+//
+//        Rect boundsUp = new Rect(up_x1, up_y1, up_x2, up_y2);
+//        Bitmap ScaledBMPCUp = Bitmap.createScaledBitmap(this.buttonUp_bitmap, boundsUp.width(), boundsUp.height(), true);
+//        canvas.drawBitmap(ScaledBMPCUp, boundsUp.left, boundsUp.bottom, elementsPaint);
+//
+//
+//
+//        // Drawing Console Button Right
+//        Console up = universe.getUpButton();
+//        int up_x1 = (int) (up.getPos().getX() - 100);
+//        int up_y2 = (int) (up.getPos().getY() + 100);
+//        int up_x2 = (int) (up.getPos().getX() + 100);
+//        int up_y1 = (int) (up.getPos().getY() - 100);
+//
+//        Rect boundsUp = new Rect(up_x1, up_y1, up_x2, up_y2);
+//        Bitmap ScaledBMPCUp = Bitmap.createScaledBitmap(this.buttonUp_bitmap, boundsUp.width(), boundsUp.height(), true);
+//        canvas.drawBitmap(ScaledBMPCUp, boundsUp.left, boundsUp.bottom, elementsPaint);
+
+
+
 
 
 
