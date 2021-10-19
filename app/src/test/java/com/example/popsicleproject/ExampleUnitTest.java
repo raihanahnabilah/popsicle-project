@@ -1,4 +1,4 @@
-package com.example.popsicle;
+package com.example.popsicleproject;
 
 import org.junit.Test;
 
