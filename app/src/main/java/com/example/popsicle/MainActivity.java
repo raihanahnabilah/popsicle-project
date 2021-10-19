@@ -2,10 +2,12 @@ package com.example.popsicle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.Point;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.SurfaceView;
 import android.view.View;
+import android.view.WindowManager;
 
 import com.example.popsicle.io.InputHandler;
 import com.example.popsicle.io.InputListener;
@@ -23,6 +25,8 @@ public class MainActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
         Log.d(TAG, "onCreate Started");
 
         // Using surfaceView
@@ -36,7 +40,6 @@ public class MainActivity extends AppCompatActivity{
         universe.setCallBack(graphicsRenderer);
         sv.setWillNotDraw(false);
         sv.getHolder().addCallback(graphicsRenderer);
-
 
         InputListener inputListener = new InputListener();
         sv.setOnTouchListener(inputListener);

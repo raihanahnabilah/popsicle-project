@@ -4,6 +4,7 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import com.example.popsicle.models.CharacterPosition;
+import com.example.popsicle.models.Universe;
 
 
 /**
@@ -19,6 +20,7 @@ public class InputListener implements View.OnTouchListener {
     private final static String TAG = "InputController";
     private Callback callback;
     private CharacterPosition up_pos;
+    private Universe universe;
 
     @Override
     public boolean onTouch(View v, MotionEvent event) {

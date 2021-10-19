@@ -17,23 +17,19 @@ import com.example.popsicle.models.Candy;
 import com.example.popsicle.models.Character;
 import com.example.popsicle.models.Clouds;
 import com.example.popsicle.models.Console;
+import com.example.popsicle.models.Syrup;
 import com.example.popsicle.models.Universe;
+
+import java.util.List;
 
 public class GraphicsRenderer implements Universe.Callback, SurfaceHolder.Callback{
 
     private final static String TAG = "RenderingObjects";
     private final Universe universe;
     private SurfaceHolder holder;
-    private Bitmap characterA_bitmap;
-    private Bitmap characterB_bitmap;
-    private Bitmap candyA_bitmap;
-    private Bitmap candyB_bitmap;
-    private Bitmap cloud_bitmap;
-    private Bitmap buttonUp_bitmap;
-    private Bitmap buttonDown_bitmap;
-    private Bitmap buttonLeft_bitmap;
-    private Bitmap buttonRight_bitmap;
-
+    private Bitmap characterA_bitmap, characterB_bitmap,
+            candyA_bitmap,candyB_bitmap,cloud_bitmap, syrup_bitmap,
+            buttonUp_bitmap, buttonDown_bitmap, buttonLeft_bitmap,buttonRight_bitmap;
 
     public GraphicsRenderer(Universe u, Resources context){
         this.universe = u;
@@ -42,6 +38,7 @@ public class GraphicsRenderer implements Universe.Callback, SurfaceHolder.Callba
         this.candyA_bitmap = BitmapFactory.decodeResource(context, R.mipmap.popsicle_a);
         this.candyB_bitmap = BitmapFactory.decodeResource(context, R.mipmap.popsicle_b);
         this.cloud_bitmap = BitmapFactory.decodeResource(context, R.mipmap.cloud);
+        this.syrup_bitmap = BitmapFactory.decodeResource(context,R.mipmap.syrup);
         this.buttonUp_bitmap = BitmapFactory.decodeResource(context, R.mipmap.up);
         this.buttonDown_bitmap = BitmapFactory.decodeResource(context, R.mipmap.down);
         this.buttonLeft_bitmap = BitmapFactory.decodeResource(context, R.mipmap.left);
@@ -99,8 +96,15 @@ public class GraphicsRenderer implements Universe.Callback, SurfaceHolder.Callba
         // Drawing the characters
         Paint elementsPaint = new Paint();
 
+        // Drawing the balls
+        Paint ballPaint = new Paint();
+        ballPaint.setStyle(Paint.Style.FILL_AND_STROKE);
+        ballPaint.setStrokeWidth(10);
+        ballPaint.setARGB(255, 153, 213, 195);
+
         // Drawing character A
         Character charA = universe.getCharacterA();
+
         int charA_x1 = (int) (charA.getPos().getX() - 100);
         int charA_y2 = (int) (charA.getPos().getY() + 100);
         int charA_x2 = (int) (charA.getPos().getX() + 100);
@@ -187,6 +191,10 @@ public class GraphicsRenderer implements Universe.Callback, SurfaceHolder.Callba
         Bitmap ScaledBMPCloudB2 = Bitmap.createScaledBitmap(this.cloud_bitmap, boundsCloudB2.width(), boundsCloudB2.height(), true);
         canvas.drawBitmap(ScaledBMPCloudB2, boundsCloudB2.left, boundsCloudB2.bottom, elementsPaint);
 
+        // Try drawing syrup near A1 first
+        for (Syrup syrup : universe.getSyrups()) {
+            canvas.drawCircle(syrup.getPosition().getX(), syrup.getPosition().getY(), 30.0f, ballPaint);
+        }
 
         // Drawing Console Button Up
         Console up = universe.getUpButton();
