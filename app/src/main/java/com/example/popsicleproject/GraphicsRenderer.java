@@ -25,7 +25,7 @@ public class GraphicsRenderer extends SurfaceView implements Runnable {
     private MainActivity activity;
     private List<Syrup> syrupsA1, syrupsA2, syrupsB1, syrupsB2;
 
-//    public GraphicsRenderer(Context context, int screenX, int screenY){
+//  public GraphicsRenderer(Context context, int screenX, int screenY){
     public GraphicsRenderer(MainActivity activity, int screenX, int screenY){
         super(activity);
 

@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Popsicleproject">
         <activity
+            android:name=".JoinGame"
+            android:exported="true" />
+        <activity
+            android:name=".CreateGame"
+            android:exported="true" />
+        <activity
             android:name=".StartGamePage"
             android:exported="true"
             android:screenOrientation="landscape"
@@ -24,8 +30,7 @@
             android:name=".MainActivity"
             android:exported="false"
             android:screenOrientation="landscape"
-            android:theme="@style/Theme.AppCompat.NoActionBar">
-        </activity>
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
     </application>
 
 </manifest>
