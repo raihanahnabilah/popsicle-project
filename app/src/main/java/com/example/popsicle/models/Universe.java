@@ -8,14 +8,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *  connection:
+ *  Universe handles all the actions that are going on in our game.
+ *
+ *  Notes on connection:
  *  whoever starts the game -- will get the left character
  *  the other who joins -- will get the right characgter
  *  convert a name of a player to a number -- can hash it
  *  whoever is larger, will get the left character
  *  whoever is smaller, will get the right character
  */
-
 
 public class Universe {
 
@@ -28,6 +29,15 @@ public class Universe {
     List<Syrup> trash;
     boolean isSyrupActivated = false;
 
+    /**
+     * Universe instantiates all the different
+     * Comment:
+     * - a lot of constants:
+     * --> should have a datastructure that loads all these constants
+     * --> shouldn't even have to have them as constants
+     * --> constants within the creation of the universe
+     *         can have another class "UniverseBuilder" that will provide these constants
+     */
     public Universe(){
         this.characterA = new Character(350,280);
         this.candyA = new Candy(200,280);
@@ -81,7 +91,11 @@ public class Universe {
         return cloudsB2;
     }
 
-
+    /**
+     *
+     * @param pos position of the Character
+     * @param character character variable
+     */
     // Moving the characters using the console button (location of console in the universe)
     public void CharacterMove(CharacterPosition pos, Character character){
         // In here, the characterPosition pos is actually the position of the button

@@ -9,8 +9,8 @@ public class Candy {
 
     /**
      * Constructor: implementing the CandyPosition class
-     * @param x
-     * @param y
+     * @param x x-coordinates of the Candy
+     * @param y y-coordinates of the Candy
      */
     public Candy(float x, float y){
         this.pos = new CandyPosition(x, y);
