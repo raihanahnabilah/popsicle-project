@@ -7,13 +7,17 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ *  connection:
+ *  whoever starts the game -- will get the left character
+ *  the other who joins -- will get the right characgter
+ *  convert a name of a player to a number -- can hash it
+ *  whoever is larger, will get the left character
+ *  whoever is smaller, will get the right character
+ */
+
+
 public class Universe {
-    // connection:
-    // whoevr starts the game -- will get the left character
-    // the other who joins -- will get the right characgter
-    // convert a name of a player to a number -- can hash it
-    // whoever is larger, will get the left character
-    // whoever is smaller, will get the right character
 
     public static final String TAG = "Universe";
     private final Character characterA, characterB;
