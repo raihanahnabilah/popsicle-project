@@ -1,7 +1,7 @@
 package com.example.popsicle.models;
 
 /**
- * Character Class is dealing with all the information regarding the character
+ * Character Class is controls the positional information regarding the character
  */
 public class Character {
     private static final String TAG = "Character";

@@ -1,13 +1,15 @@
 package com.example.popsicle.models;
 
-/**
- * CharacterPosition Class
- */
 
 public class CharacterPosition {
 
     private float x,y;
 
+    /**
+     *
+     * @param x x-coordinate of Character
+     * @param y y-coordinate of Character
+     */
     public CharacterPosition(float x, float y){
         this.x = x;
         this.y = y;
@@ -20,6 +22,13 @@ public class CharacterPosition {
     public float getY() {
         return y;
     }
+
+    /**
+     * The following methods are called when the user moves based on the imput
+     * The character will 'move' based on adding or subtracting values from
+     * x and y coordinates
+     */
+
 
     /**
      * Moves the character left

@@ -1,7 +1,7 @@
 package com.example.popsicle.models;
 
 /**
- * Candy Position Class instantiates the x and y coordinates
+ * Instantiates the x and y coordinates
  */
 public class CandyPosition {
     private float x,y;
