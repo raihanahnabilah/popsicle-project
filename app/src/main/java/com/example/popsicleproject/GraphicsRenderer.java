@@ -354,6 +354,7 @@ public class GraphicsRenderer extends SurfaceView implements Runnable {
     public void newSyrup(String direction){
         Syrup syrup = new Syrup(getResources());
         if (direction.equals("a1")){
+//            after fixing cloud position according to width/height use cloudA1.x and with y
             syrup.x = 810;
             syrup.y = 125;
             syrupsA1.add(syrup);

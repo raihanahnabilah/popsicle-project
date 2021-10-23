@@ -27,10 +27,10 @@ public class MainActivity extends AppCompatActivity {
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        Point point = new Point();
-        getWindowManager().getDefaultDisplay().getSize(point);
+//        Point point = new Point();
+//        getWindowManager().getDefaultDisplay().getSize(point);
 
-        graphicsRenderer = new GraphicsRenderer(this, point.x, point.y);
+        graphicsRenderer = new GraphicsRenderer(this, windowWidth, windowHeight);
         setContentView(graphicsRenderer);
     }
 
