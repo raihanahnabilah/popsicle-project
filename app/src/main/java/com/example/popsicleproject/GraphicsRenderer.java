@@ -332,22 +332,22 @@ public class GraphicsRenderer extends SurfaceView implements Runnable {
 
                 // To activate the clouds
 //                maybe comment this out
-//                if ((event.getX() > 570) && (event.getX() < 830) &&
-//                        (event.getY() > 111) && (event.getY() < 252)){
-//                    cloudA1.toShoot++;
-//                }
-//                if ((event.getX() > 270) && (event.getX() < 508) &&
-//                        (event.getY() > 830) && (event.getY() < 955)){
-//                    cloudA2.toShoot++;
-//                }
-//                if ((event.getX() > 1644) && (event.getX() < 1907) &&
-//                        (event.getY() > 111) && (event.getY() < 252)){
-//                    cloudB1.toShoot++;
-//                }
-//                if ((event.getX() > 1250) && (event.getX() < 1500) &&
-//                        (event.getY() > 810) && (event.getY() < 950)){
-//                    cloudB2.toShoot++;
-//                }
+                if ((event.getX() > cloudA1.x) && (event.getX() < cloudA1.x + cloudA1.width) &&
+                        (event.getY() > cloudA1.y + cloudA1.height/4) && (event.getY() < cloudA1.y  + cloudA1.height - cloudA1.height/4)){
+                    cloudA1.toShoot++;
+                }
+                if ((event.getX() > cloudA2.x) && (event.getX() < cloudA2.x + cloudA2.width) &&
+                        (event.getY() > cloudA2.y + cloudA2.height/4) && (event.getY() < cloudA2.y  + cloudA2.height - cloudA2.height/4)){
+                    cloudA2.toShoot++;
+                }
+                if ((event.getX() > cloudB1.x) && (event.getX() < cloudB1.x + cloudB1.width) &&
+                        (event.getY() > cloudB1.y + cloudB1.height/4) && (event.getY() < cloudB1.y  + cloudB1.height - cloudB1.height/4)){
+                    cloudB1.toShoot++;
+                }
+                if ((event.getX() > cloudB2.x) && (event.getX() < cloudB2.x + cloudB2.width) &&
+                        (event.getY() > cloudB2.y + cloudB2.height/4) && (event.getY() < cloudB2.y  + cloudB2.height - cloudB2.height/4)){
+                    cloudB2.toShoot++;
+                }
 //                until here to check 1 thing at a time
                 break;
 
