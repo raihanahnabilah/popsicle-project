@@ -360,28 +360,99 @@ public class GraphicsRenderer extends SurfaceView implements Runnable {
 //        gives random integer from 0 to 3 inclusive
         Random ran = new Random();
         int n = ran.nextInt(4) ;
-        System.out.println(n);
+//        System.out.println(n);
         if (direction.equals("a1")){
 //            after fixing cloud position according to width/height use cloudA1.x and with y
 //            it will initialize in leftup corener of cloud if we use that
-            syrup.x = cloudA1.x;
-            syrup.y = cloudA1.y + cloudA1.height/2;
-            syrupsA1.add(syrup);
+            if (n == 0) {
+                syrup.x = cloudA1.x;
+                syrup.y = cloudA1.y + cloudA1.height/2;
+                syrupsA1.add(syrup);
+            }
+            else if (n==1){
+                syrup.x = cloudA1.x + cloudA1.width;
+                syrup.y = cloudA1.y + cloudA1.height/2;
+                syrupsA1.add(syrup);
+            }
+            else if (n==2){
+                syrup.x = cloudA1.x + cloudA1.width/2;
+                syrup.y = cloudA1.y + cloudA1.height/4;
+                syrupsA1.add(syrup);
+            }
+            else if (n==3){
+                syrup.x = cloudA1.x + cloudA1.width/2;
+                syrup.y = cloudA1.y + cloudA1.height - cloudA1.height/4;
+                syrupsA1.add(syrup);
+            }
         }
         else if (direction.equals("a2")){
-            syrup.x = cloudA2.x;
-            syrup.y = cloudA2.y + cloudA2.height/2;
-            syrupsA2.add(syrup);
+            if (n == 0) {
+                syrup.x = cloudA2.x;
+                syrup.y = cloudA2.y + cloudA2.height/2;
+                syrupsA2.add(syrup);
+            }
+            else if (n==1){
+                syrup.x = cloudA2.x + cloudA2.width;
+                syrup.y = cloudA2.y + cloudA2.height/2;
+                syrupsA2.add(syrup);
+            }
+            else if (n==2){
+                syrup.x = cloudA2.x + cloudA2.width/2;
+                syrup.y = cloudA2.y + cloudA2.height/4;
+                syrupsA2.add(syrup);
+            }
+            else if (n==3){
+                syrup.x = cloudA2.x + cloudA2.width/2;
+                syrup.y = cloudA2.y + cloudA2.height - cloudA2.height/4;
+                syrupsA2.add(syrup);
+            }
         }
         else if (direction.equals("b1")){
-            syrup.x = cloudB1.x;
-            syrup.y = cloudB1.y + cloudB1.height/2;
-            syrupsB1.add(syrup);
+            if (n == 0) {
+                syrup.x = cloudB1.x;
+                syrup.y = cloudB1.y + cloudB1.height/2;
+                syrupsB1.add(syrup);
+            }
+            else if (n==1){
+                syrup.x = cloudB1.x + cloudB1.width;
+                syrup.y = cloudB1.y + cloudB1.height/2;
+                syrupsB1.add(syrup);
+            }
+            else if (n==2){
+                syrup.x = cloudB1.x + cloudB1.width/2;
+                syrup.y = cloudB1.y + cloudB1.height/4;
+                syrupsB1.add(syrup);
+            }
+            else if (n==3){
+                syrup.x = cloudB1.x + cloudB1.width/2;
+                syrup.y = cloudB1.y + cloudB1.height - cloudB1.height/4;
+                syrupsB1.add(syrup);
+            }
         }
         else if (direction.equals("b2")){
             syrup.x = cloudB2.x;
             syrup.y = cloudB2.y + cloudB2.height/2;
             syrupsB2.add(syrup);
+            if (n == 0) {
+                syrup.x = cloudB2.x;
+                syrup.y = cloudB2.y + cloudB2.height/2;
+                syrupsB2.add(syrup);
+            }
+            else if (n==1){
+                syrup.x = cloudB2.x + cloudB2.width;
+                syrup.y = cloudB2.y + cloudB2.height/2;
+                syrupsB2.add(syrup);
+            }
+            else if (n==2){
+                syrup.x = cloudB2.x + cloudB2.width/2;
+                syrup.y = cloudB2.y + cloudB2.height/4;
+                syrupsB2.add(syrup);
+            }
+            else if (n==3){
+                syrup.x = cloudB2.x + cloudB2.width/2;
+                syrup.y = cloudB2.y + cloudB2.height - cloudB2.height/4;
+                syrupsB2.add(syrup);
+            }
         }
     }
 }
