@@ -1,6 +1,5 @@
 package com.example.popsicleproject;
 
-import android.content.Context;
 import android.content.Intent;
 import android.graphics.Canvas;
 import android.graphics.Paint;
@@ -8,7 +7,6 @@ import android.graphics.Rect;
 import android.view.MotionEvent;
 import android.view.SurfaceView;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,6 +22,21 @@ public class GraphicsRenderer extends SurfaceView implements Runnable {
     private Popsicle popsicleA, popsicleB;
     private MainActivity activity;
     private List<Syrup> syrupsA1, syrupsA2, syrupsB1, syrupsB2;
+//     Added values of constants for sizes, fixed movements, etc.
+    private Integer charMovementPixels = 20;
+    private Integer syrupMovementPixelsA1X = 20;
+    private float syrupMovementPixelsA1Y = 7f;
+    private Integer syrupMovementPixelsA2X = 20;
+    private float syrupMovementPixelsA2Y = 5f;
+
+    private Integer syrupMovementPixelsB1X = 20;
+    private float syrupMovementPixelsB1Y = 5f;
+    private Integer syrupMovementPixelsB2X = 20;
+    private float syrupMovementPixelsB2Y = 7f;
+
+
+//    final float density = getContext().getResources().getDisplayMetrics().density;
+
 
 //    public GraphicsRenderer(Context context, int screenX, int screenY){
     public GraphicsRenderer(MainActivity activity, int screenX, int screenY){
@@ -75,30 +88,30 @@ public class GraphicsRenderer extends SurfaceView implements Runnable {
 
         // This is only character A
         if (characterA.isMovingUp){
-            characterA.y -= 20;
+            characterA.y -= charMovementPixels;
         }
         if (characterA.isMovingDown){
-            characterA.y += 20;
+            characterA.y += charMovementPixels;
         }
         if (characterA.isMovingRight){
-            characterA.x += 20;
+            characterA.x += charMovementPixels;
         }
         if (characterA.isMovingLeft){
-            characterA.x -= 20;
+            characterA.x -= charMovementPixels;
         }
 
         // This is only character B
         if (characterB.isMovingUp){
-            characterB.y -= 20;
+            characterB.y -= charMovementPixels;
         }
         if (characterB.isMovingDown){
-            characterB.y += 20;
+            characterB.y += charMovementPixels;
         }
         if (characterB.isMovingRight){
-            characterB.x += 20;
+            characterB.x += charMovementPixels;
         }
         if (characterB.isMovingLeft){
-            characterB.x -= 20;
+            characterB.x -= charMovementPixels;
         }
 
         if (Rect.intersects(characterA.getCollissionShape(), popsicleB.getCollissionShape()) ||
@@ -113,8 +126,8 @@ public class GraphicsRenderer extends SurfaceView implements Runnable {
             if (syrup.x > screenX){
                 trashA1.add(syrup);
             }
-            syrup.x += 20;
-            syrup.y += 7f;
+            syrup.x += syrupMovementPixelsA1X;
+            syrup.y += syrupMovementPixelsA1Y;
 
             if (Rect.intersects(characterA.getCollissionShape(), syrup.getCollissionShape()) ||
             Rect.intersects(characterB.getCollissionShape(), syrup.getCollissionShape())){
@@ -133,8 +146,8 @@ public class GraphicsRenderer extends SurfaceView implements Runnable {
             if (syrup.x > screenX){
                 trashA2.add(syrup);
             }
-            syrup.x += 20;
-            syrup.y -= 5f;
+            syrup.x += syrupMovementPixelsA2X;
+            syrup.y -= syrupMovementPixelsA2Y;
 
             if (Rect.intersects(characterA.getCollissionShape(), syrup.getCollissionShape()) ||
                     Rect.intersects(characterB.getCollissionShape(), syrup.getCollissionShape())){
@@ -153,8 +166,8 @@ public class GraphicsRenderer extends SurfaceView implements Runnable {
             if (syrup.x > screenX){
                 trashB1.add(syrup);
             }
-            syrup.x -= 20;
-            syrup.y += 5f;
+            syrup.x -= syrupMovementPixelsB1X;
+            syrup.y += syrupMovementPixelsB1Y;
 
             if (Rect.intersects(characterA.getCollissionShape(), syrup.getCollissionShape()) ||
                     Rect.intersects(characterB.getCollissionShape(), syrup.getCollissionShape())){
@@ -174,8 +187,8 @@ public class GraphicsRenderer extends SurfaceView implements Runnable {
             if (syrup.x > screenX){
                 trashB2.add(syrup);
             }
-            syrup.x -= 20;
-            syrup.y -= 7f;
+            syrup.x -= syrupMovementPixelsB2X;
+            syrup.y -= syrupMovementPixelsB2Y;
 
             if (Rect.intersects(characterA.getCollissionShape(), syrup.getCollissionShape()) ||
                     Rect.intersects(characterB.getCollissionShape(), syrup.getCollissionShape())){
@@ -340,22 +353,22 @@ public class GraphicsRenderer extends SurfaceView implements Runnable {
 
     public void newSyrup(String direction){
         Syrup syrup = new Syrup(getResources());
-        if (direction == "a1"){
+        if (direction.equals("a1")){
             syrup.x = 810;
             syrup.y = 125;
             syrupsA1.add(syrup);
         }
-        else if (direction == "a2"){
+        else if (direction.equals("a2")){
             syrup.x = 508;
             syrup.y = 830;
             syrupsA2.add(syrup);
         }
-        else if (direction == "b1"){
+        else if (direction.equals("b1")){
             syrup.x = 1620;
             syrup.y = 120;
             syrupsB1.add(syrup);
         }
-        else if (direction == "b2"){
+        else if (direction.equals("b2")){
             syrup.x = 1200;
             syrup.y = 850;
             syrupsB2.add(syrup);

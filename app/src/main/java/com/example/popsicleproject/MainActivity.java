@@ -4,7 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.Point;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.MotionEvent;
+import android.view.Window;
 import android.view.WindowManager;
 
 public class MainActivity extends AppCompatActivity {
@@ -14,6 +16,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+//        should give the current windows height and width
+        DisplayMetrics metrics = new DisplayMetrics();
+        Window window = getWindow();
+        window.getWindowManager().getDefaultDisplay().getMetrics(metrics);
+        int windowHeight = metrics.heightPixels;
+        int windowWidth = metrics.widthPixels;
+
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
