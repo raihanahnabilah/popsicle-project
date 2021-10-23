@@ -295,23 +295,26 @@ public class GraphicsRenderer extends SurfaceView implements Runnable {
     public boolean onTouchEvent(MotionEvent event) {
         switch(event.getAction()){
             case MotionEvent.ACTION_DOWN:
-                System.out.println(event.getX());
-                System.out.println(event.getY());
+//                System.out.println(event.getX());
+//                System.out.println(up.x);
+//                System.out.println(event.getY());
+//                System.out.println(up.y);
                 // This is to move character A
-                if ((event.getX() > 1740) && (event.getX() < 1880) &&
-                        (event.getY() > 700) && (event.getY() < 790)){
+//                System.out.println(up.width);
+                if ((event.getX() > up.x + up.width/4) && (event.getX() < (up.x + up.width - up.width/4)) &&
+                        (event.getY() > up.y + up.height/4) && (event.getY() < up.y + up.height - up.height/4)){
                     characterA.isMovingUp = true;
                 }
-                if ((event.getX() > 1740) && (event.getX() < 1880) &&
-                        (event.getY() > 935) && (event.getY() < 1020)){
+                if ((event.getX() > down.x + down.width/4) && (event.getX() < (down.x + down.width - down.width/4)) &&
+                        (event.getY() > down.y + down.height/4) && (event.getY() < down.y + down.height - down.height/4)){
                     characterA.isMovingDown = true;
                 }
-                if ((event.getX() > 1880) && (event.getX() < 1970) &&
-                        (event.getY() > 800) && (event.getY() < 920)){
+                if ((event.getX() > right.x + right.width/4) && (event.getX() < (right.x + right.width - right.width/4)) &&
+                        (event.getY() > right.y + right.height/4) && (event.getY() < right.y + right.height - right.height/4)){
                     characterA.isMovingRight = true;
                 }
-                if ((event.getX() > 1650) && (event.getX() < 1740) &&
-                        (event.getY() > 800) && (event.getY() < 920)){
+                if ((event.getX() > left.x + left.width/4) && (event.getX() < (left.x + left.width - left.width/4)) &&
+                        (event.getY() > left.y + left.height/4) && (event.getY() < left.y + left.height - left.height/4)){
                     characterA.isMovingLeft = true;
                 }
 
@@ -328,22 +331,24 @@ public class GraphicsRenderer extends SurfaceView implements Runnable {
 
 
                 // To activate the clouds
-                if ((event.getX() > 570) && (event.getX() < 830) &&
-                        (event.getY() > 111) && (event.getY() < 252)){
-                    cloudA1.toShoot++;
-                }
-                if ((event.getX() > 270) && (event.getX() < 508) &&
-                        (event.getY() > 830) && (event.getY() < 955)){
-                    cloudA2.toShoot++;
-                }
-                if ((event.getX() > 1644) && (event.getX() < 1907) &&
-                        (event.getY() > 111) && (event.getY() < 252)){
-                    cloudB1.toShoot++;
-                }
-                if ((event.getX() > 1250) && (event.getX() < 1500) &&
-                        (event.getY() > 810) && (event.getY() < 950)){
-                    cloudB2.toShoot++;
-                }
+//                maybe comment this out
+//                if ((event.getX() > 570) && (event.getX() < 830) &&
+//                        (event.getY() > 111) && (event.getY() < 252)){
+//                    cloudA1.toShoot++;
+//                }
+//                if ((event.getX() > 270) && (event.getX() < 508) &&
+//                        (event.getY() > 830) && (event.getY() < 955)){
+//                    cloudA2.toShoot++;
+//                }
+//                if ((event.getX() > 1644) && (event.getX() < 1907) &&
+//                        (event.getY() > 111) && (event.getY() < 252)){
+//                    cloudB1.toShoot++;
+//                }
+//                if ((event.getX() > 1250) && (event.getX() < 1500) &&
+//                        (event.getY() > 810) && (event.getY() < 950)){
+//                    cloudB2.toShoot++;
+//                }
+//                until here to check 1 thing at a time
                 break;
 
         }
@@ -355,6 +360,7 @@ public class GraphicsRenderer extends SurfaceView implements Runnable {
         Syrup syrup = new Syrup(getResources());
         if (direction.equals("a1")){
 //            after fixing cloud position according to width/height use cloudA1.x and with y
+//            it will initialize in leftup corener of cloud if we use that
             syrup.x = 810;
             syrup.y = 125;
             syrupsA1.add(syrup);
