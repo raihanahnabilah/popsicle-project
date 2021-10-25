@@ -44,12 +44,6 @@ public class StartGamePage extends AppCompatActivity {
                 startActivity(new Intent(StartGamePage.this,MainActivity.class));
             }
         });
-
-    }
-
-    public void openActivity() {
-        Intent intent = new Intent(this, MainActivity.class);
-        startActivity(intent);
     }
 
     public void createGameActivity() {

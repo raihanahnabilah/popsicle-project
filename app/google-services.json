@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "153484682948",
+    "firebase_url": "https://popsicle-98b92-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "popsicle-98b92",
+    "storage_bucket": "popsicle-98b92.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:153484682948:android:f1b0d707392848ddea0b91",
+        "android_client_info": {
+          "package_name": "com.example.popsicleproject"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "153484682948-vq33htm458fhvh5b009hgaipdfs3t58i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCE13hLNua4jh8fkqogWLGRfXUJeJxhYKs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "153484682948-vq33htm458fhvh5b009hgaipdfs3t58i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
