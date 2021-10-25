@@ -8,7 +8,7 @@ public class Console {
     int x, y, width, height;
     Bitmap console;
 
-    Console (int screenX, int screenY, Resources res, int id, String direction){
+    public Console (int screenX, int screenY, Resources res, int id, String direction){
         console = BitmapFactory.decodeResource(res, id);
 
         width = console.getWidth();

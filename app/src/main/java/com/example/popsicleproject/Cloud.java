@@ -11,7 +11,7 @@ public class Cloud {
     private GraphicsRenderer graphicsRenderer;
     String direction;
 
-    Cloud (GraphicsRenderer graphicsRenderer, int screenX, int screenY, Resources res, int id, String direction){
+    public Cloud(GraphicsRenderer graphicsRenderer, int screenX, int screenY, Resources res, int id, String direction){
         this.direction = direction;
         this.graphicsRenderer = graphicsRenderer;
         cloud = BitmapFactory.decodeResource(res, id);

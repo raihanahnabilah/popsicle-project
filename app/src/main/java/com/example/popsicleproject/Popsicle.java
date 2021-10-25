@@ -10,7 +10,7 @@ public class Popsicle {
     int x, y, width, height;
     Bitmap popsicle;
 
-    Popsicle (int screenX, int screenY, Resources res, int id, String direction){
+    public Popsicle(int screenX, int screenY, Resources res, int id, String direction){
         popsicle = BitmapFactory.decodeResource(res, id);
 
         width = popsicle.getWidth();

@@ -6,6 +6,8 @@ import android.graphics.BitmapFactory;
 import android.graphics.Rect;
 
 public class Character {
+    private static final String TAG = "Character";
+//    private CharacterPosition pos ;
 
     Boolean isMovingUp = false, isMovingDown = false, isMovingLeft = false, isMovingRight = false;
     int x, y, width, height;
@@ -30,7 +32,6 @@ public class Character {
             x = screenX - 450;
         }
 
-
     }
 
     Bitmap getCharacter(){
@@ -40,4 +41,16 @@ public class Character {
     public Rect getCollissionShape() {
         return new Rect(x-100, y+50, x+width-100, y+height-80);
     }
+
+//    /**
+//     * @return String to edit/override the xml file
+//     */
+//
+//    @Override
+//    public String toString() {
+//        return "Character{" +
+//                "pos=" + pos +
+//                '}';
+//    }
+
 }
