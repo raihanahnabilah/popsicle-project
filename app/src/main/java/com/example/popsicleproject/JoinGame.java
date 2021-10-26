@@ -3,6 +3,8 @@ package com.example.popsicleproject;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -27,6 +29,11 @@ public class JoinGame extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_join_game);
 
+        // Get the uid from shared preferences VERY IMPORTANT
+        SharedPreferences sp = getApplicationContext().getSharedPreferences("MyUserPrefs", Context.MODE_PRIVATE);
+        String savedUserUID = sp.getString("userUID", "");
+        System.out.println("The user UID is from sharedp is " + savedUserUID);
+
         number = (TextView) findViewById(R.id.number);
         updateButton2 = (Button) findViewById(R.id.updateButton2);
     }
@@ -34,6 +41,7 @@ public class JoinGame extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
+
         mConditionRef.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -51,6 +59,7 @@ public class JoinGame extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 mConditionRef.setValue("RESET THE BUTTON");
+                // System.out.println("The user UID is from sharedp is " + userUID);
             }
         });
     }

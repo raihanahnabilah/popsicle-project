@@ -1,7 +1,10 @@
 package com.example.popsicleproject;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
@@ -13,6 +16,7 @@ public class StartGamePage extends AppCompatActivity {
     private Button joinGameButton;
     public String userUID;
     public Random rng = new Random();
+    public SharedPreferences sp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,9 +29,12 @@ public class StartGamePage extends AppCompatActivity {
         userUID = generateString(rng, "ABCDEFGHIJKLMNOPQRSTUVWXYZabcedfghijklmnopqrstuvwxyz0123456789)!@#$%^&*(", 11);
         System.out.println("The userUID is : " + userUID);
 
-        // Global globalVar = ((Global)getApplicationContext());
-        // String globalVarValue = Global.getUserUID();
-        // System.out.println("The global variable is : " + globalVarValue);
+        // This creates a shared preferences data item which stores the userUID in a global context
+        // so we can retrieve the userUID throughout all the classes of the application
+        sp = getSharedPreferences("MyUserPrefs", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sp.edit();
+        editor.putString("userUID", userUID);
+        editor.commit();
 
 
         // This states that if you click the createGameButton, you call the createGameActivity() method
@@ -37,6 +44,8 @@ public class StartGamePage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 createGameActivity();
+                String savedUserUID = sp.getString("userUID", "");
+                System.out.println("The saved uid is : + " + savedUserUID);
             }
         });
 
