@@ -1,17 +1,18 @@
 package com.example.popsicleproject;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
+import java.util.Random;
 
 public class StartGamePage extends AppCompatActivity {
-    // private Button playButton;
     private Button createGameButton;
     private Button joinGameButton;
+    public String userUID;
+    public Random rng = new Random();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,7 +21,17 @@ public class StartGamePage extends AppCompatActivity {
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
+        // This sets the userUID variable to some random string so player A and player B can be identified
+        userUID = generateString(rng, "ABCDEFGHIJKLMNOPQRSTUVWXYZabcedfghijklmnopqrstuvwxyz0123456789)!@#$%^&*(", 11);
+        System.out.println("The userUID is : " + userUID);
 
+        // Global globalVar = ((Global)getApplicationContext());
+        // String globalVarValue = Global.getUserUID();
+        // System.out.println("The global variable is : " + globalVarValue);
+
+
+        // This states that if you click the createGameButton, you call the createGameActivity() method
+        // and thus you get sent to the create game page
         createGameButton = (Button) findViewById(R.id.button1);
         createGameButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -29,6 +40,8 @@ public class StartGamePage extends AppCompatActivity {
             }
         });
 
+        // This states that if you click the joinGameButton, you call the joinGameActivity() method
+        // and thus you get sent to the join game page
         joinGameButton = (Button) findViewById(R.id.button2);
         joinGameButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -37,7 +50,7 @@ public class StartGamePage extends AppCompatActivity {
             }
         });
 
-
+        // This states that if you click the play button you will start the game
         findViewById(R.id.play).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -46,13 +59,26 @@ public class StartGamePage extends AppCompatActivity {
         });
     }
 
+    // This method sends you to the create game page (create game activity)
     public void createGameActivity() {
         Intent intent = new Intent(this, CreateGame.class);
         startActivity(intent);
     }
 
+    // This method sends you to the join game page (join game activity)
     public void joinGameActivity() {
         Intent intent = new Intent(this, JoinGame.class);
         startActivity(intent);
     }
+
+    // This is to generate the random UID for each player (Player A or Player B)
+    public static String generateString(Random rng, String characters, int length) {
+        char[] text = new char[length];
+        for (int i = 0; i < length; i++) {
+            text[i] = characters.charAt(rng.nextInt(characters.length()));
+        }
+        return new String(text);
+    }
+
+
 }

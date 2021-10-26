@@ -14,4 +14,12 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         tools:layout_editor_absoluteX="165dp"
         tools:layout_editor_absoluteY="94dp" />
+
+    <Button
+        android:id="@+id/createGameButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Create Game"
+        tools:layout_editor_absoluteX="150dp"
+        tools:layout_editor_absoluteY="227dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
