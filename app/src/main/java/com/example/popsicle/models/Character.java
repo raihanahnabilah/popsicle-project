@@ -1,50 +1,112 @@
 package com.example.popsicle.models;
 
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Rect;
+
+import com.example.popsicle.R;
+
 /**
  * Character Class is controls the positional information regarding the character
  */
 public class Character {
     private static final String TAG = "Character";
-    private CharacterPosition pos;
+    private Position pos;
+    int width, height;
+    Bitmap character;
+    Boolean isMovingUp = false, isMovingDown = false, isMovingLeft = false, isMovingRight = false;
+
+    public Boolean getMovingUp() {
+        return isMovingUp;
+    }
+
+    public Boolean getMovingDown() {
+        return isMovingDown;
+    }
+
+    public Boolean getMovingLeft() {
+        return isMovingLeft;
+    }
+
+    public Boolean getMovingRight() {
+        return isMovingRight;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public Character(int screenX, int screenY, String direction, Resources res){
+        if(direction == "a"){
+            this.pos = new Position(250, (screenY / 2)- 100);
+            character = BitmapFactory.decodeResource(res, R.mipmap.char_a);
+        } else if (direction == "b"){
+            this.pos = new Position(screenX - 450, (screenY/2)-100);
+            character = BitmapFactory.decodeResource(res, R.mipmap.char_b);
+        }
+
+        width = character.getWidth();
+        height = character.getHeight();
+
+        width /= 4;
+        height/= 4;
+
+        character = Bitmap.createScaledBitmap(character, width, height, false);
+
+    }
+
+    public Rect getCollisionShape(){
+        int left = (int) this.getPos().getX() - 100;
+        int top = (int) this.getPos().getY() + 50;
+        int right = (int) this.getPos().getX() + this.getWidth() - 100;
+        int bottom = (int) this.getPos().getY() + this.getHeight() - 80;
+
+        return new Rect(left, top, right, bottom);
+    }
+
+
+    public Bitmap getCharacter() {
+        return character;
+    }
 
     /**
-     * @param x x-coordinate of the character
-     * @param y y-coordinate of the charater
+     * Returns pos - The position of the Characters
      */
-    public Character(float x, float y){
-        this.pos = new CharacterPosition(x, y);
+    public Position getPos() {
+        return pos;
     }
+
 
     /**
      * Moving left: using the Character Position Class
      */
     public void moveLeft() {
-        this.pos.addLeft();
+            this.pos.addLeft();
     }
     /**
      * Moving Right: using the Character Position Class
      */
     public void moveRight() {
-        this.pos.addRight();
+            this.pos.addRight();
     }
     /**
      * Moving Up: using the Character Position Class
      */
     public void moveUp() {
-        this.pos.addUp();
+            this.pos.addUp();
     }
     /**
      * Moving Down: using the Character Position Class
      */
     public void moveDown() {
-        this.pos.addDown();
+            this.pos.addDown();
     }
-    /**
-     * Returns pos - The position of the Characters
-     */
-    public CharacterPosition getPos() {
-        return pos;
-    }
+
 
     /**
      * @return String to edit/override the xml file
@@ -55,5 +117,21 @@ public class Character {
         return "Character{" +
                 "pos=" + pos +
                 '}';
+    }
+
+    public void setMovingUp(Boolean movingUp) {
+        isMovingUp = movingUp;
+    }
+
+    public void setMovingDown(Boolean movingDown) {
+        isMovingDown = movingDown;
+    }
+
+    public void setMovingLeft(Boolean movingLeft) {
+        isMovingLeft = movingLeft;
+    }
+
+    public void setMovingRight(Boolean movingRight) {
+        isMovingRight = movingRight;
     }
 }

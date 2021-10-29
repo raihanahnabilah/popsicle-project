@@ -1,26 +1,68 @@
 package com.example.popsicle.models;
 
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Rect;
+
+import com.example.popsicle.R;
+
 /**
  * This is the class for Candy
  */
 public class Candy {
     private static final String TAG = "Candies";
-    private CandyPosition pos;
+    Bitmap popsicle;
+    int width, height;
+    private Position pos;
 
-    /**
-     * Constructor: implementing the CandyPosition class
-     * @param x x-coordinates of the Candy
-     * @param y y-coordinates of the Candy
-     */
-    public Candy(float x, float y){
-        this.pos = new CandyPosition(x, y);
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public Candy(int screenX, int screenY, String direction, Resources res){
+        popsicle = BitmapFactory.decodeResource(res, R.mipmap.cloud);
+        if (direction == "a"){
+            this.pos = new Position(100, (screenY/2)-100);
+            popsicle = BitmapFactory.decodeResource(res, R.mipmap.popsicle_a);
+        } else if (direction == "b"){
+            this.pos = new Position(screenX - 280, (screenY/2) - 100);
+            popsicle = BitmapFactory.decodeResource(res, R.mipmap.popsicle_b);
+        }
+
+        width = popsicle.getWidth();
+        height = popsicle.getHeight();
+
+        width /= 20;
+        height/= 20;
+
+        popsicle = Bitmap.createScaledBitmap(popsicle, width, height, false);
+
+    }
+
+    public Bitmap getPopsicle() {
+        return popsicle;
+    }
+
+
+    public Rect getCollisionShape(){
+        int left = (int) this.getPos().getX();
+        int top = (int) this.getPos().getY();
+        int right = (int) this.getPos().getX() + this.getWidth();
+        int bottom = (int) this.getPos().getY() + this.getHeight();
+
+        return new Rect(left, top, right, bottom);
     }
 
     /**
      *
      * @return pos Position of the Candy based on the CandyPosition class
      */
-    public CandyPosition getPos() {
+    public Position getPos() {
         return pos;
     }
 }

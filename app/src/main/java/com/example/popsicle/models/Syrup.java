@@ -3,6 +3,7 @@ package com.example.popsicle.models;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Rect;
 
 import com.example.popsicle.R;
 
@@ -10,35 +11,96 @@ import com.example.popsicle.R;
 * Class representing what is 'shot' from the clouds to make the enemy character loose lives
  */
 public class Syrup {
-    private SyrupPosition pos;
+    private Position pos;
     String clouds;
+    Bitmap syrup;
+    int width, height;
+    float moveX, moveY;
+    String direction;
 
-    // Add syrup
-    // Every single clouds need to have a handle of the global state that is the syrup
-    // Global object to update the universe -- to keep all of the elements updated
-    // Direction inside the syrup object
-
-    /*
-    * Creates a new SyrupPosition for the Syrup
-    * @param x assign the initial x coordinate location of the syrup drop
-    * @param y assign the initial y coordinate location of the syrup drop
-     */
-    public Syrup(float x, float y) {
-        this.pos = new SyrupPosition(x,y);
+    public int getWidth() {
+        return width;
     }
+
+    public int getHeight() {
+        return height;
+    }
+
+    public Syrup(Resources res, String direction){
+        syrup = BitmapFactory.decodeResource(res, R.mipmap.syrup);
+
+        width = syrup.getWidth();
+        height = syrup.getHeight();
+
+        width /= 20;
+        height/= 20;
+
+        syrup = Bitmap.createScaledBitmap(syrup, width, height, false);
+
+        if (direction == "a1"){
+            moveX =  20;
+            moveY = 7f;
+        }
+        if (direction == "a2"){
+            moveX =  20;
+            moveY = -5f;
+        }
+        if (direction == "b1"){
+            moveX =  -20;
+            moveY = 5f;
+        }
+        if (direction == "b2"){
+            moveX =  -20;
+            moveY = -7f;
+        }
+
+    }
+
+    public Rect getCollisionShape(){
+        int left = (int) this.getPos().getX();
+        int top = (int) this.getPos().getY();
+        int right = (int) this.getPos().getX() + this.getWidth();
+        int bottom = (int) this.getPos().getY() + this.getHeight();
+
+        return new Rect(left, top, right, bottom);
+    }
+
 
     /*
     * Updates the location of the drop for it to move
     * @param m position coordinates
      */
-    public void move(SyrupMotion m) {
-        this.pos.add(m);
+
+    public void syrupMove(Position p) {
+        this.pos.add(p);
     }
 
     /*
     * Gets the current Syrup position
     */
-    public SyrupPosition getPosition() {
+    public Position getPosition() {
         return this.pos;
     }
+
+    public Position getPos() {
+        return pos;
+    }
+
+    public void setPos(Position pos) {
+        this.pos = pos;
+    }
+
+    public Bitmap getSyrup() {
+        return syrup;
+    }
+
+    public float getMovex() {
+        return moveX;
+    }
+
+    public float getMovey() {
+        return moveY;
+    }
+
+
 }
