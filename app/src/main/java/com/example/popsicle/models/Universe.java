@@ -1,11 +1,17 @@
 package com.example.popsicle.models;
 
 import android.graphics.Point;
+import android.graphics.Rect;
 import android.util.Log;
+import android.view.SurfaceView;
 
+
+import com.example.popsicle.MainController;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
+import java.util.Vector;
 
 /**
  *  Universe handles all the actions that are going on in our game.
@@ -22,12 +28,15 @@ public class Universe {
 
     public static final String TAG = "Universe";
     private final Character characterA, characterB;
-    private final Candy candyA, candyB;
-    private final Clouds cloudsA1, cloudsA2, cloudsB1, cloudsB2;
-    private final Console upButton, downButton, leftButton, rightButton;
-    List<Syrup> syrups;
-    List<Syrup> trash;
-    boolean isSyrupActivated = false;
+    private final Clouds cloudA1, cloudA2, cloudB1, cloudB2;
+    private final int screenX, screenY;
+    private final SurfaceView sv;
+    private final Candy popsicleA, popsicleB;
+    private final Console up, down, left, right;
+    private List<Syrup> syrups;
+    private int toShoot = 0;
+    private int toShootA2 = 0;
+    private MainController mc;
 
     /**
      * Universe instantiates all the different
@@ -38,24 +47,24 @@ public class Universe {
      * --> constants within the creation of the universe
      *         can have another class "UniverseBuilder" that will provide these constants
      */
-    public Universe(){
-        this.characterA = new Character(350,280);
-        this.candyA = new Candy(200,280);
-        this.cloudsA1 = new Clouds(500,-50);
-        this.cloudsA2 = new Clouds(200,650);
-
-        this.characterB = new Character(1700,280);
-        this.candyB = new Candy(1850,280);
-        this.cloudsB1 = new Clouds(1850,-50);
-        this.cloudsB2 = new Clouds(1500,650);
-
-        this.upButton = new Console(1850,550);
-        this.downButton = new Console(1850,750);
-        this.leftButton = new Console(1730,650);
-        this.rightButton = new Console(1970,650);
-
-        this.syrups = new ArrayList<>();
-        this.trash = new ArrayList<>();
+    public Universe(int screenX, int screenY, SurfaceView sv, MainController mc){
+        this.screenX = screenX;
+        this.screenY = screenY;
+        this.sv = sv;
+        this.mc = mc;
+        this.characterA = new Character(screenX, screenY, "a", sv.getResources());
+        this.characterB = new Character(screenX, screenY, "b", sv.getResources());
+        this.cloudA1 = new Clouds(this, screenX, screenY, "a1", sv.getResources());
+        this.cloudA2 = new Clouds(this, screenX, screenY, "a2", sv.getResources());
+        this.cloudB1 = new Clouds(this, screenX, screenY, "b1", sv.getResources());
+        this.cloudB2 = new Clouds(this, screenX, screenY, "b2", sv.getResources());
+        this.popsicleA = new Candy(screenX, screenY, "a", sv.getResources());
+        this.popsicleB = new Candy(screenX, screenY, "b", sv.getResources());
+        this.up = new Console(screenX,screenY,"up", sv.getResources());
+        this.down = new Console(screenX,screenY,"down", sv.getResources());
+        this.left = new Console(screenX,screenY,"left", sv.getResources());
+        this.right = new Console(screenX,screenY,"right", sv.getResources());
+        this.syrups = new Vector<>();
 
     }
 
@@ -67,218 +76,137 @@ public class Universe {
         return characterB;
     }
 
-    public Candy getCandyA() {
-        return candyA;
+    public Clouds getCloudA1() {
+        return cloudA1;
     }
 
-    public Candy getCandyB() {
-        return candyB;
+    public Clouds getCloudA2() {
+        return cloudA2;
     }
 
-    public Clouds getCloudsA1() {
-        return cloudsA1;
+    public Clouds getCloudB1() {
+        return cloudB1;
     }
 
-    public Clouds getCloudsA2() {
-        return cloudsA2;
+    public Clouds getCloudB2() {
+        return cloudB2;
     }
 
-    public Clouds getCloudsB1() {
-        return cloudsB1;
+    public Candy getPopsicleA() {
+        return popsicleA;
     }
 
-    public Clouds getCloudsB2() {
-        return cloudsB2;
+    public Candy getPopsicleB() {
+        return popsicleB;
     }
+
+    public Console getUp() {
+        return up;
+    }
+
+    public Console getDown() {
+        return down;
+    }
+
+    public Console getLeft() {
+        return left;
+    }
+
+    public Console getRight() {
+        return right;
+    }
+
+    public Collection<Syrup> getSyrups() {
+        return syrups;
+    }
+
 
     /**
      *
      * @param pos position of the Character
      * @param character character variable
      */
-    // Moving the characters using the console button (location of console in the universe)
-    public void CharacterMove(CharacterPosition pos, Character character){
+    public void CharacterMove(Position pos, Character character){
         // In here, the characterPosition pos is actually the position of the button
-        if ((pos.getY() >= 730) && (pos.getY() <= 855)){
-            if (pos.getX() >= 1900 && pos.getX() <= 2040){
-                character.moveRight();
-                castChanges();
-            } else if (pos.getX() >= 1660 && pos.getX() <= 1800){
-                character.moveLeft();
-                castChanges();
-            }
-        } else if (pos.getX() >= 1780 && pos.getX() <= 1920){
-            if (pos.getY() >= 645 && pos.getY() <= 730){
-                character.moveUp();
-                castChanges();
-            } else if (pos.getY() >= 860 && pos.getY() <= 940){
-                character.moveDown();
-                castChanges();
-            }
+        if ((pos.getX() > 1550) && (pos.getX() < 1670) &&
+                (pos.getY() > 800) && (pos.getY() < 920)){
+            character.setMovingRight(true);
+        }
+        if ((pos.getX() > 1350) && (pos.getX() < 1450) &&
+                (pos.getY() > 800) && (pos.getY() < 920)){
+            character.setMovingLeft(true);
+        }
+        if ((pos.getX() > 1450) && (pos.getX() < 1580) &&
+                (pos.getY() > 700) && (pos.getY() < 790)){
+            character.setMovingUp(true);
+        }
+        if ((pos.getX() > 1450) && (pos.getX() < 1580) &&
+                (pos.getY() > 935) && (pos.getY() < 1020)){
+            character.setMovingDown(true);
         }
     }
 
 
-    // Moving the syrup using the clouds button (location of clouds in the universe)
-    public void SyrupMove(CharacterPosition pos){
-        // If cloud A1 is clicked
-        if ((pos.getX() >= getCloudsA1().getPos().getX() - 100) && (pos.getX() <= getCloudsA1().getPos().getX() + 100)
-                && (pos.getY() >= getCloudsA1().getPos().getY() + 150) && (pos.getY() <= getCloudsA1().getPos().getY() + 250)) {
-            String cloud = "Cloud A1";
-            GenerateSyrup(cloud);
-        }
-        // If cloud A2 is clicked
-        else if ((pos.getX() >= getCloudsA2().getPos().getX() - 100) && (pos.getX() <= getCloudsA2().getPos().getX() + 100)
-                && (pos.getY() >= getCloudsA2().getPos().getY() + 150) && (pos.getY() <= getCloudsA2().getPos().getY() + 250)){
-            GenerateSyrup("Cloud A2");
-        }
-        else if ((pos.getX() >= getCloudsB1().getPos().getX() - 100) && (pos.getX() <= getCloudsB1().getPos().getX() + 100)
-                && (pos.getY() >= getCloudsB1().getPos().getY() + 150) && (pos.getY() <= getCloudsB1().getPos().getY() + 250)){
-            GenerateSyrup("Cloud B1");
-        }
-        else if ((pos.getX() >= getCloudsB2().getPos().getX() - 100) && (pos.getX() <= getCloudsB2().getPos().getX() + 100)
-                && (pos.getY() >= getCloudsB2().getPos().getY() + 150) && (pos.getY() <= getCloudsB2().getPos().getY() + 250)){
-            GenerateSyrup("Cloud B2");
-        }
-        isSyrupActivated = true;
-        while (isSyrupActivated){
-            syrup_move();
-        }
+    public void addSyrup(float x, float y, String direction){
+        Syrup syrup = new Syrup(sv.getResources(), direction);
+        syrup.setPos(new Position(x, y));
+        syrups.add(syrup);
+        castChanges();
     }
 
-    public void GenerateSyrup(String clouds){
-        if (clouds == "Cloud A1"){
-            Syrup syrup = new Syrup(getCloudsA1().getPos().getX() + 100, getCloudsA1().getPos().getY() + 250);
-            syrup.clouds = clouds;
-            syrups.add(syrup);
-            castChanges();
-        } else if (clouds == "Cloud A2"){
-            Syrup syrup = new Syrup(getCloudsA2().getPos().getX() + 100, getCloudsA2().getPos().getY() + 250);
-            syrup.clouds = clouds;
-            syrups.add(syrup);
-            castChanges();
-        } else if (clouds == "Cloud B1"){
-            Syrup syrup = new Syrup(getCloudsB1().getPos().getX() - 100, getCloudsB1().getPos().getY() + 150);
-            syrup.clouds = clouds;
-            syrups.add(syrup);
-            castChanges();
-        } else if (clouds == "Cloud B2"){
-            Syrup syrup = new Syrup(getCloudsB2().getPos().getX() - 100, getCloudsB2().getPos().getY() + 150);
-            syrup.clouds = clouds;
-            syrups.add(syrup);
-            castChanges();
-        }
-
-    }
-
-    public void syrup_move(){
+    public void syrupSteps(){
         for (Syrup syrup: syrups){
-            if (syrup.clouds == "Cloud A1"){
-                syrup.move(new SyrupMotion(18, 5f));
-            } else if (syrup.clouds == "Cloud A2"){
-                syrup.move(new SyrupMotion(18, -5f));
-            } else if (syrup.clouds == "Cloud B1"){
-                syrup.move(new SyrupMotion(-18, 5f));
-            } else if (syrup.clouds == "Cloud B2"){
-                syrup.move(new SyrupMotion(-18, -5f));
-            }
-            float screenX1Limit = getRightButton().getPos().getX();
-            float screenX2Limit = getCandyA().getPos().getX();
-            // Removing the syrups once it's out of the thing
-            // but this happens sequentially though.. I want it to happen concurrently
-            if (syrup.getPosition().getX() >= screenX1Limit || syrup.getPosition().getX() <= screenX2Limit){
-                isSyrupActivated = false;
-                syrups.remove(syrup);
+            syrup.syrupMove(new Position(syrup.getMovex(),syrup.getMovey()));
+
+            if (Rect.intersects(characterA.getCollisionShape(), syrup.getCollisionShape()) ||
+                    Rect.intersects(characterB.getCollisionShape(), syrup.getCollisionShape())){
+                mc.setGameOver(true);
+                return;
             }
         }
         castChanges();
     }
 
-    public Console getUpButton() {
-        return upButton;
-    }
 
-    public Console getDownButton() {
-        return downButton;
-    }
+    public void updateCharacter(){
 
-    public Console getLeftButton() {
-        return leftButton;
-    }
+        if (Rect.intersects(characterA.getCollisionShape(), popsicleB.getCollisionShape()) ||
+                Rect.intersects(characterB.getCollisionShape(), popsicleA.getCollisionShape())){
+             mc.setGameOver(true);
+            return;
+        }
 
-    public Console getRightButton() {
-        return rightButton;
-    }
+        if (getCharacterA().getMovingRight()){
+            characterA.moveRight();
+            castChanges();
+            characterA.setMovingRight(false);
+        }
 
+        if (getCharacterA().getMovingLeft()){
+            characterA.moveLeft();
+            castChanges();
+            characterA.setMovingLeft(false);
+        }
 
-    @Override
-    public String toString() {
-        return "Universe{" +
-                "characterA=" + characterA +
-                ", characterB=" + characterB +
-                ", candyA=" + candyA +
-                ", candyB=" + candyB +
-                ", cloudsA1=" + cloudsA1 +
-                ", cloudsA2=" + cloudsA2 +
-                ", cloudsB1=" + cloudsB1 +
-                ", cloudsB2=" + cloudsB2 +
-                ", callback=" + callback +
-                '}';
-    }
+        if (getCharacterA().getMovingUp()){
+            characterA.moveUp();
+            castChanges();
+            characterA.setMovingUp(false);
+        }
 
-    /***
-     * Character A and B steps for left, right, up, down
-     * for testing purposes
-     */
-    public void AStepLeft() {
-        characterA.moveLeft();
-    }
-
-    public void AStepRight() {
-        characterA.moveRight();
-    }
-
-    public void AStepUp() {
-        characterA.moveUp();
-    }
-
-    public void AStepDown() {
-        characterA.moveDown();
-    }
+        if (getCharacterA().getMovingDown()){
+            characterA.moveDown();
+            castChanges();
+            characterA.setMovingDown(false);
+        }
 
 
-    public void BStepLeft() {
-        characterB.moveLeft();
-    }
-
-    public void BStepRight() {
-        characterB.moveRight();
-    }
-
-    public void BStepUp() {
-        characterB.moveUp();
-    }
-
-    public void BStepDown() {
-        characterB.moveDown();
-    }
-
-    public List<Syrup> getSyrups() {
-        return syrups;
-    }
-
-    public boolean isSyrupActivated() {
-        return isSyrupActivated;
-    }
-
-    public void setSyrupActivated(boolean syrupActivated) {
-        isSyrupActivated = syrupActivated;
     }
 
 
     /**
      * Callback when the universe changes.
-     * These functions here are sort-of a given.
+     * These functions here are given.
      * So don't touch this section below, please.
      */
 
