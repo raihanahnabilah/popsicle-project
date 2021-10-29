@@ -1,7 +1,7 @@
 package com.example.popsicle.models;
 
 
-public class CharacterPosition {
+public class Position {
 
     private float x,y;
 
@@ -10,7 +10,7 @@ public class CharacterPosition {
      * @param x x-coordinate of Character
      * @param y y-coordinate of Character
      */
-    public CharacterPosition(float x, float y){
+    public Position(float x, float y){
         this.x = x;
         this.y = y;
     }
@@ -57,6 +57,11 @@ public class CharacterPosition {
      */
     public void addDown(){
         this.y = this.y + 20;
+    }
+
+    public void add(Position p) {
+        this.x += p.x;
+        this.y += p.y;
     }
 
     @Override
