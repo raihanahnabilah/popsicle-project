@@ -1,6 +1,6 @@
 package com.example.popsicle.io;
 
-import com.example.popsicle.models.CharacterPosition;
+import com.example.popsicle.models.Position;
 
 /**
  * A ClickAction corresponds to a single tap
@@ -20,5 +20,5 @@ public interface ClickAction extends Action{
      * (3) at the popsicle, it will make a character wins!
      * @param a Position of the tap in the screen.
      */
-    void execute(CharacterPosition a);
+    void execute(Position a);
 }

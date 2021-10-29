@@ -1,6 +1,6 @@
 package com.example.popsicle.io;
 
-import com.example.popsicle.models.CharacterPosition;
+import com.example.popsicle.models.Position;
 
 public class InputHandler implements InputListener.Callback{
     private ClickAction onClickAction;
@@ -10,7 +10,7 @@ public class InputHandler implements InputListener.Callback{
     }
 
     @Override
-    public void onClick(CharacterPosition pos) {
+    public void onClick(Position pos) {
         if (onClickAction != null) onClickAction.execute(pos);
     }
 

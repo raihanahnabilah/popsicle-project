@@ -1,9 +1,10 @@
 package com.example.popsicle.io;
 
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
-import com.example.popsicle.models.CharacterPosition;
+import com.example.popsicle.models.Position;
 import com.example.popsicle.models.Universe;
 
 
@@ -19,7 +20,7 @@ import com.example.popsicle.models.Universe;
 public class InputListener implements View.OnTouchListener {
     private final static String TAG = "InputController";
     private Callback callback;
-    private CharacterPosition up_pos;
+    private Position down_pos, up_pos;
     private Universe universe;
 
     @Override
@@ -27,13 +28,16 @@ public class InputListener implements View.OnTouchListener {
         switch(event.getAction())
         {
             case MotionEvent.ACTION_DOWN:
+                Log.i(TAG, "Action Down");
                 break;
             case MotionEvent.ACTION_UP:
                 // TODO: When the user touch position is at a certain position
                 //       i.e. the buttons, clouds, or the popsicle
                 //       you want it to move/do something at a certain direction
-                up_pos = new CharacterPosition(event.getX(), event.getY());
+                Log.i(TAG, "Action Up");
+                up_pos = new Position(event.getX(), event.getY());
                 callback.onClick(up_pos);
+
                 break;
         }
 
@@ -55,6 +59,6 @@ public class InputListener implements View.OnTouchListener {
          * triggered when a simple touch click occurs (no movements).
          * @param pos Position when touch click released.
          */
-        void onClick ( CharacterPosition pos ) ;
+        void onClick ( Position pos ) ;
     }
 }
