@@ -12,7 +12,9 @@ import android.widget.Button;
 
 import androidx.annotation.NonNull;
 
+import com.example.popsicle.MainController;
 import com.example.popsicle.R;
+import com.example.popsicle.models.Background;
 import com.example.popsicle.models.Candy;
 import com.example.popsicle.models.Character;
 import com.example.popsicle.models.Clouds;
@@ -27,22 +29,17 @@ public class GraphicsRenderer implements Universe.Callback, SurfaceHolder.Callba
     private final static String TAG = "RenderingObjects";
     private final Universe universe;
     private SurfaceHolder holder;
-    private Bitmap characterA_bitmap, characterB_bitmap,
-            candyA_bitmap,candyB_bitmap,cloud_bitmap, syrup_bitmap,
-            buttonUp_bitmap, buttonDown_bitmap, buttonLeft_bitmap,buttonRight_bitmap;
+    Boolean isPlaying, isGameOver;
+    int screenX, screenY;
+    MainController mc;
+    Background background;
 
-    public GraphicsRenderer(Universe u, Resources context){
+    public GraphicsRenderer(Universe u, Resources context, int screenX, int screenY, MainController mc){
         this.universe = u;
-        this.characterA_bitmap = BitmapFactory.decodeResource(context, R.mipmap.char_a);
-        this.characterB_bitmap = BitmapFactory.decodeResource(context, R.mipmap.char_b);
-        this.candyA_bitmap = BitmapFactory.decodeResource(context, R.mipmap.popsicle_a);
-        this.candyB_bitmap = BitmapFactory.decodeResource(context, R.mipmap.popsicle_b);
-        this.cloud_bitmap = BitmapFactory.decodeResource(context, R.mipmap.cloud);
-        this.syrup_bitmap = BitmapFactory.decodeResource(context,R.mipmap.syrup);
-        this.buttonUp_bitmap = BitmapFactory.decodeResource(context, R.mipmap.up);
-        this.buttonDown_bitmap = BitmapFactory.decodeResource(context, R.mipmap.down);
-        this.buttonLeft_bitmap = BitmapFactory.decodeResource(context, R.mipmap.left);
-        this.buttonRight_bitmap = BitmapFactory.decodeResource(context, R.mipmap.right);
+        this.mc = mc;
+        this.screenX = screenX;
+        this.screenY = screenY;
+        this.background = background;
     }
 
     /**
@@ -92,153 +89,33 @@ public class GraphicsRenderer implements Universe.Callback, SurfaceHolder.Callba
 
         // Draw the canvas
         canvas.drawARGB(255, 133, 123, 192);
-
-        // Drawing the characters
         Paint elementsPaint = new Paint();
+        elementsPaint.setTextSize(60f);
 
-        // Drawing the balls
-        Paint ballPaint = new Paint();
-        ballPaint.setStyle(Paint.Style.FILL_AND_STROKE);
-        ballPaint.setStrokeWidth(10);
-        ballPaint.setARGB(255, 153, 213, 195);
-
-        // Drawing character A
-        Character charA = universe.getCharacterA();
-
-        int charA_x1 = (int) (charA.getPos().getX() - 100);
-        int charA_y2 = (int) (charA.getPos().getY() + 100);
-        int charA_x2 = (int) (charA.getPos().getX() + 100);
-        int charA_y1 = (int) (charA.getPos().getY() - 100);
-
-        Rect boundsA = new Rect(charA_x1, charA_y1, charA_x2, charA_y2);
-        Bitmap scaledA_bmp = Bitmap.createScaledBitmap(this.characterA_bitmap, boundsA.width(), boundsA.height(), true);
-        canvas.drawBitmap(scaledA_bmp, boundsA.left, boundsA.bottom, elementsPaint);
-
-        // Drawing character B
-        Character charB = universe.getCharacterB();
-        int charB_x1 = (int) (charB.getPos().getX() - 100);
-        int charB_y2 = (int) (charB.getPos().getY() + 100);
-        int charB_x2 = (int) (charB.getPos().getX() + 100);
-        int charB_y1 = (int) (charB.getPos().getY() - 100);
-
-        Rect boundsB = new Rect(charB_x1, charB_y1, charB_x2, charB_y2);
-        Bitmap scaledB_bmp = Bitmap.createScaledBitmap(this.characterB_bitmap, boundsB.width(), boundsB.height(), true);
-        canvas.drawBitmap(scaledB_bmp, boundsB.left, boundsB.bottom, elementsPaint);
-
-        // Drawing candy A
-        Candy candyA = universe.getCandyA();
-        int canA_x1 = (int) (candyA.getPos().getX() - 100);
-        int canA_y2 = (int) (candyA.getPos().getY() + 100);
-        int canA_x2 = (int) (candyA.getPos().getX() + 100);
-        int canA_y1 = (int) (candyA.getPos().getY() - 100);
-
-        Rect boundscanA = new Rect(canA_x1, canA_y1, canA_x2, canA_y2);
-        Bitmap scaledcanA_bmp = Bitmap.createScaledBitmap(this.candyA_bitmap, boundscanA.width(), boundscanA.height(), true);
-        canvas.drawBitmap(scaledcanA_bmp, boundscanA.left, boundscanA.bottom, elementsPaint);
-
-        // Drawing candy B
-        Candy candyB = universe.getCandyB();
-        int canB_x1 = (int) (candyB.getPos().getX() - 100);
-        int canB_y2 = (int) (candyB.getPos().getY() + 100);
-        int canB_x2 = (int) (candyB.getPos().getX() + 100);
-        int canB_y1 = (int) (candyB.getPos().getY() - 100);
-
-        Rect boundscanB = new Rect(canB_x1, canB_y1, canB_x2, canB_y2);
-        Bitmap scaledcanB_bmp = Bitmap.createScaledBitmap(this.candyB_bitmap, boundscanB.width(), boundscanB.height(), true);
-        canvas.drawBitmap(scaledcanB_bmp, boundscanB.left, boundscanB.bottom, elementsPaint);
-
-        // Drawing cloud A1
-        Clouds cloudA1 = universe.getCloudsA1();
-        int cloudA1_x1 = (int) (cloudA1.getPos().getX() - 100);
-        int cloudA1_y2 = (int) (cloudA1.getPos().getY() + 100);
-        int cloudA1_x2 = (int) (cloudA1.getPos().getX() + 100);
-        int cloudA1_y1 = (int) (cloudA1.getPos().getY() - 100);
-
-        Rect boundsCloudA1 = new Rect(cloudA1_x1, cloudA1_y1, cloudA1_x2, cloudA1_y2);
-        Bitmap ScaledBMPCloudA1 = Bitmap.createScaledBitmap(this.cloud_bitmap, boundsCloudA1.width(), boundsCloudA1.height(), true);
-        canvas.drawBitmap(ScaledBMPCloudA1, boundsCloudA1.left, boundsCloudA1.bottom, elementsPaint);
-
-        // Drawing cloud A2
-        Clouds cloudA2 = universe.getCloudsA2();
-        int cloudA2_x1 = (int) (cloudA2.getPos().getX() - 100);
-        int cloudA2_y2 = (int) (cloudA2.getPos().getY() + 100);
-        int cloudA2_x2 = (int) (cloudA2.getPos().getX() + 100);
-        int cloudA2_y1 = (int) (cloudA2.getPos().getY() - 100);
-
-        Rect boundsCloudA2 = new Rect(cloudA2_x1, cloudA2_y1, cloudA2_x2, cloudA2_y2);
-        Bitmap ScaledBMPCloudA2 = Bitmap.createScaledBitmap(this.cloud_bitmap, boundsCloudA2.width(), boundsCloudA2.height(), true);
-        canvas.drawBitmap(ScaledBMPCloudA2, boundsCloudA2.left, boundsCloudA2.bottom, elementsPaint);
-
-        // Drawing cloud B1
-        Clouds cloudB1 = universe.getCloudsB1();
-        int cloudB1_x1 = (int) (cloudB1.getPos().getX() - 100);
-        int cloudB1_y2 = (int) (cloudB1.getPos().getY() + 100);
-        int cloudB1_x2 = (int) (cloudB1.getPos().getX() + 100);
-        int cloudB1_y1 = (int) (cloudB1.getPos().getY() - 100);
-
-        Rect boundsCloudB1 = new Rect(cloudB1_x1, cloudB1_y1, cloudB1_x2, cloudB1_y2);
-        Bitmap ScaledBMPCloudB1 = Bitmap.createScaledBitmap(this.cloud_bitmap, boundsCloudB1.width(), boundsCloudB1.height(), true);
-        canvas.drawBitmap(ScaledBMPCloudB1, boundsCloudB1.left, boundsCloudB1.bottom, elementsPaint);
-
-        // Drawing cloud B2
-        Clouds cloudB2 = universe.getCloudsB2();
-        int cloudB2_x1 = (int) (cloudB2.getPos().getX() - 100);
-        int cloudB2_y2 = (int) (cloudB2.getPos().getY() + 100);
-        int cloudB2_x2 = (int) (cloudB2.getPos().getX() + 100);
-        int cloudB2_y1 = (int) (cloudB2.getPos().getY() - 100);
-
-        Rect boundsCloudB2 = new Rect(cloudB2_x1, cloudB2_y1, cloudB2_x2, cloudB2_y2);
-        Bitmap ScaledBMPCloudB2 = Bitmap.createScaledBitmap(this.cloud_bitmap, boundsCloudB2.width(), boundsCloudB2.height(), true);
-        canvas.drawBitmap(ScaledBMPCloudB2, boundsCloudB2.left, boundsCloudB2.bottom, elementsPaint);
-
-        // Try drawing syrup near A1 first
-        for (Syrup syrup : universe.getSyrups()) {
-            canvas.drawCircle(syrup.getPosition().getX(), syrup.getPosition().getY(), 30.0f, ballPaint);
+        if (mc.getGameOver()){
+            mc.setPlaying(false);
+            canvas.drawText("Game Over.", screenX/2 - 100, screenY/2, elementsPaint);
+            return;
         }
 
-        // Drawing Console Button Up
-        Console up = universe.getUpButton();
-        int up_x1 = (int) (up.getPos().getX() - 70);
-        int up_y2 = (int) (up.getPos().getY() + 70);
-        int up_x2 = (int) (up.getPos().getX() + 70);
-        int up_y1 = (int) (up.getPos().getY() - 70);
+        // Drawing the elements
+        canvas.drawBitmap(universe.getCharacterA().getCharacter(), universe.getCharacterA().getPos().getX(), universe.getCharacterA().getPos().getY(), elementsPaint);
+        canvas.drawBitmap(universe.getCharacterB().getCharacter(), universe.getCharacterB().getPos().getX(), universe.getCharacterB().getPos().getY(), elementsPaint);
+        canvas.drawBitmap(universe.getCloudB1().getClouds(), universe.getCloudB1().getPos().getX(), universe.getCloudB1().getPos().getY(), elementsPaint);
+        canvas.drawBitmap(universe.getCloudB2().getClouds(), universe.getCloudB2().getPos().getX(), universe.getCloudB2().getPos().getY(), elementsPaint);
+        canvas.drawBitmap(universe.getCloudA1().getClouds(), universe.getCloudA1().getPos().getX(), universe.getCloudA1().getPos().getY(), elementsPaint);
+        canvas.drawBitmap(universe.getCloudA2().getClouds(), universe.getCloudA2().getPos().getX(), universe.getCloudA2().getPos().getY(), elementsPaint);
+        canvas.drawBitmap(universe.getPopsicleA().getPopsicle(), universe.getPopsicleA().getPos().getX(), universe.getPopsicleA().getPos().getY(), elementsPaint);
+        canvas.drawBitmap(universe.getPopsicleB().getPopsicle(), universe.getPopsicleB().getPos().getX(), universe.getPopsicleB().getPos().getY(), elementsPaint);
+        canvas.drawBitmap(universe.getPopsicleB().getPopsicle(), universe.getPopsicleB().getPos().getX(), universe.getPopsicleB().getPos().getY(), elementsPaint);
+        canvas.drawBitmap(universe.getUp().getConsole(), universe.getUp().getPos().getX(), universe.getUp().getPos().getY(), elementsPaint);
+        canvas.drawBitmap(universe.getLeft().getConsole(), universe.getLeft().getPos().getX(), universe.getLeft().getPos().getY(), elementsPaint);
+        canvas.drawBitmap(universe.getDown().getConsole(), universe.getDown().getPos().getX(), universe.getDown().getPos().getY(), elementsPaint);
+        canvas.drawBitmap(universe.getRight().getConsole(), universe.getRight().getPos().getX(), universe.getRight().getPos().getY(), elementsPaint);
 
-        Rect boundsUp = new Rect(up_x1, up_y1, up_x2, up_y2);
-        Bitmap ScaledBMPCUp = Bitmap.createScaledBitmap(this.buttonUp_bitmap, boundsUp.width(), boundsUp.height(), true);
-        canvas.drawBitmap(ScaledBMPCUp, boundsUp.left, boundsUp.bottom, elementsPaint);
-
-        // Drawing Console Button Down
-        Console down = universe.getDownButton();
-        int down_x1 = (int) (down.getPos().getX() - 70);
-        int down_y2 = (int) (down.getPos().getY() + 70);
-        int down_x2 = (int) (down.getPos().getX() + 70);
-        int down_y1 = (int) (down.getPos().getY() - 70);
-
-        Rect boundsDown = new Rect(down_x1, down_y1, down_x2, down_y2);
-        Bitmap ScaledBMPCDown = Bitmap.createScaledBitmap(this.buttonDown_bitmap, boundsDown.width(), boundsDown.height(), true);
-        canvas.drawBitmap(ScaledBMPCDown, boundsDown.left, boundsDown.bottom, elementsPaint);
-
-        // Drawing Console Button Left
-        Console left = universe.getLeftButton();
-        int left_x1 = (int) (left.getPos().getX() - 70);
-        int left_y2 = (int) (left.getPos().getY() + 70);
-        int left_x2 = (int) (left.getPos().getX() + 70);
-        int left_y1 = (int) (left.getPos().getY() - 70);
-
-        Rect boundsLeft = new Rect(left_x1, left_y1, left_x2, left_y2);
-        Bitmap ScaledBMPCLeft = Bitmap.createScaledBitmap(this.buttonLeft_bitmap, boundsLeft.width(), boundsLeft.height(), true);
-        canvas.drawBitmap(ScaledBMPCLeft, boundsLeft.left, boundsLeft.bottom, elementsPaint);
-
-        // Drawing Console Button Right
-        Console right = universe.getRightButton();
-        int right_x1 = (int) (right.getPos().getX() - 70);
-        int right_y2 = (int) (right.getPos().getY() + 70);
-        int right_x2 = (int) (right.getPos().getX() + 70);
-        int right_y1 = (int) (right.getPos().getY() - 70);
-
-        Rect boundsRight = new Rect(right_x1, right_y1, right_x2, right_y2);
-        Bitmap ScaledBMPCRight = Bitmap.createScaledBitmap(this.buttonRight_bitmap, boundsRight.width(), boundsRight.height(), true);
-        canvas.drawBitmap(ScaledBMPCRight, boundsRight.left, boundsRight.bottom, elementsPaint);
+        for (Syrup syrup: universe.getSyrups()){
+            canvas.drawBitmap(syrup.getSyrup(), syrup.getPos().getX(), syrup.getPos().getY(), elementsPaint);
+        }
 
     }
 
