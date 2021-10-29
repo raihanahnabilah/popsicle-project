@@ -22,31 +22,21 @@ public class MainActivity extends AppCompatActivity{
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
+        Log.d(TAG, "onCreate Started");
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        Log.d(TAG, "onCreate Started");
+        Point point = new Point();
+        getWindowManager().getDefaultDisplay().getSize(point);
 
         // Using surfaceView
         SurfaceView sv = findViewById(R.id.surfaceView);
 
-        // Creating the universe
-        Universe universe = new Universe();
-
-        // Rendering the assets
-        GraphicsRenderer graphicsRenderer = new GraphicsRenderer(universe, sv.getResources());
-        universe.setCallBack(graphicsRenderer);
-        sv.setWillNotDraw(false);
-        sv.getHolder().addCallback(graphicsRenderer);
-
-        InputListener inputListener = new InputListener();
-        sv.setOnTouchListener(inputListener);
-
-        InputHandler inputHandler = new InputHandler();
-        inputHandler.setOnClickAction(new MoveCharacterAction(universe));
-        inputListener.setCallback(inputHandler);
+        MainController mc = new MainController(sv, point.x, point.y);
+        mc.start();
 
         Log.d(TAG, "onCreate Finished");
 
