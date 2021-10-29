@@ -23,11 +23,11 @@ public class Character {
         character = Bitmap.createScaledBitmap(character, width, height, false);
 
         if (direction == "a"){
-            y = (screenY /2) - 100;
-            x = 250;
+            y = (screenY *45)/100;
+            x = screenX/8;
         } else if (direction == "b"){
-            y = (screenY / 2) - 100;
-            x = screenX - 450;
+            y = (screenY *45)/100;
+            x = (screenX * 13)/16;
         }
 
 

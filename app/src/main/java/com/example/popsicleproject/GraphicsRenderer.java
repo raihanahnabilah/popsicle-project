@@ -23,17 +23,6 @@ public class GraphicsRenderer extends SurfaceView implements Runnable {
     private Popsicle popsicleA, popsicleB;
     private MainActivity activity;
     private List<Syrup> syrupsA1, syrupsA2, syrupsB1, syrupsB2;
-//     Added values of constants for sizes, fixed movements, etc.
-    private Integer charMovementPixels = 20;
-
-//    private Integer syrupMovementPixelsX = 20;
-//    private float syrupMovementPixelsA1Y = 7f;
-//    private float syrupMovementPixelsA2Y = 5f;
-//    private float syrupMovementPixelsB1Y = 5f;
-//    private float syrupMovementPixelsB2Y = 7f;
-
-//    final float density = getContext().getResources().getDisplayMetrics().density;
-
 
 //    public GraphicsRenderer(Context context, int screenX, int screenY){
     public GraphicsRenderer(MainActivity activity, int screenX, int screenY){
@@ -85,30 +74,30 @@ public class GraphicsRenderer extends SurfaceView implements Runnable {
 
         // This is only character A
         if (characterA.isMovingUp){
-            characterA.y -= charMovementPixels;
+            characterA.y -= Constants.charMovementPixels;
         }
         if (characterA.isMovingDown){
-            characterA.y += charMovementPixels;
+            characterA.y += Constants.charMovementPixels;
         }
         if (characterA.isMovingRight){
-            characterA.x += charMovementPixels;
+            characterA.x += Constants.charMovementPixels;
         }
         if (characterA.isMovingLeft){
-            characterA.x -= charMovementPixels;
+            characterA.x -= Constants.charMovementPixels;
         }
 
         // This is only character B
         if (characterB.isMovingUp){
-            characterB.y -= charMovementPixels;
+            characterB.y -= Constants.charMovementPixels;
         }
         if (characterB.isMovingDown){
-            characterB.y += charMovementPixels;
+            characterB.y += Constants.charMovementPixels;
         }
         if (characterB.isMovingRight){
-            characterB.x += charMovementPixels;
+            characterB.x += Constants.charMovementPixels;
         }
         if (characterB.isMovingLeft){
-            characterB.x -= charMovementPixels;
+            characterB.x -= Constants.charMovementPixels;
         }
 
         if (Rect.intersects(characterA.getCollissionShape(), popsicleB.getCollissionShape()) ||

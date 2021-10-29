@@ -22,11 +22,11 @@ public class Popsicle {
         popsicle = Bitmap.createScaledBitmap(popsicle, width, height, false);
 
         if (direction == "a"){
-            y = (screenY /2) - 100;
-            x = 100;
+            y = (screenY *45)/100;
+            x = screenX/16;
         } else if (direction == "b"){
-            y = (screenY / 2) - 100;
-            x = screenX - 280;
+            y = (screenY *45)/100;
+            x = (screenX * 14)/16;
         }
 
 
