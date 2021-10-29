@@ -11,6 +11,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import java.util.Random;
 
+
 public class StartGamePage extends AppCompatActivity {
     private Button createGameButton;
     private Button joinGameButton;
