@@ -1,5 +1,6 @@
 package com.example.popsicle.rendering;
 
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -12,6 +13,8 @@ import android.widget.Button;
 
 import androidx.annotation.NonNull;
 
+import com.example.popsicle.HomePage;
+import com.example.popsicle.MainActivity;
 import com.example.popsicle.MainController;
 import com.example.popsicle.R;
 import com.example.popsicle.models.Background;
@@ -29,12 +32,13 @@ public class GraphicsRenderer implements Universe.Callback, SurfaceHolder.Callba
     private final static String TAG = "RenderingObjects";
     private final Universe universe;
     private SurfaceHolder holder;
-    Boolean isPlaying, isGameOver;
     int screenX, screenY;
     MainController mc;
     Background background;
+    MainActivity activity;
 
-    public GraphicsRenderer(Universe u, Resources context, int screenX, int screenY, MainController mc){
+    public GraphicsRenderer(MainActivity activity, Universe u, Resources context, int screenX, int screenY, MainController mc){
+        this.activity = activity;
         this.universe = u;
         this.mc = mc;
         this.screenX = screenX;
@@ -95,6 +99,7 @@ public class GraphicsRenderer implements Universe.Callback, SurfaceHolder.Callba
         if (mc.getGameOver()){
             mc.setPlaying(false);
             canvas.drawText("Game Over.", screenX/2 - 100, screenY/2, elementsPaint);
+            exiting();
             return;
         }
 
@@ -116,6 +121,12 @@ public class GraphicsRenderer implements Universe.Callback, SurfaceHolder.Callba
         for (Syrup syrup: universe.getSyrups()){
             canvas.drawBitmap(syrup.getSyrup(), syrup.getPos().getX(), syrup.getPos().getY(), elementsPaint);
         }
+
+    }
+
+    private void exiting() {
+        activity.startActivity(new Intent(activity, HomePage.class));
+        activity.finish();
 
     }
 

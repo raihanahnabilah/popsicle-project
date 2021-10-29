@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity{
         // Using surfaceView
         SurfaceView sv = findViewById(R.id.surfaceView);
 
-        MainController mc = new MainController(sv, point.x, point.y);
+        MainController mc = new MainController(this, sv, point.x, point.y);
         mc.start();
 
         Log.d(TAG, "onCreate Finished");

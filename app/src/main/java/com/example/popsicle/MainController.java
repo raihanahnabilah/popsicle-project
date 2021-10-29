@@ -15,14 +15,16 @@ public class MainController extends Thread{
     private final Universe universe;
     private final GraphicsRenderer graphicsRenderer;
     Boolean isPlaying = true, isGameOver = false;
+    MainActivity activity;
 
-    public MainController(SurfaceView sv, int screenX, int screenY){
+    public MainController(MainActivity activity, SurfaceView sv, int screenX, int screenY){
         // Creating the universe
         this.sv = sv;
+        this.activity = activity;
         this.universe = new Universe(screenX, screenY, sv, this);
 
         // Rendering the assets
-        this.graphicsRenderer = new GraphicsRenderer(universe, sv.getResources(), screenX, screenY, this);
+        this.graphicsRenderer = new GraphicsRenderer(activity, universe, sv.getResources(), screenX, screenY, this);
         this.universe.setCallBack(this.graphicsRenderer);
         this.sv.setWillNotDraw(false);
         this.sv.getHolder().addCallback(this.graphicsRenderer);
