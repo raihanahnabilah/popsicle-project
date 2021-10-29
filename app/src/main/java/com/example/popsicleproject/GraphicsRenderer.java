@@ -25,15 +25,14 @@ public class GraphicsRenderer extends SurfaceView implements Runnable {
     private List<Syrup> syrupsA1, syrupsA2, syrupsB1, syrupsB2;
 //     Added values of constants for sizes, fixed movements, etc.
     private Integer charMovementPixels = 20;
-    private Integer syrupMovementPixelsA1X = 20;
-    private float syrupMovementPixelsA1Y = 7f;
-    private Integer syrupMovementPixelsA2X = 20;
-    private float syrupMovementPixelsA2Y = 5f;
 
-    private Integer syrupMovementPixelsB1X = 20;
+    private Integer syrupMovementPixelsX = 20;
+    private float syrupMovementPixelsA1Y = 7f;
+    private float syrupMovementPixelsA2Y = 5f;
     private float syrupMovementPixelsB1Y = 5f;
-    private Integer syrupMovementPixelsB2X = 20;
     private float syrupMovementPixelsB2Y = 7f;
+
+
 
 
 //    final float density = getContext().getResources().getDisplayMetrics().density;
@@ -127,7 +126,7 @@ public class GraphicsRenderer extends SurfaceView implements Runnable {
             if (syrup.x > screenX){
                 trashA1.add(syrup);
             }
-            syrup.x += syrupMovementPixelsA1X;
+            syrup.x += Constants.syrupMovementPixelsX;
             syrup.y += syrupMovementPixelsA1Y;
 
             if (Rect.intersects(characterA.getCollissionShape(), syrup.getCollissionShape()) ||
@@ -147,7 +146,7 @@ public class GraphicsRenderer extends SurfaceView implements Runnable {
             if (syrup.x > screenX){
                 trashA2.add(syrup);
             }
-            syrup.x += syrupMovementPixelsA2X;
+            syrup.x += Constants.syrupMovementPixelsX;
             syrup.y -= syrupMovementPixelsA2Y;
 
             if (Rect.intersects(characterA.getCollissionShape(), syrup.getCollissionShape()) ||
@@ -167,7 +166,7 @@ public class GraphicsRenderer extends SurfaceView implements Runnable {
             if (syrup.x > screenX){
                 trashB1.add(syrup);
             }
-            syrup.x -= syrupMovementPixelsB1X;
+            syrup.x -= Constants.syrupMovementPixelsX;
             syrup.y += syrupMovementPixelsB1Y;
 
             if (Rect.intersects(characterA.getCollissionShape(), syrup.getCollissionShape()) ||
@@ -188,7 +187,7 @@ public class GraphicsRenderer extends SurfaceView implements Runnable {
             if (syrup.x > screenX){
                 trashB2.add(syrup);
             }
-            syrup.x -= syrupMovementPixelsB2X;
+            syrup.x -= Constants.syrupMovementPixelsX;
             syrup.y -= syrupMovementPixelsB2Y;
 
             if (Rect.intersects(characterA.getCollissionShape(), syrup.getCollissionShape()) ||
