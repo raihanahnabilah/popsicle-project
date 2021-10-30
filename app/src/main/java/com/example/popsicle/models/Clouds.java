@@ -14,19 +14,12 @@ public class Clouds {
     String direction;
     private Universe universe;
 
-    public Clouds(Universe universe, int screenX, int screenY, String direction, Resources res){
-        this.universe = universe;
+    public Clouds(int screenX, int screenY, String direction){
         this.direction = direction;
 
-        clouds = BitmapFactory.decodeResource(res, R.mipmap.cloud);
+        this.width = Constants.cloudWidth;
+        this.height = Constants.cloudHeight;
 
-        width = clouds.getWidth();
-        height = clouds.getHeight();
-
-        width /= 20;
-        height/= 20;
-
-        clouds = Bitmap.createScaledBitmap(clouds, width, height, false);
         //this is the initial position of the clouds
         if (direction == "a1"){
             this.pos = new Position(screenX/4, (screenY /64));
@@ -39,16 +32,19 @@ public class Clouds {
         }
     }
 
-
     public Bitmap getClouds(){
-//        if (toShoot != 0){
-//            toShoot--;
-//            universe.newSyrup(direction);
-//        }
         return clouds;
     }
 
     public Position getPos() {
         return pos;
+    }
+
+    public int getWidth() {
+        return width;
+    }
+
+    public int getHeight() {
+        return height;
     }
 }

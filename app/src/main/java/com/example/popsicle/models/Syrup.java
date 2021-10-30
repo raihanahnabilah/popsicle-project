@@ -26,16 +26,9 @@ public class Syrup {
         return height;
     }
 
-    public Syrup(Resources res, String direction, int screenX, int screenY){
-        syrup = BitmapFactory.decodeResource(res, R.mipmap.syrup);
-
-        width = syrup.getWidth();
-        height = syrup.getHeight();
-
-        width /= 20;
-        height/= 20;
-
-        syrup = Bitmap.createScaledBitmap(syrup, width, height, false);
+    public Syrup(String direction, int screenX, int screenY){
+        width = Constants.syrupWidth;
+        height = Constants.syrupHeight;
 
         if (direction == "a1"){
             moveX =  Constants.syrupMovementPixelsX;
@@ -55,6 +48,7 @@ public class Syrup {
         }
 
     }
+
 
     public Rect getCollisionShape(){
         int left = (int) this.getPos().getX();

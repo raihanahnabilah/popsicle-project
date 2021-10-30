@@ -30,15 +30,10 @@ public class Universe {
     private final Character characterA, characterB;
     private final Clouds cloudA1, cloudA2, cloudB1, cloudB2;
     private final int screenX, screenY;
-    private final SurfaceView sv;
     private final Candy popsicleA, popsicleB;
     private final Console up, down, left, right;
     private List<Syrup> syrups;
-
-//    ADDED THIS TO Constants (not in use)
-//    private int toShoot = 0;
-//    private int toShootA2 = 0;
-    private MainController mc;
+    Boolean isPlaying = true, isGameOver = false;
 
     /**
      * Universe instantiates all the different
@@ -49,23 +44,21 @@ public class Universe {
      * --> constants within the creation of the universe
      *         can have another class "UniverseBuilder" that will provide these constants
      */
-    public Universe(int screenX, int screenY, SurfaceView sv, MainController mc){
+    public Universe(int screenX, int screenY){
         this.screenX = screenX;
         this.screenY = screenY;
-        this.sv = sv;
-        this.mc = mc;
-        this.characterA = new Character(screenX, screenY, "a", sv.getResources());
-        this.characterB = new Character(screenX, screenY, "b", sv.getResources());
-        this.cloudA1 = new Clouds(this, screenX, screenY, "a1", sv.getResources());
-        this.cloudA2 = new Clouds(this, screenX, screenY, "a2", sv.getResources());
-        this.cloudB1 = new Clouds(this, screenX, screenY, "b1", sv.getResources());
-        this.cloudB2 = new Clouds(this, screenX, screenY, "b2", sv.getResources());
-        this.popsicleA = new Candy(screenX, screenY, "a", sv.getResources());
-        this.popsicleB = new Candy(screenX, screenY, "b", sv.getResources());
-        this.right = new Console(screenX,screenY,"right", sv.getResources(), 0, 0,0,0);
-        this.up = new Console(screenX,screenY,"up", sv.getResources(), this.getRight().getPos().getX(), this.getRight().getPos().getY(), this.getRight().width,this.getRight().height);
-        this.down = new Console(screenX,screenY,"down", sv.getResources(), this.getRight().getPos().getX(), this.getRight().getPos().getY(), this.getRight().width,this.getRight().height);
-        this.left = new Console(screenX,screenY,"left", sv.getResources(), this.getDown().getPos().getX(), this.getDown().getPos().getY(), this.getDown().width,this.getDown().height);
+        this.characterA = new Character(screenX, screenY, "a");
+        this.characterB = new Character(screenX, screenY, "b");
+        this.cloudA1 = new Clouds(screenX, screenY, "a1");
+        this.cloudA2 = new Clouds( screenX, screenY, "a2");
+        this.cloudB1 = new Clouds(screenX, screenY, "b1");
+        this.cloudB2 = new Clouds(screenX, screenY, "b2");
+        this.popsicleA = new Candy(screenX, screenY, "a");
+        this.popsicleB = new Candy(screenX, screenY, "b");
+        this.right = new Console(screenX,screenY,"right", 0, 0,0,0);
+        this.up = new Console(screenX,screenY,"up",  this.getRight().getPos().getX(), this.getRight().getPos().getY(), this.getRight().width,this.getRight().height);
+        this.down = new Console(screenX,screenY,"down", this.getRight().getPos().getX(), this.getRight().getPos().getY(), this.getRight().width,this.getRight().height);
+        this.left = new Console(screenX,screenY,"left", this.getDown().getPos().getX(), this.getDown().getPos().getY(), this.getDown().width,this.getDown().height);
         this.syrups = new Vector<>();
 
     }
@@ -153,7 +146,7 @@ public class Universe {
 
 //I HAVE ADDED screenX and Y as input for syrup
     public void addSyrup(float x, float y, String direction){
-        Syrup syrup = new Syrup(sv.getResources(), direction, this.screenX, this.screenY);
+        Syrup syrup = new Syrup(direction, this.screenX, this.screenY);
         syrup.setPos(new Position(x, y));
         syrups.add(syrup);
         castChanges();
@@ -165,7 +158,7 @@ public class Universe {
 
             if (Rect.intersects(characterA.getCollisionShape(), syrup.getCollisionShape()) ||
                     Rect.intersects(characterB.getCollisionShape(), syrup.getCollisionShape())){
-                mc.setGameOver(true);
+                this.setGameOver(true);
                 return;
             }
         }
@@ -177,7 +170,7 @@ public class Universe {
 
         if (Rect.intersects(characterA.getCollisionShape(), popsicleB.getCollisionShape()) ||
                 Rect.intersects(characterB.getCollisionShape(), popsicleA.getCollisionShape())){
-             mc.setGameOver(true);
+             this.setGameOver(true);
             return;
         }
 
@@ -206,6 +199,22 @@ public class Universe {
         }
 
 
+    }
+
+    public Boolean getPlaying() {
+        return isPlaying;
+    }
+
+    public void setPlaying(Boolean playing) {
+        isPlaying = playing;
+    }
+
+    public Boolean getGameOver() {
+        return isGameOver;
+    }
+
+    public void setGameOver(Boolean gameOver) {
+        isGameOver = gameOver;
     }
 
 

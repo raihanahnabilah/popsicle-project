@@ -16,17 +16,16 @@ public class MainController extends Thread{
     private final SurfaceView sv;
     private final Universe universe;
     private final GraphicsRenderer graphicsRenderer;
-    Boolean isPlaying = true, isGameOver = false;
     MainActivity activity;
 
     public MainController(MainActivity activity, SurfaceView sv, int screenX, int screenY){
         // Creating the universe
         this.sv = sv;
         this.activity = activity;
-        this.universe = new Universe(screenX, screenY, sv, this);
+        this.universe = new Universe(screenX, screenY);
 
         // Rendering the assets
-        this.graphicsRenderer = new GraphicsRenderer(activity, universe, sv.getResources(), screenX, screenY, this);
+        this.graphicsRenderer = new GraphicsRenderer(activity, universe, sv.getResources(), screenX, screenY);
         this.universe.setCallBack(this.graphicsRenderer);
         this.sv.setWillNotDraw(false);
         this.sv.getHolder().addCallback(this.graphicsRenderer);
@@ -39,28 +38,10 @@ public class MainController extends Thread{
         inputListener.setCallback(inputHandler);
     }
 
-
-    public Boolean getPlaying() {
-        return isPlaying;
-    }
-
-    public void setPlaying(Boolean playing) {
-        isPlaying = playing;
-    }
-
-    public Boolean getGameOver() {
-        return isGameOver;
-    }
-
-    public void setGameOver(Boolean gameOver) {
-        isGameOver = gameOver;
-    }
-
-
     @Override
     public void run() {
         int counter = 0;
-        while (isPlaying){
+        while (this.universe.getPlaying()){
             this.universe.updateCharacter();
             this.universe.syrupSteps();
             counter += 1;

@@ -41,22 +41,15 @@ public class Character {
         return height;
     }
 
-    public Character(int screenX, int screenY, String direction, Resources res){
+    public Character(int screenX, int screenY, String direction){
         if(direction.equals("a")){
             this.pos = new Position(screenX/8, (screenY *45)/100);
-            character = BitmapFactory.decodeResource(res, R.mipmap.char_a);
         } else if (direction == "b"){
             this.pos = new Position((screenX * 13)/16, (screenY *45)/100);
-            character = BitmapFactory.decodeResource(res, R.mipmap.char_b);
         }
 
-        width = character.getWidth();
-        height = character.getHeight();
-
-        width /= 4;
-        height/= 4;
-
-        character = Bitmap.createScaledBitmap(character, width, height, false);
+        this.width = Constants.charWidth;
+        this.height = Constants.charHeight;
 
     }
 

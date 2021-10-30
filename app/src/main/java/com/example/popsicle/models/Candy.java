@@ -24,25 +24,17 @@ public class Candy {
         return height;
     }
 
-    public Candy(int screenX, int screenY, String direction, Resources res){
-        popsicle = BitmapFactory.decodeResource(res, R.mipmap.cloud);
+    public Candy(int screenX, int screenY, String direction){
         if (direction == "a"){
 //            change this position of popsicle a
             this.pos = new Position(screenX/16, (screenY *45)/100);
-            popsicle = BitmapFactory.decodeResource(res, R.mipmap.popsicle_a);
         } else if (direction == "b"){
 //            change this position of popsicle b
             this.pos = new Position((screenX * 14)/16, (screenY *45)/100);
-            popsicle = BitmapFactory.decodeResource(res, R.mipmap.popsicle_b);
         }
 
-        width = popsicle.getWidth();
-        height = popsicle.getHeight();
-
-        width /= 20;
-        height/= 20;
-
-        popsicle = Bitmap.createScaledBitmap(popsicle, width, height, false);
+        this.width = Constants.popsicleWidth;
+        this.height = Constants.popsicleHeight;
 
     }
 
