@@ -26,7 +26,7 @@ public class Syrup {
         return height;
     }
 
-    public Syrup(Resources res, String direction){
+    public Syrup(Resources res, String direction, int screenX, int screenY){
         syrup = BitmapFactory.decodeResource(res, R.mipmap.syrup);
 
         width = syrup.getWidth();
@@ -38,20 +38,20 @@ public class Syrup {
         syrup = Bitmap.createScaledBitmap(syrup, width, height, false);
 
         if (direction == "a1"){
-            moveX =  20;
-            moveY = 7f;
+            moveX =  Constants.syrupMovementPixelsX;
+            moveY = Constants.syrupMovementPixelsX*(screenX/screenY);
         }
         if (direction == "a2"){
-            moveX =  20;
-            moveY = -5f;
+            moveX =  Constants.syrupMovementPixelsX;
+            moveY = -Constants.syrupMovementPixelsX*(screenX/screenY);
         }
         if (direction == "b1"){
-            moveX =  -20;
-            moveY = 5f;
+            moveX =  -Constants.syrupMovementPixelsX;
+            moveY = Constants.syrupMovementPixelsX*(screenX/screenY);
         }
         if (direction == "b2"){
-            moveX =  -20;
-            moveY = -7f;
+            moveX =  -Constants.syrupMovementPixelsX;
+            moveY = -Constants.syrupMovementPixelsX*(screenX/screenY);
         }
 
     }

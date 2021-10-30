@@ -34,8 +34,10 @@ public class Universe {
     private final Candy popsicleA, popsicleB;
     private final Console up, down, left, right;
     private List<Syrup> syrups;
-    private int toShoot = 0;
-    private int toShootA2 = 0;
+
+//    ADDED THIS TO Constants (not in use)
+//    private int toShoot = 0;
+//    private int toShootA2 = 0;
     private MainController mc;
 
     /**
@@ -60,10 +62,10 @@ public class Universe {
         this.cloudB2 = new Clouds(this, screenX, screenY, "b2", sv.getResources());
         this.popsicleA = new Candy(screenX, screenY, "a", sv.getResources());
         this.popsicleB = new Candy(screenX, screenY, "b", sv.getResources());
-        this.up = new Console(screenX,screenY,"up", sv.getResources());
-        this.down = new Console(screenX,screenY,"down", sv.getResources());
-        this.left = new Console(screenX,screenY,"left", sv.getResources());
-        this.right = new Console(screenX,screenY,"right", sv.getResources());
+        this.right = new Console(screenX,screenY,"right", sv.getResources(), 0, 0,0,0);
+        this.up = new Console(screenX,screenY,"up", sv.getResources(), this.getRight().getPos().getX(), this.getRight().getPos().getY(), this.getRight().width,this.getRight().height);
+        this.down = new Console(screenX,screenY,"down", sv.getResources(), this.getRight().getPos().getX(), this.getRight().getPos().getY(), this.getRight().width,this.getRight().height);
+        this.left = new Console(screenX,screenY,"left", sv.getResources(), this.getDown().getPos().getX(), this.getDown().getPos().getY(), this.getDown().width,this.getDown().height);
         this.syrups = new Vector<>();
 
     }
@@ -126,29 +128,32 @@ public class Universe {
      * @param pos position of the Character
      * @param character character variable
      */
+
+//    this is the console event optimisation
+//    used to say Position pos but changes to Position event
     public void CharacterMove(Position pos, Character character){
         // In here, the characterPosition pos is actually the position of the button
-        if ((pos.getX() > 1550) && (pos.getX() < 1670) &&
-                (pos.getY() > 800) && (pos.getY() < 920)){
+        if ((pos.getX() > this.right.getPos().getX() + this.right.width/4) && (pos.getX() < (this.right.getPos().getX() + this.right.width - this.right.width/4)) &&
+                (pos.getY() > this.right.getPos().getY() + this.right.height/4) && (pos.getY() < this.right.getPos().getY() + this.right.height - this.right.height/4)){
             character.setMovingRight(true);
         }
-        if ((pos.getX() > 1350) && (pos.getX() < 1450) &&
-                (pos.getY() > 800) && (pos.getY() < 920)){
+        if ((pos.getX() > this.left.getPos().getX() + this.left.width/4) && (pos.getX() < (this.left.getPos().getX() + this.left.width - this.left.width/4)) &&
+                (pos.getY() > this.left.getPos().getY() + this.left.height/4) && (pos.getY() < this.left.getPos().getY() + this.left.height - this.left.height/4)){
             character.setMovingLeft(true);
         }
-        if ((pos.getX() > 1450) && (pos.getX() < 1580) &&
-                (pos.getY() > 700) && (pos.getY() < 790)){
+        if ((pos.getX() > this.up.getPos().getX() + this.up.width/4) && (pos.getX() < (this.up.getPos().getX() + this.up.width - this.up.width/4)) &&
+                (pos.getY() > this.up.getPos().getY() + this.up.height/4) && (pos.getY() < this.up.getPos().getY() + this.up.height - this.up.height/4)){
             character.setMovingUp(true);
         }
-        if ((pos.getX() > 1450) && (pos.getX() < 1580) &&
-                (pos.getY() > 935) && (pos.getY() < 1020)){
+        if ((pos.getX() > this.down.getPos().getX() + this.down.width/4) && (pos.getX() < (this.down.getPos().getX() + this.down.width - this.down.width/4)) &&
+                (pos.getY() > this.down.getPos().getY() + down.height/4) && (pos.getY() < this.down.getPos().getY() + this.down.height - this.down.height/4)){
             character.setMovingDown(true);
         }
     }
 
-
+//I HAVE ADDED screenX and Y as input for syrup
     public void addSyrup(float x, float y, String direction){
-        Syrup syrup = new Syrup(sv.getResources(), direction);
+        Syrup syrup = new Syrup(sv.getResources(), direction, this.screenX, this.screenY);
         syrup.setPos(new Position(x, y));
         syrups.add(syrup);
         castChanges();
