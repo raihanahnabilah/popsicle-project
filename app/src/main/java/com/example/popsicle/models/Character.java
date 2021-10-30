@@ -54,14 +54,13 @@ public class Character {
     }
 
 //    WHAT? HELP HERE
-    public Rect getCollisionShape(){
-        int left = (int) this.getPos().getX() - 100;
-        int top = (int) this.getPos().getY() + 50;
-        int right = (int) this.getPos().getX() + this.getWidth() - 100;
-        int bottom = (int) this.getPos().getY() + this.getHeight() - 80;
-
-        return new Rect(left, top, right, bottom);
-    }
+public Rect getCollisionShape(){
+    int left = (int) (this.getPos().getX()*9)/8 ;
+    int top = (int) (this.getPos().getY()*15)/16 ;
+    int right = (int) (this.getPos().getX() + this.getWidth())*7/8;
+    int bottom = (int) (this.getPos().getY() + this.getHeight())*15/16;
+    return new Rect(left, top, right, bottom);
+}
 
 
     public Bitmap getCharacter() {
