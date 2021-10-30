@@ -9,13 +9,16 @@ import com.example.popsicle.R;
 public class Clouds {
     private static final String TAG = "Clouds";
     private Position pos;
-    public int width, height, toShoot = 0;
+    public int width, height, screenX, screenY;
     Bitmap clouds;
     String direction;
     private Universe universe;
 
-    public Clouds(int screenX, int screenY, String direction){
+    public Clouds(String direction){
         this.direction = direction;
+        this.screenX = Constants.screenX;
+        this.screenY = Constants.screenY;
+
 
         this.width = Constants.cloudWidth;
         this.height = Constants.cloudHeight;

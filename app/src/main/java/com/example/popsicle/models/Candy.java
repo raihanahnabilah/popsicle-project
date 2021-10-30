@@ -13,7 +13,7 @@ import com.example.popsicle.R;
 public class Candy {
     private static final String TAG = "Candies";
     Bitmap popsicle;
-    int width, height;
+    int width, height, screenX, screenY;
     private Position pos;
 
     public int getWidth() {
@@ -24,7 +24,10 @@ public class Candy {
         return height;
     }
 
-    public Candy(int screenX, int screenY, String direction){
+    public Candy(String direction){
+        this.screenX = Constants.screenX;
+        this.screenY = Constants.screenY;
+
         if (direction == "a"){
 //            change this position of popsicle a
             this.pos = new Position(screenX/16, (screenY *45)/100);

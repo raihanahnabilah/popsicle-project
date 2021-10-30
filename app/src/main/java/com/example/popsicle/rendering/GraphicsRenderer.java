@@ -40,11 +40,11 @@ public class GraphicsRenderer implements Universe.Callback, SurfaceHolder.Callba
             cloudA1, scaledCloudA1, cloudA2, scaledCloudA2, cloudB1, scaledCloudB1, cloudB2, scaledCloudB2,
             up, scaledUp, down, scaledDown, left, scaledLeft, right, scaledRight, syrup, scaledSyrup;
 
-    public GraphicsRenderer(MainActivity activity, Universe u, Resources context, int screenX, int screenY){
+    public GraphicsRenderer(MainActivity activity, Universe u, Resources context){
         this.activity = activity;
         this.universe = u;
-        this.screenX = screenX;
-        this.screenY = screenY;
+        this.screenX = Constants.screenX;
+        this.screenY = Constants.screenY;
         this.background = background;
 
         this.characterA = BitmapFactory.decodeResource(context, R.mipmap.char_a);

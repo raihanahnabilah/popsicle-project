@@ -14,7 +14,7 @@ public class Syrup {
     private Position pos;
     String clouds;
     Bitmap syrup;
-    int width, height;
+    int width, height, screenX, screenY;
     float moveX, moveY;
     String direction;
 
@@ -26,7 +26,10 @@ public class Syrup {
         return height;
     }
 
-    public Syrup(String direction, int screenX, int screenY){
+    public Syrup(String direction){
+        this.screenX = Constants.screenX;
+        this.screenY = Constants.screenY;
+
         width = Constants.syrupWidth;
         height = Constants.syrupHeight;
 

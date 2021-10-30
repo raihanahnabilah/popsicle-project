@@ -29,13 +29,13 @@ public class MainActivity extends AppCompatActivity{
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        Point point = new Point();
-        getWindowManager().getDefaultDisplay().getSize(point);
+//        Point point = new Point();
+//        getWindowManager().getDefaultDisplay().getSize(point);
 
         // Using surfaceView
         SurfaceView sv = findViewById(R.id.surfaceView);
 
-        MainController mc = new MainController(this, sv, point.x, point.y);
+        MainController mc = new MainController(this, sv);
         mc.start();
 
         Log.d(TAG, "onCreate Finished");

@@ -13,7 +13,7 @@ import com.example.popsicle.R;
 public class Character {
     private static final String TAG = "Character";
     private Position pos;
-    int width, height;
+    int width, height, screenX, screenY;
     Bitmap character;
     Boolean isMovingUp = false, isMovingDown = false, isMovingLeft = false, isMovingRight = false;
 
@@ -41,7 +41,10 @@ public class Character {
         return height;
     }
 
-    public Character(int screenX, int screenY, String direction){
+    public Character(String direction){
+        this.screenX = Constants.screenX;
+        this.screenY = Constants.screenY;
+
         if(direction.equals("a")){
             this.pos = new Position(screenX/8, (screenY *45)/100);
         } else if (direction == "b"){

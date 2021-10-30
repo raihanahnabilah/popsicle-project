@@ -10,7 +10,7 @@ public class Console {
     private static final String TAG = "Console";
     Bitmap console;
     private Position pos;
-    int width, height;
+    int width, height, screenY, screenX;
 
     public int getWidth() {
         return width;
@@ -28,7 +28,10 @@ public class Console {
         this.height = height;
     }
 
-    public Console(int screenX, int screenY, String direction, float refX, float refY, float refWidth, int refHeight){
+    public Console(String direction, float refX, float refY, float refWidth, int refHeight){
+        this.screenX = Constants.screenX;
+        this.screenY = Constants.screenY;
+
         if (direction == "up"){
             this.pos = new Position(refX - refWidth, refY-refHeight);
         } else if (direction == "down"){
