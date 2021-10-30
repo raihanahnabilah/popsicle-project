@@ -54,10 +54,10 @@ public class Syrup {
 
 
     public Rect getCollisionShape(){
-        int left = (int) this.getPos().getX();
-        int top = (int) this.getPos().getY();
-        int right = (int) this.getPos().getX() + this.getWidth();
-        int bottom = (int) this.getPos().getY() + this.getHeight();
+        int left = (int) this.getPos().getX()*33/32;
+        int top = (int) this.getPos().getY()*33/32;
+        int right = (int) (this.getPos().getX() + this.getWidth())*31/32;
+        int bottom = (int) (this.getPos().getY() + this.getHeight())*61/64;
 
         return new Rect(left, top, right, bottom);
     }
