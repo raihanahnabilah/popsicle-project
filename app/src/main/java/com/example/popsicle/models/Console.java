@@ -32,13 +32,13 @@ public class Console {
         this.screenX = Constants.screenX;
         this.screenY = Constants.screenY;
 
-        if (direction == "up"){
+        if (direction.equals("up")){
             this.pos = new Position(refX - refWidth, refY-refHeight);
-        } else if (direction == "down"){
+        } else if (direction.equals("down")){
             this.pos = new Position(refX - refWidth, refY+refHeight);
-        } else if (direction == "left"){
+        } else if (direction.equals("left")){
             this.pos = new Position(refX - refWidth, refY-refHeight);
-        } else if (direction == "right"){
+        } else if (direction.equals("right")){
             this.pos = new Position((screenX * 28 )/32, (screenY*3)/4);
         }
 
