@@ -18,14 +18,14 @@ public class MainController extends Thread{
     private final GraphicsRenderer graphicsRenderer;
     MainActivity activity;
 
-    public MainController(MainActivity activity, SurfaceView sv, int screenX, int screenY){
+    public MainController(MainActivity activity, SurfaceView sv){
         // Creating the universe
         this.sv = sv;
         this.activity = activity;
-        this.universe = new Universe(screenX, screenY);
+        this.universe = new Universe();
 
         // Rendering the assets
-        this.graphicsRenderer = new GraphicsRenderer(activity, universe, sv.getResources(), screenX, screenY);
+        this.graphicsRenderer = new GraphicsRenderer(activity, universe, sv.getResources());
         this.universe.setCallBack(this.graphicsRenderer);
         this.sv.setWillNotDraw(false);
         this.sv.getHolder().addCallback(this.graphicsRenderer);

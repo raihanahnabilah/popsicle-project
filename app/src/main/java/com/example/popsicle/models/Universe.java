@@ -1,5 +1,6 @@
 package com.example.popsicle.models;
 
+import android.content.res.Resources;
 import android.graphics.Point;
 import android.graphics.Rect;
 import android.util.Log;
@@ -44,21 +45,22 @@ public class Universe {
      * --> constants within the creation of the universe
      *         can have another class "UniverseBuilder" that will provide these constants
      */
-    public Universe(int screenX, int screenY){
-        this.screenX = screenX;
-        this.screenY = screenY;
-        this.characterA = new Character(screenX, screenY, "a");
-        this.characterB = new Character(screenX, screenY, "b");
-        this.cloudA1 = new Clouds(screenX, screenY, "a1");
-        this.cloudA2 = new Clouds( screenX, screenY, "a2");
-        this.cloudB1 = new Clouds(screenX, screenY, "b1");
-        this.cloudB2 = new Clouds(screenX, screenY, "b2");
-        this.popsicleA = new Candy(screenX, screenY, "a");
-        this.popsicleB = new Candy(screenX, screenY, "b");
-        this.right = new Console(screenX,screenY,"right", 0, 0,0,0);
-        this.up = new Console(screenX,screenY,"up",  this.getRight().getPos().getX(), this.getRight().getPos().getY(), this.getRight().width,this.getRight().height);
-        this.down = new Console(screenX,screenY,"down", this.getRight().getPos().getX(), this.getRight().getPos().getY(), this.getRight().width,this.getRight().height);
-        this.left = new Console(screenX,screenY,"left", this.getDown().getPos().getX(), this.getDown().getPos().getY(), this.getDown().width,this.getDown().height);
+    public Universe(){
+        this.screenX = Resources.getSystem().getDisplayMetrics().widthPixels;
+        this.screenY = Resources.getSystem().getDisplayMetrics().heightPixels;
+
+        this.characterA = new Character("a");
+        this.characterB = new Character("b");
+        this.cloudA1 = new Clouds("a1");
+        this.cloudA2 = new Clouds("a2");
+        this.cloudB1 = new Clouds("b1");
+        this.cloudB2 = new Clouds("b2");
+        this.popsicleA = new Candy("a");
+        this.popsicleB = new Candy("b");
+        this.right = new Console("right", 0, 0,0,0);
+        this.up = new Console("up",  this.getRight().getPos().getX(), this.getRight().getPos().getY(), this.getRight().width,this.getRight().height);
+        this.down = new Console("down", this.getRight().getPos().getX(), this.getRight().getPos().getY(), this.getRight().width,this.getRight().height);
+        this.left = new Console("left", this.getDown().getPos().getX(), this.getDown().getPos().getY(), this.getDown().width,this.getDown().height);
         this.syrups = new Vector<>();
 
     }
@@ -146,7 +148,7 @@ public class Universe {
 
 //I HAVE ADDED screenX and Y as input for syrup
     public void addSyrup(float x, float y, String direction){
-        Syrup syrup = new Syrup(direction, this.screenX, this.screenY);
+        Syrup syrup = new Syrup(direction);
         syrup.setPos(new Position(x, y));
         syrups.add(syrup);
         castChanges();

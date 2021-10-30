@@ -1,5 +1,7 @@
 package com.example.popsicle.models;
 
+import android.content.res.Resources;
+
 public class Constants {
     public static int syrupMovementPixelsX = 20;
     public static int charMovementPixels = 20;
@@ -13,4 +15,6 @@ public class Constants {
     public static int syrupHeight = 70;
     public static int consoleWidth = 140;
     public static int consoleHeight = 140;
+    public static int screenX = Resources.getSystem().getDisplayMetrics().widthPixels;
+    public static int screenY = Resources.getSystem().getDisplayMetrics().heightPixels;
 }
