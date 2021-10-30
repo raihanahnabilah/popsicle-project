@@ -42,11 +42,11 @@ public class Character {
     }
 
     public Character(int screenX, int screenY, String direction, Resources res){
-        if(direction == "a"){
-            this.pos = new Position(250, (screenY / 2)- 100);
+        if(direction.equals("a")){
+            this.pos = new Position(screenX/8, (screenY *45)/100);
             character = BitmapFactory.decodeResource(res, R.mipmap.char_a);
         } else if (direction == "b"){
-            this.pos = new Position(screenX - 450, (screenY/2)-100);
+            this.pos = new Position((screenX * 13)/16, (screenY *45)/100);
             character = BitmapFactory.decodeResource(res, R.mipmap.char_b);
         }
 
@@ -60,6 +60,7 @@ public class Character {
 
     }
 
+//    WHAT? HELP HERE
     public Rect getCollisionShape(){
         int left = (int) this.getPos().getX() - 100;
         int top = (int) this.getPos().getY() + 50;

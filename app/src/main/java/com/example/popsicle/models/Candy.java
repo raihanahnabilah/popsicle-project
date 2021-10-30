@@ -27,10 +27,12 @@ public class Candy {
     public Candy(int screenX, int screenY, String direction, Resources res){
         popsicle = BitmapFactory.decodeResource(res, R.mipmap.cloud);
         if (direction == "a"){
-            this.pos = new Position(100, (screenY/2)-100);
+//            change this position of popsicle a
+            this.pos = new Position(screenX/16, (screenY *45)/100);
             popsicle = BitmapFactory.decodeResource(res, R.mipmap.popsicle_a);
         } else if (direction == "b"){
-            this.pos = new Position(screenX - 280, (screenY/2) - 100);
+//            change this position of popsicle b
+            this.pos = new Position((screenX * 14)/16, (screenY *45)/100);
             popsicle = BitmapFactory.decodeResource(res, R.mipmap.popsicle_b);
         }
 

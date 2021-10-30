@@ -34,29 +34,30 @@ public class Position {
      * Moves the character left
      * based on 20 pixels
      */
+//    constants here need to be replace with constants.sth
     public void addLeft(){
-        this.x = this.x - 20;
+        this.x = this.x - Constants.charMovementPixels;
     }
     /**
      * Moves the character right
      * based on 20 pixels
      */
     public void addRight(){
-        this.x = this.x + 20;
+        this.x = this.x + Constants.charMovementPixels;
     }
     /**
      * Moves the character Up
      * based on 20 pixels
      */
     public void addUp(){
-        this.y = this.y - 20;
+        this.y = this.y - Constants.charMovementPixels;
     }
     /**
      * Moves the character Down
      * based on 20 pixels
      */
     public void addDown(){
-        this.y = this.y + 20;
+        this.y = this.y + Constants.charMovementPixels;
     }
 
     public void add(Position p) {
