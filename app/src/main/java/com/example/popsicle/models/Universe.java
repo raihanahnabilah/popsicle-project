@@ -61,10 +61,14 @@ public class Universe {
         this.cloudB2 = new Clouds("b2");
         this.popsicleA = new Candy("a");
         this.popsicleB = new Candy("b");
-        this.right = new Console("right", 0, 0,0,0);
-        this.up = new Console("up",  this.getRight().getPos().getX(), this.getRight().getPos().getY(), this.getRight().width,this.getRight().height);
-        this.down = new Console("down", this.getRight().getPos().getX(), this.getRight().getPos().getY(), this.getRight().width,this.getRight().height);
-        this.left = new Console("left", this.getDown().getPos().getX(), this.getDown().getPos().getY(), this.getDown().width,this.getDown().height);
+        this.right = new Console("right");
+        this.up = new Console("up");
+        this.down = new Console("down");
+        this.left = new Console("left");
+//        this.right = new Console("right", 0, 0,0,0);
+//        this.up = new Console("up",  this.getRight().getPos().getX(), this.getRight().getPos().getY(), this.getRight().width,this.getRight().height);
+//        this.down = new Console("down", this.getRight().getPos().getX(), this.getRight().getPos().getY(), this.getRight().width,this.getRight().height);
+//        this.left = new Console("left", this.getDown().getPos().getX(), this.getDown().getPos().getY(), this.getDown().width,this.getDown().height);
         this.syrups = new Vector<>();
 
     }
