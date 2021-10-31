@@ -254,9 +254,10 @@ public class Universe {
     protected void castChanges() {
         if (callback != null) {
             callback.universeChanged(this);
-        } else {
-            Log.w(TAG, "Callback is not available.");
         }
+//        else {
+//            Log.w(TAG, "Callback is not available.");
+//        }
     }
 
     private Callback callback = null;
