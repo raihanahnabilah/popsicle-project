@@ -180,14 +180,27 @@ public class Universe {
         castChanges();
     }
 
+    public void checkSyrupCollision(){
+        for (Syrup syrup: syrups){
 
-    public void updateCharacter(){
+            if (Rect.intersects(characterA.getCollisionShape(), syrup.getCollisionShape()) ||
+                    Rect.intersects(characterB.getCollisionShape(), syrup.getCollisionShape())){
+                this.setGameOver(true);
+                return;
+            }
+        }
+        castChanges();
+    }
 
+    public void checkPopsicleCollision(){
         if (Rect.intersects(characterA.getCollisionShape(), popsicleB.getCollisionShape()) ||
                 Rect.intersects(characterB.getCollisionShape(), popsicleA.getCollisionShape())){
-             this.setGameOver(true);
+            this.setGameOver(true);
             return;
         }
+    }
+
+    public void updateCharacter(){
 
         if (getCharacterA().getMovingRight()){
             characterA.moveRight();
