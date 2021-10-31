@@ -170,12 +170,6 @@ public class Universe {
     public void syrupSteps(){
         for (Syrup syrup: syrups){
             syrup.syrupMove(new Position(syrup.getMovex(),syrup.getMovey()));
-
-            if (Rect.intersects(characterA.getCollisionShape(), syrup.getCollisionShape()) ||
-                    Rect.intersects(characterB.getCollisionShape(), syrup.getCollisionShape())){
-                this.setGameOver(true);
-                return;
-            }
         }
         castChanges();
     }
