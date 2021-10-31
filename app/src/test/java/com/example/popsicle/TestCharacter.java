@@ -1,5 +1,7 @@
 package com.example.popsicle;
 
+import android.graphics.Rect;
+
 import com.example.popsicle.models.Character;
 import com.example.popsicle.models.Constants;
 import com.example.popsicle.models.Position;
@@ -8,8 +10,6 @@ import com.example.popsicle.models.Syrup;
 import org.junit.Test;
 
 public class TestCharacter {
-
-    //TODO: Finish the remaining testings.
 
     Character a = new Character("a");
     Character b = new Character("b");
@@ -56,42 +56,96 @@ public class TestCharacter {
 
     @Test
     public void CharactersMoveUp(){
-        //TODO: Testing when the characters move up
+        a.moveUp();
+        Position aMoveUp = new Position(aPos.getX(), aPos.getY()-20);
+        assert (a.getPos().getX() == aMoveUp.getX());
+        assert (a.getPos().getY() == aMoveUp.getY());
+
+        b.moveUp();
+        Position bMoveUp = new Position(bPos.getX(), bPos.getY() - 20);
+        assert (b.getPos().getX() == bMoveUp.getX());
+        assert (b.getPos().getY() == bMoveUp.getY());
     }
 
     @Test
     public void CharactersMoveDown(){
-        //TODO: Testing when the characters move down
+        a.moveDown();
+        Position aMoveDown = new Position(aPos.getX(), aPos.getY() + 20);
+        assert (a.getPos().getX() == aMoveDown.getX());
+        assert (a.getPos().getY() == aMoveDown.getY());
+
+        b.moveDown();
+        Position bMoveDown = new Position(bPos.getX(), bPos.getY() + 20);
+        assert (b.getPos().getX() == bMoveDown.getX());
+        assert (b.getPos().getY() == bMoveDown.getY());
     }
 
     @Test
     public void CharactersBooleanMovedUp(){
-        //TODO: Testing the Boolean when characters move up
+        a.setMovingUp(true);
+        assert(a.getMovingUp());
+
+        b.setMovingUp(true);
+        assert(b.getMovingUp());
     }
 
     @Test
     public void CharactersBooleanMovedDown(){
-        //TODO: Testing the Boolean when the characters move down
+        a.setMovingDown(true);
+        assert(a.getMovingDown());
+
+        b.setMovingDown(true);
+        assert(b.getMovingDown());
     }
 
     @Test
     public void CharactersBooleanMovedLeft(){
-        //TODO: Testing the Boolean when the characters move left
+        a.setMovingLeft(true);
+        assert(a.getMovingLeft());
+
+        b.setMovingLeft(true);
+        assert(b.getMovingLeft());
     }
 
     @Test
     public void CharactersBooleanMovedRight(){
-        //TODO: Testing the Boolean when the characters move right
+        a.setMovingRight(true);
+        assert(a.getMovingRight());
+
+        b.setMovingRight(true);
+        assert(b.getMovingRight());
     }
 
     @Test
     public void CharactersCollisionShape(){
-        //TODO: Testing the Characters collision shape
+        int a_left = (int) (aPos.getX()*65)/64;
+        int a_top = (int) (aPos.getY()*65)/64;
+        int a_right = (int) (aPos.getX() + charWidth)*61/64;
+        int a_bottom = (int) (aPos.getY() + charHeight)*61/64;
+        Rect rec_a = new Rect(a_left, a_top, a_right, a_bottom);
+        assert (rec_a.left == a.getCollisionShape().left);
+        assert (rec_a.right == a.getCollisionShape().right);
+        assert (rec_a.bottom == a.getCollisionShape().bottom);
+        assert (rec_a.top == a.getCollisionShape().top);
+
+        int b_left = (int) (bPos.getX()*65)/64;
+        int b_top = (int) (bPos.getY()*65)/64;
+        int b_right = (int) (bPos.getX() + charWidth)*61/64;
+        int b_bottom = (int) (bPos.getY() + charHeight)*61/64;
+        Rect rec_b = new Rect(b_left, b_top, b_right, b_bottom);
+        assert (rec_b.left == b.getCollisionShape().left);
+        assert (rec_b.right == b.getCollisionShape().right);
+        assert (rec_b.bottom == b.getCollisionShape().bottom);
+        assert (rec_b.top == b.getCollisionShape().top);
     }
 
     @Test
     public void CharactersWidthAndHeight(){
-        //TODO: Testing the Characters' width and height
+        assert (a.getHeight() == charHeight);
+        assert (a.getWidth() == charWidth);
+
+        assert (b.getHeight() == charHeight);
+        assert (b.getWidth() == charWidth);
     }
 
 }
