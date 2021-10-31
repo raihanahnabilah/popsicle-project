@@ -15,6 +15,17 @@ public class Constants {
     public static int syrupHeight = 70;
     public static int consoleWidth = 140;
     public static int consoleHeight = 140;
-    public static int screenX = Resources.getSystem().getDisplayMetrics().widthPixels;
-    public static int screenY = Resources.getSystem().getDisplayMetrics().heightPixels;
+//    public static int screenX = Resources.getSystem().getDisplayMetrics().widthPixels;
+//    public static int screenY = Resources.getSystem().getDisplayMetrics().heightPixels;
+    public static int screenX ;
+    public static int screenY;
+    public Constants() {
+        try {
+            this.screenX = Resources.getSystem().getDisplayMetrics().widthPixels;
+            this.screenY = Resources.getSystem().getDisplayMetrics().heightPixels;
+        } catch (Exception e) {
+            this.screenX = 1080;
+            this.screenY = 1794;
+        }
+    }
 }
