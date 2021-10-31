@@ -9,8 +9,6 @@ import org.junit.Test;
 
 public class TestClouds {
 
-    //TODO: Finish the testings.
-
     Clouds a1 = new Clouds("a1");
     Clouds a2 = new Clouds("a2");
     Clouds b1 = new Clouds("b1");
@@ -36,7 +34,17 @@ public class TestClouds {
 
     @Test
     public void CloudsWidthAndHeight(){
-        //TODO: Testing the Clouds' width and height
+        assert (b1.getHeight() == cloudHeight);
+        assert (b1.getWidth() == cloudWidth);
+
+        assert (b2.getHeight() == cloudHeight);
+        assert (b2.getWidth() == cloudWidth);
+
+        assert (a1.getHeight() == cloudHeight);
+        assert (a1.getWidth() == cloudWidth);
+
+        assert (a2.getHeight() == cloudHeight);
+        assert (a2.getWidth() == cloudWidth);
     }
 
 }
