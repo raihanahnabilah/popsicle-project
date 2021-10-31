@@ -30,7 +30,7 @@ public class Universe {
     public static final String TAG = "Universe";
     private final Character characterA, characterB;
     private final Clouds cloudA1, cloudA2, cloudB1, cloudB2;
-    private final int screenX, screenY;
+    private int screenX, screenY;
     private final Candy popsicleA, popsicleB;
     private final Console up, down, left, right;
     private List<Syrup> syrups;
@@ -46,8 +46,11 @@ public class Universe {
      *         can have another class "UniverseBuilder" that will provide these constants
      */
     public Universe(){
-        this.screenX = Resources.getSystem().getDisplayMetrics().widthPixels;
-        this.screenY = Resources.getSystem().getDisplayMetrics().heightPixels;
+//        this.screenX = Resources.getSystem().getDisplayMetrics().widthPixels;
+//        this.screenY = Resources.getSystem().getDisplayMetrics().heightPixels;
+        Constants constants = new Constants();
+        this.screenX = constants.screenX;
+        this.screenY = constants.screenY;
 
         this.characterA = new Character("a");
         this.characterB = new Character("b");
