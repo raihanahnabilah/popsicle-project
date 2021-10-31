@@ -35,6 +35,7 @@ public class Universe {
     private final Console up, down, left, right;
     private List<Syrup> syrups;
     Boolean isPlaying = true, isGameOver = false;
+    Constants constants;
 
     /**
      * Universe instantiates all the different
@@ -48,7 +49,7 @@ public class Universe {
     public Universe(){
 //        this.screenX = Resources.getSystem().getDisplayMetrics().widthPixels;
 //        this.screenY = Resources.getSystem().getDisplayMetrics().heightPixels;
-        Constants constants = new Constants();
+        this.constants = new Constants();
         this.screenX = constants.screenX;
         this.screenY = constants.screenY;
 
@@ -66,6 +67,11 @@ public class Universe {
         this.left = new Console("left", this.getDown().getPos().getX(), this.getDown().getPos().getY(), this.getDown().width,this.getDown().height);
         this.syrups = new Vector<>();
 
+    }
+
+
+    public Constants getConstants() {
+        return constants;
     }
 
     public Character getCharacterA() {

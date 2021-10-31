@@ -43,8 +43,8 @@ public class GraphicsRenderer implements Universe.Callback, SurfaceHolder.Callba
     public GraphicsRenderer(MainActivity activity, Universe u, Resources context){
         this.activity = activity;
         this.universe = u;
-        this.screenX = Constants.screenX;
-        this.screenY = Constants.screenY;
+        this.screenX = u.getConstants().screenX;
+        this.screenY = u.getConstants().screenY;
         this.background = background;
 
         this.characterA = BitmapFactory.decodeResource(context, R.mipmap.char_a);
