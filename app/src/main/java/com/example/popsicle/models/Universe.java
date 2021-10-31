@@ -220,6 +220,30 @@ public class Universe {
             characterA.setMovingDown(false);
         }
 
+        if (getCharacterB().getMovingRight()){
+            characterB.moveRight();
+            castChanges();
+            characterB.setMovingRight(false);
+        }
+
+        if (getCharacterB().getMovingLeft()){
+            characterB.moveLeft();
+            castChanges();
+            characterB.setMovingLeft(false);
+        }
+
+        if (getCharacterB().getMovingUp()){
+            characterB.moveUp();
+            castChanges();
+            characterB.setMovingUp(false);
+        }
+
+        if (getCharacterB().getMovingDown()){
+            characterB.moveDown();
+            castChanges();
+            characterB.setMovingDown(false);
+        }
+
 
     }
 
