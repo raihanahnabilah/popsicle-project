@@ -25,8 +25,9 @@ public class Candy {
     }
 
     public Candy(String direction){
-        this.screenX = Constants.screenX;
-        this.screenY = Constants.screenY;
+        Constants constants = new Constants();
+        this.screenX = constants.screenX;
+        this.screenY = constants.screenY;
 
         if (direction == "a"){
 //            change this position of popsicle a
