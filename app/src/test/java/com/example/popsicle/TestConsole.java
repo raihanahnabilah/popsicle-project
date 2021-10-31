@@ -9,8 +9,6 @@ import org.junit.Test;
 
 public class TestConsole {
 
-    //TODO: Finish the testings.
-
     Console up = new Console("up");
     Console down = new Console("down");
     Console left = new Console("left");
@@ -34,12 +32,26 @@ public class TestConsole {
         assert (down.getPos().getX() == downPos.getX());
         assert (down.getPos().getY() == downPos.getY());
 
-        //TODO: Continue testing for left and right.
+        assert (left.getPos().getX() == leftPos.getX());
+        assert (left.getPos().getY() == leftPos.getY());
+
+        assert (right.getPos().getX() == rightPos.getX());
+        assert (right.getPos().getY() == rightPos.getY());
     }
 
     @Test
     public void ConsoleWidthAndHeight(){
-        //TODO: Testing the Console' width and height
+        assert (up.getHeight() == consoleHeight);
+        assert (up.getWidth() == consoleWidth);
+
+        assert (down.getHeight() == consoleHeight);
+        assert (down.getWidth() == consoleWidth);
+
+        assert (left.getHeight() == consoleHeight);
+        assert (left.getWidth() == consoleWidth);
+
+        assert (right.getHeight() == consoleHeight);
+        assert (right.getWidth() == consoleWidth);
     }
 
 
