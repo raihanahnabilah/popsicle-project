@@ -1,0 +1,1 @@
+typeSearchIndex = [{"p":"com.example.popsicle.io","l":"Action"},{"l":"All Classes","url":"allclasses-index.html"},{"p":"com.example.popsicle.io","l":"ClickAction"},{"p":"com.example.popsicle.models","l":"Clouds"},{"p":"com.example.popsicle.models","l":"Console"},{"p":"com.example.popsicle.models","l":"Position"}]
