@@ -6,27 +6,17 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Paint;
-import android.graphics.Rect;
 import android.util.Log;
 import android.view.SurfaceHolder;
-import android.widget.Button;
 
 import androidx.annotation.NonNull;
 
 import com.example.popsicle.HomePage;
 import com.example.popsicle.MainActivity;
-import com.example.popsicle.MainController;
 import com.example.popsicle.R;
-import com.example.popsicle.models.Background;
-import com.example.popsicle.models.Candy;
-import com.example.popsicle.models.Character;
-import com.example.popsicle.models.Clouds;
-import com.example.popsicle.models.Console;
 import com.example.popsicle.models.Constants;
 import com.example.popsicle.models.Syrup;
 import com.example.popsicle.models.Universe;
-
-import java.util.List;
 
 public class GraphicsRenderer implements Universe.Callback, SurfaceHolder.Callback{
 
@@ -34,7 +24,6 @@ public class GraphicsRenderer implements Universe.Callback, SurfaceHolder.Callba
     private final Universe universe;
     private SurfaceHolder holder;
     int screenX, screenY;
-    Background background;
     MainActivity activity;
     Bitmap characterA, scaledCharacterA, characterB, scaledCharacterB, popsicleA, scaledPopsicleA, popsicleB, scaledPopsicleB,
             cloudA1, scaledCloudA1, cloudA2, scaledCloudA2, cloudB1, scaledCloudB1, cloudB2, scaledCloudB2,
@@ -45,7 +34,6 @@ public class GraphicsRenderer implements Universe.Callback, SurfaceHolder.Callba
         this.universe = u;
         this.screenX = u.getConstants().screenX;
         this.screenY = u.getConstants().screenY;
-        this.background = background;
 
         this.characterA = BitmapFactory.decodeResource(context, R.mipmap.char_a);
         this.scaledCharacterA = Bitmap.createScaledBitmap(this.characterA, Constants.charWidth, Constants.charHeight, true);
