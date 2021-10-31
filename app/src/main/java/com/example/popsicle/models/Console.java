@@ -29,8 +29,9 @@ public class Console {
     }
 
     public Console(String direction, float refX, float refY, float refWidth, int refHeight){
-        this.screenX = Constants.screenX;
-        this.screenY = Constants.screenY;
+        Constants constants = new Constants();
+        this.screenX = constants.screenX;
+        this.screenY = constants.screenY;
 
         if (direction.equals("up")){
             this.pos = new Position(refX - refWidth, refY-refHeight);
