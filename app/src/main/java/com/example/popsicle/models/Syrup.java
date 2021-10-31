@@ -27,8 +27,12 @@ public class Syrup {
     }
 
     public Syrup(String direction){
-        this.screenX = Constants.screenX;
-        this.screenY = Constants.screenY;
+//        this.screenX = Constants.screenX;
+//        this.screenY = Constants.screenY;
+        Constants constants = new Constants();
+        this.screenX = constants.screenX;
+        this.screenY = constants.screenY;
+//        System.out.println(this.screenX);
 
         width = Constants.syrupWidth;
         height = Constants.syrupHeight;
@@ -75,9 +79,9 @@ public class Syrup {
     /*
     * Gets the current Syrup position
     */
-    public Position getPosition() {
-        return this.pos;
-    }
+//    public Position getPosition() {
+//        return this.pos;
+//    }
 
     public Position getPos() {
         return pos;
