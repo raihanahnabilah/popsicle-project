@@ -16,9 +16,9 @@ public class Clouds {
 
     public Clouds(String direction){
         this.direction = direction;
-        this.screenX = Constants.screenX;
-        this.screenY = Constants.screenY;
-
+        Constants constants = new Constants();
+        this.screenX = constants.screenX;
+        this.screenY = constants.screenY;
 
         this.width = Constants.cloudWidth;
         this.height = Constants.cloudHeight;
