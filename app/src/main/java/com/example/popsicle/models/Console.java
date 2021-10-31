@@ -28,23 +28,33 @@ public class Console {
         this.height = height;
     }
 
-    public Console(String direction, float refX, float refY, float refWidth, int refHeight){
+    public Console(String direction){
         Constants constants = new Constants();
         this.screenX = constants.screenX;
         this.screenY = constants.screenY;
 
+        width = Constants.consoleWidth;
+        height = Constants.consoleHeight;
+
         if (direction.equals("up")){
-            this.pos = new Position(refX - refWidth, refY-refHeight);
+            this.pos = new Position((screenX * 28 )/32 - width, (screenY*3)/4- height);
         } else if (direction.equals("down")){
-            this.pos = new Position(refX - refWidth, refY+refHeight);
+            this.pos = new Position((screenX * 28 )/32 - width, (screenY*3)/4+height);
         } else if (direction.equals("left")){
-            this.pos = new Position(refX - refWidth, refY-refHeight);
+            this.pos = new Position((screenX * 28 )/32 - width - width, (screenY*3)/4+height-height);
         } else if (direction.equals("right")){
             this.pos = new Position((screenX * 28 )/32, (screenY*3)/4);
         }
 
-        width = Constants.consoleWidth;
-        height = Constants.consoleHeight;
+//        if (direction.equals("up")){
+//            this.pos = new Position(refX - refWidth, refY-refHeight);
+//        } else if (direction.equals("down")){
+//            this.pos = new Position(refX - refWidth, refY+refHeight);
+//        } else if (direction.equals("left")){
+//            this.pos = new Position(refX - refWidth, refY-refHeight);
+//        } else if (direction.equals("right")){
+//            this.pos = new Position((screenX * 28 )/32, (screenY*3)/4);
+//        }
     }
 
     public Bitmap getConsole(){
