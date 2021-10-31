@@ -6,8 +6,10 @@ import android.view.SurfaceView;
 import com.example.popsicle.io.InputHandler;
 import com.example.popsicle.io.InputListener;
 import com.example.popsicle.io.MoveCharacterAction;
+import com.example.popsicle.models.Position;
 import com.example.popsicle.models.Universe;
 import com.example.popsicle.rendering.GraphicsRenderer;
+import com.google.firebase.database.IgnoreExtraProperties;
 
 import java.util.Random;
 
@@ -38,12 +40,31 @@ public class MainController extends Thread{
         inputListener.setCallback(inputHandler);
     }
 
+//    @IgnoreExtraProperties
+//    public class UniverseData {
+//
+//        public Position characterA;
+//        public Position characterB;
+//        public Position popsicleA;
+//        public Position popsicleB;
+//
+//        public UniverseData() {
+//            // Default constructor required for calls to DataSnapshot.getValue(User.class)
+//        }
+//
+//        public UniverseData() {
+//            this.characterA = this.;
+//        }
+//    }
+
     @Override
     public void run() {
         int counter = 0;
         while (this.universe.getPlaying()){
             this.universe.updateCharacter();
             this.universe.syrupSteps();
+            this.universe.universeToFirebase();
+            // this.universe.firebaseToUniverse();
             this.universe.checkPopsicleCollision();
             this.universe.checkSyrupCollision();
             counter += 1;

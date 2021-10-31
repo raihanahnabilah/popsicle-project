@@ -14,6 +14,13 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Vector;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.database.IgnoreExtraProperties;
+
 /**
  *  Universe handles all the actions that are going on in our game.
  *
@@ -36,6 +43,9 @@ public class Universe {
     private List<Syrup> syrups;
     Boolean isPlaying = true, isGameOver = false;
     Constants constants;
+
+    DatabaseReference mRootRef = FirebaseDatabase.getInstance("https://popsicle-game-default-rtdb.asia-southeast1.firebasedatabase.app").getReference();
+    DatabaseReference mGameRef = mRootRef.child("game");
 
     /**
      * Universe instantiates all the different
@@ -246,6 +256,17 @@ public class Universe {
 
 
     }
+
+    public void universeToFirebase() {
+        mGameRef.child("characterALeft").setValue(this.characterA.getMovingLeft());
+        mGameRef.child("characterARight").setValue(this.characterA.getMovingRight());
+        mGameRef.child("characterAUp").setValue(this.characterA.getMovingUp());
+        mGameRef.child("characterADown").setValue(this.characterA.getMovingDown());
+    }
+
+//     public void firebaseToUniverse() {
+//
+//    }
 
     public Boolean getPlaying() {
         return isPlaying;
