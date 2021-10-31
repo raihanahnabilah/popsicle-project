@@ -42,8 +42,9 @@ public class Character {
     }
 
     public Character(String direction){
-        this.screenX = Constants.screenX;
-        this.screenY = Constants.screenY;
+        Constants constants = new Constants();
+        this.screenX = constants.screenX;
+        this.screenY = constants.screenY;
 
         if(direction.equals("a")){
             this.pos = new Position(screenX/8, (screenY *45)/100);
