@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "752452345558",
+    "project_id": "popsicle-game",
+    "storage_bucket": "popsicle-game.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:752452345558:android:b7fa34ff210adcef56b377",
+        "android_client_info": {
+          "package_name": "com.example.popsicle"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "752452345558-k2mo8gunr5b4snktkqph2h2q5jmubfkl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyACQ9mOOpiMAV4npY_Wg04Ybhl8mc_OHNs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "752452345558-k2mo8gunr5b4snktkqph2h2q5jmubfkl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -27,7 +27,15 @@ android {
     }
 }
 
+apply plugin: 'com.android.application'
+apply plugin: 'com.google.gms.google-services'
+
 dependencies {
+    // This is for firebase to be implemented globally
+    implementation platform('com.google.firebase:firebase-bom:28.4.2')
+
+    // This is for firebase realtime database to be imported
+    implementation 'com.google.firebase:firebase-database'
 
     implementation 'androidx.appcompat:appcompat:1.3.1'
     implementation 'com.google.android.material:material:1.4.0'

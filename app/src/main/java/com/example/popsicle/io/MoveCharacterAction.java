@@ -18,5 +18,7 @@ public class MoveCharacterAction implements ClickAction {
     public void execute(Position pos) {
         Log.i(TAG, "MoveCharacterAction executed");
         universe.CharacterMove(pos, universe.getCharacterA());
+        // universe.CharacterMove(pos, universe.getCharacterB());
+
     }
 }
