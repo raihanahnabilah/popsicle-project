@@ -115,7 +115,7 @@ public class TestSyrup {
         int s3_top = (int) s3.getPos().getY()*33/32;
         int s3_right = (int) (s3.getPos().getX() + syrupWidth)*31/32;
         int s3_bottom = (int) (s3.getPos().getY() + syrupHeight)*61/64;
-        Rect rec3 = new Rect(s2_left, s2_top, s2_right, s2_bottom);
+        Rect rec3 = new Rect(s3_left, s3_top, s3_right, s3_bottom);
         assert (rec3.left == s3.getCollisionShape().left);
         assert (rec3.right == s3.getCollisionShape().right);
         assert (rec3.bottom == s3.getCollisionShape().bottom);
@@ -126,7 +126,7 @@ public class TestSyrup {
         int s4_top = (int) s4.getPos().getY()*33/32;
         int s4_right = (int) (s4.getPos().getX() + syrupWidth)*31/32;
         int s4_bottom = (int) (s4.getPos().getY() + syrupHeight)*61/64;
-        Rect rec4 = new Rect(s2_left, s2_top, s2_right, s2_bottom);
+        Rect rec4 = new Rect(s4_left, s4_top, s4_right, s4_bottom);
         assert (rec4.left == s4.getCollisionShape().left);
         assert (rec4.right == s4.getCollisionShape().right);
         assert (rec4.bottom == s4.getCollisionShape().bottom);
