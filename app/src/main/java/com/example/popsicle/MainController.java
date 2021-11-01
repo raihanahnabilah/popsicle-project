@@ -71,64 +71,68 @@ public class MainController extends Thread{
             Random ran = new Random();
             int n = ran.nextInt(4);
             if (counter % 30 == 0){
-                if (n==0){
-                    this.universe.addSyrup(this.universe.getCloudA2().getPos().getX(), this.universe.getCloudA2().getPos().getY() + this.universe.getCloudA2().height/2, "a2");
-                }
-                else if (n==1){
-                    this.universe.addSyrup(this.universe.getCloudA2().getPos().getX() + this.universe.getCloudA2().width, this.universe.getCloudA2().getPos().getY() + this.universe.getCloudA2().height/2, "a2");
-
-                }
-                else if (n==2){
-                    this.universe.addSyrup(this.universe.getCloudA2().getPos().getX() + this.universe.getCloudA2().width/2, this.universe.getCloudA2().getPos().getY() + this.universe.getCloudA2().height/4, "a2");
-                }
-                else if (n==3){
-                    this.universe.addSyrup(this.universe.getCloudA2().getPos().getX() + this.universe.getCloudA2().width/2, this.universe.getCloudA2().getPos().getY() + (this.universe.getCloudA2().height*3)/4, "a2");
-                }
+                this.universe.randomlyAddSyrups(n, universe.getCloudA2(), "a2");
+//                if (n==0){
+//                    this.universe.addSyrup(this.universe.getCloudA2().getPos().getX(), this.universe.getCloudA2().getPos().getY() + this.universe.getCloudA2().height/2, "a2");
+//                }
+//                else if (n==1){
+//                    this.universe.addSyrup(this.universe.getCloudA2().getPos().getX() + this.universe.getCloudA2().width, this.universe.getCloudA2().getPos().getY() + this.universe.getCloudA2().height/2, "a2");
+//
+//                }
+//                else if (n==2){
+//                    this.universe.addSyrup(this.universe.getCloudA2().getPos().getX() + this.universe.getCloudA2().width/2, this.universe.getCloudA2().getPos().getY() + this.universe.getCloudA2().height/4, "a2");
+//                }
+//                else if (n==3){
+//                    this.universe.addSyrup(this.universe.getCloudA2().getPos().getX() + this.universe.getCloudA2().width/2, this.universe.getCloudA2().getPos().getY() + (this.universe.getCloudA2().height*3)/4, "a2");
+//                }
             }
             if (counter % 221 == 0){
-                if (n==0){
-                    this.universe.addSyrup(this.universe.getCloudA1().getPos().getX(), this.universe.getCloudA1().getPos().getY() + this.universe.getCloudA1().height/2, "a1");
-                }
-                else if (n==1){
-                    this.universe.addSyrup(this.universe.getCloudA1().getPos().getX() + this.universe.getCloudA1().width, this.universe.getCloudA1().getPos().getY() + this.universe.getCloudA1().height/2, "a1");
-
-                }
-                else if (n==2){
-                    this.universe.addSyrup(this.universe.getCloudA1().getPos().getX() + this.universe.getCloudA1().width/2, this.universe.getCloudA1().getPos().getY() + this.universe.getCloudA1().height/4, "a1");
-                }
-                else if (n==3){
-                    this.universe.addSyrup(this.universe.getCloudA1().getPos().getX() + this.universe.getCloudA1().width/2, this.universe.getCloudA1().getPos().getY() + (this.universe.getCloudA1().height*3)/4, "a1");
-                }
+                this.universe.randomlyAddSyrups(n, universe.getCloudA1(), "a1");
+//                if (n==0){
+//                    this.universe.addSyrup(this.universe.getCloudA1().getPos().getX(), this.universe.getCloudA1().getPos().getY() + this.universe.getCloudA1().height/2, "a1");
+//                }
+//                else if (n==1){
+//                    this.universe.addSyrup(this.universe.getCloudA1().getPos().getX() + this.universe.getCloudA1().width, this.universe.getCloudA1().getPos().getY() + this.universe.getCloudA1().height/2, "a1");
+//
+//                }
+//                else if (n==2){
+//                    this.universe.addSyrup(this.universe.getCloudA1().getPos().getX() + this.universe.getCloudA1().width/2, this.universe.getCloudA1().getPos().getY() + this.universe.getCloudA1().height/4, "a1");
+//                }
+//                else if (n==3){
+//                    this.universe.addSyrup(this.universe.getCloudA1().getPos().getX() + this.universe.getCloudA1().width/2, this.universe.getCloudA1().getPos().getY() + (this.universe.getCloudA1().height*3)/4, "a1");
+//                }
             }
             if (counter % 220 == 0){
-                if (n==0){
-                    this.universe.addSyrup(this.universe.getCloudB1().getPos().getX(), this.universe.getCloudB1().getPos().getY() + this.universe.getCloudB1().height/2, "b1");
-                }
-                else if (n==1){
-                    this.universe.addSyrup(this.universe.getCloudB1().getPos().getX() + this.universe.getCloudB1().width, this.universe.getCloudB1().getPos().getY() + this.universe.getCloudB1().height/2, "b1");
-
-                }
-                else if (n==2){
-                    this.universe.addSyrup(this.universe.getCloudB1().getPos().getX() + this.universe.getCloudB1().width/2, this.universe.getCloudB1().getPos().getY() + this.universe.getCloudB1().height/4, "b1");
-                }
-                else if (n==3){
-                    this.universe.addSyrup(this.universe.getCloudB1().getPos().getX() + this.universe.getCloudB1().width/2, this.universe.getCloudB1().getPos().getY() + (this.universe.getCloudB1().height*3)/4, "b1");
-                }
+                this.universe.randomlyAddSyrups(n, universe.getCloudB1(), "b1");
+//                if (n==0){
+//                    this.universe.addSyrup(this.universe.getCloudB1().getPos().getX(), this.universe.getCloudB1().getPos().getY() + this.universe.getCloudB1().height/2, "b1");
+//                }
+//                else if (n==1){
+//                    this.universe.addSyrup(this.universe.getCloudB1().getPos().getX() + this.universe.getCloudB1().width, this.universe.getCloudB1().getPos().getY() + this.universe.getCloudB1().height/2, "b1");
+//
+//                }
+//                else if (n==2){
+//                    this.universe.addSyrup(this.universe.getCloudB1().getPos().getX() + this.universe.getCloudB1().width/2, this.universe.getCloudB1().getPos().getY() + this.universe.getCloudB1().height/4, "b1");
+//                }
+//                else if (n==3){
+//                    this.universe.addSyrup(this.universe.getCloudB1().getPos().getX() + this.universe.getCloudB1().width/2, this.universe.getCloudB1().getPos().getY() + (this.universe.getCloudB1().height*3)/4, "b1");
+//                }
             }
             if (counter % 29 == 0){
-                if (n==0){
-                    this.universe.addSyrup(this.universe.getCloudB2().getPos().getX(), this.universe.getCloudB2().getPos().getY() + this.universe.getCloudB2().height/2, "b2");
-                }
-                else if (n==1){
-                    this.universe.addSyrup(this.universe.getCloudB2().getPos().getX() + this.universe.getCloudB2().width, this.universe.getCloudB2().getPos().getY() + this.universe.getCloudB2().height/2, "b2");
-
-                }
-                else if (n==2){
-                    this.universe.addSyrup(this.universe.getCloudB2().getPos().getX() + this.universe.getCloudB2().width/2, this.universe.getCloudB2().getPos().getY() + this.universe.getCloudB2().height/4, "b2");
-                }
-                else if (n==3){
-                    this.universe.addSyrup(this.universe.getCloudB2().getPos().getX() + this.universe.getCloudB2().width/2, this.universe.getCloudB2().getPos().getY() + (this.universe.getCloudB2().height*3)/4, "b2");
-                }
+//                this.universe.randomlyAddSyrups(n, universe.getCloudB2(), "b2");
+//                if (n==0){
+//                    this.universe.addSyrup(this.universe.getCloudB2().getPos().getX(), this.universe.getCloudB2().getPos().getY() + this.universe.getCloudB2().height/2, "b2");
+//                }
+//                else if (n==1){
+//                    this.universe.addSyrup(this.universe.getCloudB2().getPos().getX() + this.universe.getCloudB2().width, this.universe.getCloudB2().getPos().getY() + this.universe.getCloudB2().height/2, "b2");
+//
+//                }
+//                else if (n==2){
+//                    this.universe.addSyrup(this.universe.getCloudB2().getPos().getX() + this.universe.getCloudB2().width/2, this.universe.getCloudB2().getPos().getY() + this.universe.getCloudB2().height/4, "b2");
+//                }
+//                else if (n==3){
+//                    this.universe.addSyrup(this.universe.getCloudB2().getPos().getX() + this.universe.getCloudB2().width/2, this.universe.getCloudB2().getPos().getY() + (this.universe.getCloudB2().height*3)/4, "b2");
+//                }
             }
             try {
                 Thread.sleep(50);

@@ -299,6 +299,29 @@ public class Universe {
     }
 
     /**
+     * This method is to add syrups in the universe at random direction. This
+     * method is called at the main controller.
+     * @param n The random integer chosen to generate a random direction of the syrup
+     * @param cloud The cloud in which the syrup is shooting from
+     * @param direction The specified cloud (either "a1", "a2", "b1", or "b2")
+     */
+    public void randomlyAddSyrups(int n, Clouds cloud, String direction){
+        if (n==0){
+            addSyrup(cloud.getPos().getX(), cloud.getPos().getY() + cloud.height/2, direction);
+        }
+        else if (n==1){
+            addSyrup(cloud.getPos().getX() + cloud.width, cloud.getPos().getY() + cloud.height/2, direction);
+
+        }
+        else if (n==2){
+            addSyrup(cloud.getPos().getX() + cloud.width/2, cloud.getPos().getY() + cloud.height/4, direction);
+        }
+        else if (n==3){
+            addSyrup(cloud.getPos().getX() + cloud.width/2, cloud.getPos().getY() + (cloud.height*3)/4, direction);
+        }
+    }
+
+    /**
      * The updateCharacter method is to move the Character either Up, Left, Down, or Right
      * depending on which Boolean is set to true after the user clicks on either the
      * Up, Left, Down, or Right Console.
