@@ -97,10 +97,10 @@ public class MainController extends Thread{
         while (this.universe.getPlaying()){
             this.universe.updateCharacter();
             this.universe.syrupSteps();
-            this.universe.universeToFirebase();
-            // this.universe.firebaseToUniverse();
             this.universe.checkPopsicleCollision();
             this.universe.checkSyrupCollision();
+            this.universe.universeToFirebase();
+            // this.universe.firebaseToUniverse();
             counter += 1;
             Random ran = new Random();
             int n = ran.nextInt(4);

@@ -1,17 +1,20 @@
 package com.example.popsicle.models;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Rect;
-import java.util.ArrayList;
+
+import androidx.annotation.NonNull;
+
 import java.util.Collection;
 import java.util.List;
 import java.util.Vector;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.database.IgnoreExtraProperties;
 
 /**
  *  Universe handles all the actions that are going on in the game.
@@ -27,6 +30,11 @@ public class Universe {
      * Characters class in the universe
      */
     private final Character characterA, characterB;
+
+    /**
+     * States whether the current player is characterA or characterB
+     */
+    public boolean isCharacterA, isCharacterB;
 
     /**
      * Clouds class in the universe
@@ -380,10 +388,8 @@ public class Universe {
     }
 
     public void universeToFirebase() {
-        mGameRef.child("characterALeft").setValue(this.characterA.getMovingLeft());
-        mGameRef.child("characterARight").setValue(this.characterA.getMovingRight());
-        mGameRef.child("characterAUp").setValue(this.characterA.getMovingUp());
-        mGameRef.child("characterADown").setValue(this.characterA.getMovingDown());
+        mGameRef.child("characterAPos").setValue(this.characterA.getPos());
+        mGameRef.child("syrups").setValue(this.getSyrups());
     }
 
 //     public void firebaseToUniverse() {
