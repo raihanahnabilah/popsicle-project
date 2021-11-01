@@ -13,13 +13,39 @@ import com.google.firebase.database.IgnoreExtraProperties;
 
 import java.util.Random;
 
+/**
+ * The MainController is a thread that creates and runs our Universe,
+ * IO, and Graphics Renderer at every time.
+ * @author Hana, Valeria
+ */
 public class MainController extends Thread{
 
+    /**
+     * The SurfaceView in our MainActivity
+     */
     private final SurfaceView sv;
+
+    /**
+     * The Universe that creates all elements in our game
+     */
     private final Universe universe;
+
+    /**
+     * The GraphicsRenderer that render our game on Canvas
+     */
     private final GraphicsRenderer graphicsRenderer;
+
+    /**
+     * The MainActivity that creates the game
+     */
     MainActivity activity;
 
+    /**
+     * The MainController constructor creates the universe, the renderer
+     * and the IO of our game.
+     * @param activity The MainActivity of our game
+     * @param sv The SurfaceView that holds the game being drawn in the Canvas
+     */
     public MainController(MainActivity activity, SurfaceView sv){
         // Creating the universe
         this.sv = sv;
@@ -57,6 +83,14 @@ public class MainController extends Thread{
 //        }
 //    }
 
+    /**
+     * The run method to continuously update and draw all elements
+     * in our Universe by calling the important methods in our Universe
+     * such as updating the Character's position and the Syrup's position,
+     * generating the Syrups, and checking if the Popsicle collides with the
+     * Character or if the Syrup collides with the Character to terminate the
+     * game.
+     */
     @Override
     public void run() {
         int counter = 0;

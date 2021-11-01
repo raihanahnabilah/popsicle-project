@@ -11,14 +11,42 @@ import android.view.WindowManager;
 import android.widget.Button;
 import java.util.Random;
 
+/**
+ * HomePage class to creates the HomePage of our
+ * Game before the users can start the game
+ */
 public class HomePage extends AppCompatActivity {
 
+    /**
+     * The createGame button
+     */
     private Button createGameButton;
+
+    /**
+     * The joinGame button
+     */
     private Button joinGameButton;
+
+    /**
+     * UserID generated
+     */
     public String userUID;
+
+    /**
+     * Random generator
+     */
     public Random rng = new Random();
+
+    /**
+     * SharedPreferences for Firebase
+     */
     public SharedPreferences sp;
 
+    /**
+     * The onCreate method to create the HomePage before users
+     * begin the game.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -67,21 +95,34 @@ public class HomePage extends AppCompatActivity {
         });
     }
 
-    // This method sends you to the create game page (create game activity)
+    /**
+     * The createGameActivity sends you to the create game page
+     * (create the game activity).
+     */
     public void createGameActivity() {
         //Intent intent = new Intent(this, CreateGame.class);
         // startActivity(intent);
         System.out.println("Clicked create Game");
     }
 
-    // This method sends you to the join game page (join game activity)
+    /**
+     * The joinGameActivity method sends you to the join
+     * game page (Join game activity)
+     */
     public void joinGameActivity() {
         // Intent intent = new Intent(this, JoinGame.class);
         // startActivity(intent);
         System.out.println("Clicked join Game");
     }
 
-    // This is to generate the random UID for each player (Player A or Player B)
+    /**
+     * The generateString method is to generate the random UID
+     * for each player (Player A or B)
+     * @param rng Random generator
+     * @param characters Specified character "a" or "b"
+     * @param length the length of the UID
+     * @return
+     */
     public static String generateString(Random rng, String characters, int length) {
         char[] text = new char[length];
         for (int i = 0; i < length; i++) {
