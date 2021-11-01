@@ -212,4 +212,12 @@ public class Character {
     public void setMovingRight(Boolean movingRight) {
         isMovingRight = movingRight;
     }
+
+    /**
+     * The setter function to set the position of the Character on the Universe
+     * @param pos the position of the character
+     */
+    public void setPos(Position pos) {
+        this.pos = pos;
+    }
 }
