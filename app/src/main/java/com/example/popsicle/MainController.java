@@ -40,17 +40,20 @@ public class MainController extends Thread{
      */
     MainActivity activity;
 
+    String savedUserUID;
+
     /**
      * The MainController constructor creates the universe, the renderer
      * and the IO of our game.
      * @param activity The MainActivity of our game
      * @param sv The SurfaceView that holds the game being drawn in the Canvas
      */
-    public MainController(MainActivity activity, SurfaceView sv){
+    public MainController(MainActivity activity, SurfaceView sv, String savedUserUID){
         // Creating the universe
         this.sv = sv;
         this.activity = activity;
         this.universe = new Universe();
+        this.savedUserUID = savedUserUID;
 
         // Rendering the assets
         this.graphicsRenderer = new GraphicsRenderer(activity, universe, sv.getResources());

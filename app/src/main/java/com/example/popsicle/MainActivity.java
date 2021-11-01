@@ -2,6 +2,8 @@ package com.example.popsicle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Point;
 import android.os.Bundle;
 import android.util.Log;
@@ -34,10 +36,15 @@ public class MainActivity extends AppCompatActivity{
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
+        // Get the uid from shared preferences VERY IMPORTANT
+        SharedPreferences sp = getApplicationContext().getSharedPreferences("MyUserPrefs", Context.MODE_PRIVATE);
+        String savedUserUID = sp.getString("userUID", "");
+        System.out.println("The user UID is from sharedp is " + savedUserUID);
+
         // Using surfaceView
         SurfaceView sv = findViewById(R.id.surfaceView);
 
-        MainController mc = new MainController(this, sv);
+        MainController mc = new MainController(this, sv, savedUserUID);
         mc.start();
 
         Log.d(TAG, "onCreate Finished");
