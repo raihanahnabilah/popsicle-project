@@ -11,6 +11,10 @@ import android.view.WindowManager;
 import android.widget.Button;
 import java.util.Random;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.IgnoreExtraProperties;
+
 public class HomePage extends AppCompatActivity {
 
     private Button createGameButton;
@@ -18,6 +22,9 @@ public class HomePage extends AppCompatActivity {
     public String userUID;
     public Random rng = new Random();
     public SharedPreferences sp;
+
+    DatabaseReference mRootRef = FirebaseDatabase.getInstance("https://popsicle-game-default-rtdb.asia-southeast1.firebasedatabase.app").getReference();
+    DatabaseReference mGameRef = mRootRef.child("game");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,17 +74,16 @@ public class HomePage extends AppCompatActivity {
         });
     }
 
-    // This method sends you to the create game page (create game activity)
+    // This sets the playerA userUID to the current userUID
     public void createGameActivity() {
-        //Intent intent = new Intent(this, CreateGame.class);
-        // startActivity(intent);
+        Game game = new Game(userUID, "NaN");
+        mGameRef.setValue(game);
         System.out.println("Clicked create Game");
     }
 
-    // This method sends you to the join game page (join game activity)
+    // This sets the playerB userUID to the current userUID
     public void joinGameActivity() {
-        // Intent intent = new Intent(this, JoinGame.class);
-        // startActivity(intent);
+        mGameRef.child("playerB").setValue(userUID);
         System.out.println("Clicked join Game");
     }
 
@@ -88,5 +94,21 @@ public class HomePage extends AppCompatActivity {
             text[i] = characters.charAt(rng.nextInt(characters.length()));
         }
         return new String(text);
+    }
+
+    // This is to generate the initial Game object and record it in firebase
+    @IgnoreExtraProperties
+    public class Game {
+        public String playerA;
+        public String playerB;
+
+        public Game() {
+
+        }
+
+        public Game(String playerA, String playerB) {
+            this.playerA = playerA;
+            this.playerB = playerB;
+        }
     }
 }

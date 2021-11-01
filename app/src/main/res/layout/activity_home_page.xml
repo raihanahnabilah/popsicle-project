@@ -44,7 +44,7 @@
         android:layout_marginEnd="416dp"
         android:layout_marginBottom="110dp"
         android:backgroundTint="#5A8712"
-        android:text="Create Game" />
+        android:text="Player A" />
 
     <Button
         android:id="@+id/button2"
@@ -59,6 +59,6 @@
         android:layout_marginEnd="165dp"
         android:layout_marginBottom="115dp"
         android:backgroundTint="#294793"
-        android:text="Join Game" />
+        android:text="Player B" />
 
 </RelativeLayout>
