@@ -9,6 +9,9 @@ import com.example.popsicle.models.Syrup;
 
 import org.junit.Test;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 public class TestCharacter {
 
     Character a = new Character("a");
@@ -18,6 +21,22 @@ public class TestCharacter {
     Position bPos = new Position(constants.screenX*13/16,constants.screenY*45/100);
     int charWidth = constants.charWidth;
     int charHeight = constants.charHeight;
+    Queue<Integer> queueX = new LinkedList<>();
+    Queue<Integer> queueY = new LinkedList<>();
+
+    //TODO: SAMPLE ADDING QUEUE AND REMOVING FROM QUEUE
+    @Test
+    public void CharacterPositionQueue(){
+        System.out.println(b.getPos());
+        queueX.add(4);
+        queueX.add(8);
+        queueY.add(5);
+        queueY.add(10);
+        b.setPos(new Position(queueX.remove(), queueY.remove()));
+        System.out.println(b.getPos());
+        b.setPos(new Position(queueX.remove(), queueY.remove()));
+        System.out.println(b.getPos());
+    }
 
     @Test
     public void CreateCharactersInCorrectPosition(){
