@@ -153,7 +153,7 @@ public class MainController extends Thread{
 //                }
             }
             if (counter % 29 == 0){
-//                this.universe.randomlyAddSyrups(n, universe.getCloudB2(), "b2");
+                this.universe.randomlyAddSyrups(n, universe.getCloudB2(), "b2");
 //                if (n==0){
 //                    this.universe.addSyrup(this.universe.getCloudB2().getPos().getX(), this.universe.getCloudB2().getPos().getY() + this.universe.getCloudB2().height/2, "b2");
 //                }
