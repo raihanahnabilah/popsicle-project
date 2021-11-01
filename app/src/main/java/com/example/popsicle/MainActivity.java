@@ -23,7 +23,7 @@ public class MainActivity extends AppCompatActivity{
      * by finding the surfaceView ID in the mainActivity layout and
      * call the mainController. The MainController is a thread that
      * creates and runs our Universe, IO, and Graphics Renderer.
-     * @param savedInstanceState
+     * @param savedInstanceState the savedInstanceState
      */
     @Override
     protected void onCreate(Bundle savedInstanceState){

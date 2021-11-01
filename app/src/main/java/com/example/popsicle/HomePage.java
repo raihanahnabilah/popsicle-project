@@ -55,7 +55,7 @@ public class HomePage extends AppCompatActivity {
     /**
      * The onCreate method to create the HomePage before users
      * begin the game.
-     * @param savedInstanceState
+     * @param savedInstanceState the savedInstanceState
      */
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -111,7 +111,7 @@ public class GraphicsRenderer implements Universe.Callback, SurfaceHolder.Callba
     /**
      * The surfaceCreated method is to call the drawSurfaceView method
      * to draw the game
-     * @param surfaceHolder
+     * @param surfaceHolder the surfaceHolder to hold the Canvas
      */
     @Override
     public void surfaceCreated(@NonNull SurfaceHolder surfaceHolder) {
@@ -139,7 +139,7 @@ public class GraphicsRenderer implements Universe.Callback, SurfaceHolder.Callba
     /**
      * The surfaceDestroyed method is to destroy the surfaceHolder that draws the game
      * inside the Canvas when the game is ended and terminated.
-     * @param surfaceHolder
+     * @param surfaceHolder the surfaceHolder to hold the Canvas
      */
     @Override
     public void surfaceDestroyed(@NonNull SurfaceHolder surfaceHolder) {

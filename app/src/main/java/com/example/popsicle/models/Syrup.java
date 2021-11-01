@@ -119,7 +119,7 @@ public class Syrup {
 
     /**
      * Setter function for the Syrup' position
-     * @oaram The position of the Syrup
+     * @param pos The position of the Syrup
      */
     public void setPos(Position pos) {
         this.pos = pos;

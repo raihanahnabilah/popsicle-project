@@ -36,7 +36,7 @@ public class MoveCharacterAction implements ClickAction {
      * it will execute the CharacterMove method in the Universe,
      * and will make the characters move in the corresponding
      * direction.
-     * @param pos
+     * @param pos The position of the user's touch on the screen
      */
     @Override
     public void execute(Position pos) {
