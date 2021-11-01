@@ -387,14 +387,21 @@ public class Universe {
 
     }
 
-    public void universeToFirebase() {
-        mGameRef.child("characterAPos").setValue(this.characterA.getPos());
-        mGameRef.child("syrups").setValue(this.getSyrups());
+    // UniverseToFirebaseCharacterA
+    public void universeToFirebaseA() {
+        mGameRef.child("characterAPosX").setValue(this.characterA.getPos().getX());
+        mGameRef.child("characterAPosY").setValue(this.characterA.getPos().getY());
     }
 
-//     public void firebaseToUniverse() {
-//
-//    }
+    // UniverseToFirebaseCharacterB
+    public void universeToFirebaseB() {
+        mGameRef.child("characterBPosX").setValue(this.characterB.getPos().getX());
+        mGameRef.child("characterBPosY").setValue(this.characterA.getPos().getY());
+    }
+
+    public void readCharacter(int x, int y, Character character){
+        character.setPos(new Position(x, y));
+    }
 
     /**
      * Getter function to get the current state of the isPlaying Boolean.
