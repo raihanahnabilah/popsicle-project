@@ -11,21 +11,42 @@ import android.view.WindowManager;
 import android.widget.Button;
 import java.util.Random;
 
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.IgnoreExtraProperties;
-
+/**
+ * HomePage class to creates the HomePage of our
+ * Game before the users can start the game
+ */
 public class HomePage extends AppCompatActivity {
 
+    /**
+     * The createGame button
+     */
     private Button createGameButton;
+
+    /**
+     * The joinGame button
+     */
     private Button joinGameButton;
+
+    /**
+     * UserID generated
+     */
     public String userUID;
+
+    /**
+     * Random generator
+     */
     public Random rng = new Random();
+
+    /**
+     * SharedPreferences for Firebase
+     */
     public SharedPreferences sp;
 
-    DatabaseReference mRootRef = FirebaseDatabase.getInstance("https://popsicle-game-default-rtdb.asia-southeast1.firebasedatabase.app").getReference();
-    DatabaseReference mGameRef = mRootRef.child("game");
-
+    /**
+     * The onCreate method to create the HomePage before users
+     * begin the game.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -74,41 +95,39 @@ public class HomePage extends AppCompatActivity {
         });
     }
 
-    // This sets the playerA userUID to the current userUID
+    /**
+     * The createGameActivity sends you to the create game page
+     * (create the game activity).
+     */
     public void createGameActivity() {
-        Game game = new Game(userUID, "NaN");
-        mGameRef.setValue(game);
+        //Intent intent = new Intent(this, CreateGame.class);
+        // startActivity(intent);
         System.out.println("Clicked create Game");
     }
 
-    // This sets the playerB userUID to the current userUID
+    /**
+     * The joinGameActivity method sends you to the join
+     * game page (Join game activity)
+     */
     public void joinGameActivity() {
-        mGameRef.child("playerB").setValue(userUID);
+        // Intent intent = new Intent(this, JoinGame.class);
+        // startActivity(intent);
         System.out.println("Clicked join Game");
     }
 
-    // This is to generate the random UID for each player (Player A or Player B)
+    /**
+     * The generateString method is to generate the random UID
+     * for each player (Player A or B)
+     * @param rng Random generator
+     * @param characters Specified character "a" or "b"
+     * @param length the length of the UID
+     * @return
+     */
     public static String generateString(Random rng, String characters, int length) {
         char[] text = new char[length];
         for (int i = 0; i < length; i++) {
             text[i] = characters.charAt(rng.nextInt(characters.length()));
         }
         return new String(text);
-    }
-
-    // This is to generate the initial Game object and record it in firebase
-    @IgnoreExtraProperties
-    public class Game {
-        public String playerA;
-        public String playerB;
-
-        public Game() {
-
-        }
-
-        public Game(String playerA, String playerB) {
-            this.playerA = playerA;
-            this.playerB = playerB;
-        }
     }
 }

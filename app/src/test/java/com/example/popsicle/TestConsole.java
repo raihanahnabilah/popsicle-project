@@ -7,6 +7,9 @@ import com.example.popsicle.models.Position;
 
 import org.junit.Test;
 
+/**
+ * The TestConsole class to test all the methods in the Console class
+ */
 public class TestConsole {
 
     Console up = new Console("up");
@@ -23,7 +26,10 @@ public class TestConsole {
     Position leftPos = new Position((constants.screenX*28/32)-(2*consoleWidth),(constants.screenY *3)/4);
     Position rightPos = new Position(constants.screenX*28/32,constants.screenY *3/4);
 
-
+    /**
+     * The method to test that the consoles are placed
+     * in the correct position when the consoles are created
+     */
     @Test
     public void CreateConsoleInCorrectPosition(){
         assert (up.getPos().getX() == upPos.getX());
@@ -39,6 +45,10 @@ public class TestConsole {
         assert (right.getPos().getY() == rightPos.getY());
     }
 
+    /**
+     * The method to test that the consoles have the
+     * correct width and height when the consoles are created
+     */
     @Test
     public void ConsoleWidthAndHeight(){
         assert (up.getHeight() == consoleHeight);

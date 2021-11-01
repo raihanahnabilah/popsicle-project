@@ -7,6 +7,9 @@ import com.example.popsicle.models.Position;
 
 import org.junit.Test;
 
+/**
+ * The TestClouds class to test all the methods in the Clouds class
+ */
 public class TestClouds {
 
     Clouds a1 = new Clouds("a1");
@@ -23,6 +26,10 @@ public class TestClouds {
     int cloudWidth = constants.cloudWidth;
     int cloudHeight = constants.cloudHeight;
 
+    /**
+     * The method to test that the clouds are placed
+     * in the correct position when the clouds are created
+     */
     @Test
     public void CreateCloudsInCorrectPosition(){
         assert (a1.getPos().getX() == cloudA1Pos.getX());
@@ -32,6 +39,10 @@ public class TestClouds {
         assert (b2.getPos().getY() == cloudB2Pos.getY());
     }
 
+    /**
+     * The method to test that the clouds have the
+     * correct width and height when the clouds are created
+     */
     @Test
     public void CloudsWidthAndHeight(){
         assert (b1.getHeight() == cloudHeight);

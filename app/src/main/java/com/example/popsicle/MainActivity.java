@@ -9,17 +9,22 @@ import android.view.SurfaceView;
 import android.view.View;
 import android.view.WindowManager;
 
-import com.example.popsicle.io.InputHandler;
-import com.example.popsicle.io.InputListener;
-import com.example.popsicle.io.MoveCharacterAction;
-import com.example.popsicle.models.Universe;
-import com.example.popsicle.rendering.GraphicsRenderer;
-
+/**
+ * MainActivity class is to create the main game on screen
+ * @author Hana
+ */
 public class MainActivity extends AppCompatActivity{
 
 
     private static final String TAG = "MainActivity";
 
+    /**
+     * The onCreate method is to create the main game on screen
+     * by finding the surfaceView ID in the mainActivity layout and
+     * call the mainController. The MainController is a thread that
+     * creates and runs our Universe, IO, and Graphics Renderer.
+     * @param savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState){
         Log.d(TAG, "onCreate Started");
@@ -28,11 +33,6 @@ public class MainActivity extends AppCompatActivity{
         setContentView(R.layout.activity_main);
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-
-
-
-//        Point point = new Point();
-//        getWindowManager().getDefaultDisplay().getSize(point);
 
         // Using surfaceView
         SurfaceView sv = findViewById(R.id.surfaceView);

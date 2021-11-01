@@ -9,6 +9,9 @@ import com.example.popsicle.models.Position;
 
 import org.junit.Test;
 
+/**
+ * The TestCandy class to test all the methods in the Candy class
+ */
 public class TestCandy {
 
     Candy a = new Candy("a");
@@ -21,6 +24,10 @@ public class TestCandy {
     int candyWidth = constants.popsicleWidth;
     int candyHeight = constants.popsicleHeight;
 
+    /**
+     * The method to test that the popsicles are placed
+     * in the correct position when the popsicles are created
+     */
     @Test
     public void CreatePopsiclesInCorrectPosition(){
         assert (a.getPos().getX() == candyAPos.getX());
@@ -30,6 +37,10 @@ public class TestCandy {
         assert (b.getPos().getY() == candyBPos.getY());
     }
 
+    /**
+     * The method to test that the popsicles have the
+     * correct Rectangle bounds when popsicles are created
+     */
     @Test
     public void PopsiclesCollisionShape(){
           int a_left = (int) candyAPos.getX()*33/32;
@@ -53,6 +64,10 @@ public class TestCandy {
           assert (rec_b.top == b.getCollisionShape().top);
     }
 
+    /**
+     * The method to test that the popsicles have the
+     * correct width and height when the popsicles are created
+     */
     @Test
     public void PopsiclesWidthAndHeight(){
         assert (a.getHeight() == candyHeight);

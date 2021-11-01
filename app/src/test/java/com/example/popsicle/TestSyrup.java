@@ -9,6 +9,9 @@ import com.example.popsicle.models.Universe;
 
 import org.junit.Test;
 
+/**
+ * The TestSyrup class to test all the methods in the Syrup class
+ */
 public class TestSyrup {
 
     Syrup s1 = new Syrup("a1");
@@ -20,6 +23,10 @@ public class TestSyrup {
     int syrupWidth = constants.syrupWidth;
     int syrupHeight = constants.syrupHeight;
 
+    /**
+     * The method to test that the Syrups are placed
+     * in the correct position when we create Syrups in the Universe
+     */
     @Test
     public void CreateSyrup(){
         s1.setPos(new Position(0,1));
@@ -43,6 +50,11 @@ public class TestSyrup {
         assert (s4.getPos().getY() == pos4.getY());
     }
 
+    /**
+     * The method to test that the Syrups create
+     * have the correct moveX and moveY direction when
+     * the syrups are created
+     */
     @Test
     public void GetMoveXMoveYSyrups(){
         assert (s1.getMovex() == Constants.syrupMovementPixelsX);
@@ -55,6 +67,12 @@ public class TestSyrup {
         assert ((s4.getMovey() == -Constants.syrupMovementPixelsX*(Constants.screenX/Constants.screenY)));
     }
 
+    /**
+     * The method to test that the Syrups are indeed
+     * moving when we call the syrupMove method.
+     * We do this by checking the position of the Syrup
+     * after we call the syrupMove method.
+     */
     @Test
     public void MoveSyrups(){
         s1.setPos(new Position(0,1));
@@ -86,6 +104,10 @@ public class TestSyrup {
         assert (s4.getPos().getY() == pos4.getY());
     }
 
+    /**
+     * The method to test that the syrups have the
+     * correct Rectangle bounds when syrups are created
+     */
     @Test
     public void SyrupsCollisionShape(){
         s1.setPos(new Position(10,1));
