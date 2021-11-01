@@ -11,6 +11,8 @@ import com.example.popsicle.models.Universe;
 import com.example.popsicle.rendering.GraphicsRenderer;
 import com.google.firebase.database.IgnoreExtraProperties;
 
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Random;
 
 /**
@@ -41,6 +43,16 @@ public class MainController extends Thread{
     MainActivity activity;
 
     String savedUserUID;
+
+    /**
+     * The QueueX to store the x-coordinates of the Characters Position
+     */
+    Queue<Integer> queueX = new LinkedList<>();
+
+    /**
+     * The QueueY to store the y-coordinates of the Characters Position
+     */
+    Queue<Integer> queueY = new LinkedList<>();
 
     /**
      * The MainController constructor creates the universe, the renderer
@@ -102,74 +114,35 @@ public class MainController extends Thread{
             this.universe.syrupSteps();
             this.universe.checkPopsicleCollision();
             this.universe.checkSyrupCollision();
-            this.universe.universeToFirebase();
-            // this.universe.firebaseToUniverse();
+            //READ AND UPDATE FUNCTION
+            // TODO: IMPLEMENT IF USER A CONDITION
+            if (!queueX.isEmpty()){
+                this.universe.readCharacter(queueX.remove(), queueY.remove(), universe.getCharacterB());
+            }
+            // TODO: IMPLEMENT IF USER B CONDITION
+            if (!queueX.isEmpty()){
+                this.universe.readCharacter(queueX.remove(), queueY.remove(), universe.getCharacterA());
+            }
+            // WRITE FUNCTION
+            // TODO: IMPLEMENT IF USER A CONDITION
+            this.universe.universeToFirebaseA();
+            // TODO: IMPLEMENT IF USER b CONDITION
+            this.universe.universeToFirebaseB();
+
             counter += 1;
 //            Random ran = new Random();
 //            int n = ran.nextInt(4);
             if (counter % 30 == 0){
                 this.universe.randomlyAddSyrups((counter-1) % 4, universe.getCloudA2(), "a2");
-//                if (n==0){
-//                    this.universe.addSyrup(this.universe.getCloudA2().getPos().getX(), this.universe.getCloudA2().getPos().getY() + this.universe.getCloudA2().height/2, "a2");
-//                }
-//                else if (n==1){
-//                    this.universe.addSyrup(this.universe.getCloudA2().getPos().getX() + this.universe.getCloudA2().width, this.universe.getCloudA2().getPos().getY() + this.universe.getCloudA2().height/2, "a2");
-//
-//                }
-//                else if (n==2){
-//                    this.universe.addSyrup(this.universe.getCloudA2().getPos().getX() + this.universe.getCloudA2().width/2, this.universe.getCloudA2().getPos().getY() + this.universe.getCloudA2().height/4, "a2");
-//                }
-//                else if (n==3){
-//                    this.universe.addSyrup(this.universe.getCloudA2().getPos().getX() + this.universe.getCloudA2().width/2, this.universe.getCloudA2().getPos().getY() + (this.universe.getCloudA2().height*3)/4, "a2");
-//                }
             }
             if (counter % 221 == 0){
                 this.universe.randomlyAddSyrups((counter-1) % 4, universe.getCloudA1(), "a1");
-//                if (n==0){
-//                    this.universe.addSyrup(this.universe.getCloudA1().getPos().getX(), this.universe.getCloudA1().getPos().getY() + this.universe.getCloudA1().height/2, "a1");
-//                }
-//                else if (n==1){
-//                    this.universe.addSyrup(this.universe.getCloudA1().getPos().getX() + this.universe.getCloudA1().width, this.universe.getCloudA1().getPos().getY() + this.universe.getCloudA1().height/2, "a1");
-//
-//                }
-//                else if (n==2){
-//                    this.universe.addSyrup(this.universe.getCloudA1().getPos().getX() + this.universe.getCloudA1().width/2, this.universe.getCloudA1().getPos().getY() + this.universe.getCloudA1().height/4, "a1");
-//                }
-//                else if (n==3){
-//                    this.universe.addSyrup(this.universe.getCloudA1().getPos().getX() + this.universe.getCloudA1().width/2, this.universe.getCloudA1().getPos().getY() + (this.universe.getCloudA1().height*3)/4, "a1");
-//                }
             }
             if (counter % 220 == 0){
                 this.universe.randomlyAddSyrups((counter-1) % 4, universe.getCloudB1(), "b1");
-//                if (n==0){
-//                    this.universe.addSyrup(this.universe.getCloudB1().getPos().getX(), this.universe.getCloudB1().getPos().getY() + this.universe.getCloudB1().height/2, "b1");
-//                }
-//                else if (n==1){
-//                    this.universe.addSyrup(this.universe.getCloudB1().getPos().getX() + this.universe.getCloudB1().width, this.universe.getCloudB1().getPos().getY() + this.universe.getCloudB1().height/2, "b1");
-//
-//                }
-//                else if (n==2){
-//                    this.universe.addSyrup(this.universe.getCloudB1().getPos().getX() + this.universe.getCloudB1().width/2, this.universe.getCloudB1().getPos().getY() + this.universe.getCloudB1().height/4, "b1");
-//                }
-//                else if (n==3){
-//                    this.universe.addSyrup(this.universe.getCloudB1().getPos().getX() + this.universe.getCloudB1().width/2, this.universe.getCloudB1().getPos().getY() + (this.universe.getCloudB1().height*3)/4, "b1");
-//                }
             }
             if (counter % 29 == 0){
                 this.universe.randomlyAddSyrups((counter-1) % 4, universe.getCloudB2(), "b2");
-//                if (n==0){
-//                    this.universe.addSyrup(this.universe.getCloudB2().getPos().getX(), this.universe.getCloudB2().getPos().getY() + this.universe.getCloudB2().height/2, "b2");
-//                }
-//                else if (n==1){
-//                    this.universe.addSyrup(this.universe.getCloudB2().getPos().getX() + this.universe.getCloudB2().width, this.universe.getCloudB2().getPos().getY() + this.universe.getCloudB2().height/2, "b2");
-//
-//                }
-//                else if (n==2){
-//                    this.universe.addSyrup(this.universe.getCloudB2().getPos().getX() + this.universe.getCloudB2().width/2, this.universe.getCloudB2().getPos().getY() + this.universe.getCloudB2().height/4, "b2");
-//                }
-//                else if (n==3){
-//                    this.universe.addSyrup(this.universe.getCloudB2().getPos().getX() + this.universe.getCloudB2().width/2, this.universe.getCloudB2().getPos().getY() + (this.universe.getCloudB2().height*3)/4, "b2");
-//                }
             }
             try {
                 Thread.sleep(50);
