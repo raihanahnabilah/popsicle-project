@@ -18,17 +18,51 @@ import com.example.popsicle.models.Constants;
 import com.example.popsicle.models.Syrup;
 import com.example.popsicle.models.Universe;
 
+/**
+ * GraphicsRenderer class method is to render the image of the universe
+ * or of the game on screen.It does so by drawing the universe on the
+ * Canvas that is hold by the SurfaceHolder inside the SurfaceView.
+ * @author Hana
+ */
 public class GraphicsRenderer implements Universe.Callback, SurfaceHolder.Callback{
 
     private final static String TAG = "RenderingObjects";
+
+    /**
+     * The Universe
+     */
     private final Universe universe;
+
+    /**
+     * The SurfaceHolder inside the SurfaceView to draw the Canvas
+     */
     private SurfaceHolder holder;
+
+    /**
+     * The screen sizes of the device emulator
+     */
     int screenX, screenY;
+
+    /**
+     * The main activity page that creates everything
+     */
     MainActivity activity;
+
+    /**
+     * The bitmaps or the pictures of all elements in the game
+     */
     Bitmap characterA, scaledCharacterA, characterB, scaledCharacterB, popsicleA, scaledPopsicleA, popsicleB, scaledPopsicleB,
             cloudA1, scaledCloudA1, cloudA2, scaledCloudA2, cloudB1, scaledCloudB1, cloudB2, scaledCloudB2,
             up, scaledUp, down, scaledDown, left, scaledLeft, right, scaledRight, syrup, scaledSyrup;
 
+    /**
+     * GraphicsRenderer constructor that takes the activity, the universe, and the resources,
+     * which is the surfaceView's resources. The constructor creates the Bitmap for the
+     * elements in the universe
+     * @param activity The MainActivity that creates the game
+     * @param u The Universe that holds all elements in the game
+     * @param context The resources from the SurfaceView in the mainActivity
+     */
     public GraphicsRenderer(MainActivity activity, Universe u, Resources context){
         this.activity = activity;
         this.universe = u;
@@ -75,11 +109,10 @@ public class GraphicsRenderer implements Universe.Callback, SurfaceHolder.Callba
     }
 
     /**
-     * The functions here are given.
-     * Please dont touch it.
+     * The surfaceCreated method is to call the drawSurfaceView method
+     * to draw the game
      * @param surfaceHolder
      */
-
     @Override
     public void surfaceCreated(@NonNull SurfaceHolder surfaceHolder) {
         Log.d(TAG, "start surfaceCreated");
@@ -87,18 +120,37 @@ public class GraphicsRenderer implements Universe.Callback, SurfaceHolder.Callba
         drawSurfaceView();
     }
 
+    /**
+     * The surfaceChanged method is to call the drawSurfaceView method
+     * to draw the game. This will be called every time there is a
+     * change in the universe.
+     * @param surfaceHolder The surfaceHolder inside the surfaceView to hold the Canvas
+     *                      where we draw our game
+     * @param i Integer
+     * @param i1 Integer 1
+     * @param i2 Integer 2
+     */
     @Override
     public void surfaceChanged(@NonNull SurfaceHolder surfaceHolder, int i, int i1, int i2) {
         Log.d(TAG, "start surfaceChanged");
         drawSurfaceView();
     }
 
+    /**
+     * The surfaceDestroyed method is to destroy the surfaceHolder that draws the game
+     * inside the Canvas when the game is ended and terminated.
+     * @param surfaceHolder
+     */
     @Override
     public void surfaceDestroyed(@NonNull SurfaceHolder surfaceHolder) {
         Log.d(TAG, "start surfaceDestroyed");
         this.holder = null;
     }
 
+    /**
+     * The drawSurfaceView method calls the draw method to draw the universe
+     * on our canvas.
+     */
     public void drawSurfaceView(){
         if (universe != null && holder != null){
             Canvas canvas = holder.lockCanvas();
@@ -110,8 +162,8 @@ public class GraphicsRenderer implements Universe.Callback, SurfaceHolder.Callba
     }
 
     /**
-     * Drawing some stuff!
-     * @param canvas
+     * Main draw method to draw all of our elements in the game
+     * @param canvas The canvas that is hold by surfaceHolder inside surfaceView
      */
     private void draw(Canvas canvas){
         Log.d(TAG, "Start drawing the universe");
@@ -155,12 +207,21 @@ public class GraphicsRenderer implements Universe.Callback, SurfaceHolder.Callba
 
     }
 
+    /**
+     * The exiting method to exit from the SurfaceHolder and go to the HomePage when the game
+     * is terminated.
+     */
     private void exiting() {
         activity.startActivity(new Intent(activity, HomePage.class));
         activity.finish();
 
     }
 
+    /**
+     * The universeChanged method is to draw the universe again whenever there
+     * are changes in the universe (i.e. position of the characters, etc)
+     * @param u The universe that has all our elements
+     */
     @Override
     public void universeChanged(Universe u) {
         this.drawSurfaceView();
