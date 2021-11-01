@@ -11,11 +11,21 @@ import android.view.WindowManager;
 import android.widget.Button;
 import java.util.Random;
 
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.IgnoreExtraProperties;
+import com.google.firebase.database.ValueEventListener;
+
 /**
  * HomePage class to creates the HomePage of our
  * Game before the users can start the game
  */
 public class HomePage extends AppCompatActivity {
+
+    DatabaseReference mRootRef = FirebaseDatabase.getInstance("https://popsicle-game-default-rtdb.asia-southeast1.firebasedatabase.app").getReference();
+    DatabaseReference mGameRef = mRootRef.child("game");
 
     /**
      * The createGame button
@@ -96,22 +106,20 @@ public class HomePage extends AppCompatActivity {
     }
 
     /**
-     * The createGameActivity sends you to the create game page
+     * The createGameActivity sets the unique user ID of playerA to the userUID
      * (create the game activity).
      */
     public void createGameActivity() {
-        //Intent intent = new Intent(this, CreateGame.class);
-        // startActivity(intent);
+        mGameRef.child("playerA").setValue(userUID);
         System.out.println("Clicked create Game");
     }
 
     /**
-     * The joinGameActivity method sends you to the join
+     * The joinGameActivity sets the unique user ID of playerB to the userUID
      * game page (Join game activity)
      */
     public void joinGameActivity() {
-        // Intent intent = new Intent(this, JoinGame.class);
-        // startActivity(intent);
+        mGameRef.child("playerB").setValue(userUID);
         System.out.println("Clicked join Game");
     }
 
