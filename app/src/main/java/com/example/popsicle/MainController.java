@@ -105,10 +105,10 @@ public class MainController extends Thread{
             this.universe.universeToFirebase();
             // this.universe.firebaseToUniverse();
             counter += 1;
-            Random ran = new Random();
-            int n = ran.nextInt(4);
+//            Random ran = new Random();
+//            int n = ran.nextInt(4);
             if (counter % 30 == 0){
-                this.universe.randomlyAddSyrups(n, universe.getCloudA2(), "a2");
+                this.universe.randomlyAddSyrups((counter-1) % 4, universe.getCloudA2(), "a2");
 //                if (n==0){
 //                    this.universe.addSyrup(this.universe.getCloudA2().getPos().getX(), this.universe.getCloudA2().getPos().getY() + this.universe.getCloudA2().height/2, "a2");
 //                }
@@ -124,7 +124,7 @@ public class MainController extends Thread{
 //                }
             }
             if (counter % 221 == 0){
-                this.universe.randomlyAddSyrups(n, universe.getCloudA1(), "a1");
+                this.universe.randomlyAddSyrups((counter-1) % 4, universe.getCloudA1(), "a1");
 //                if (n==0){
 //                    this.universe.addSyrup(this.universe.getCloudA1().getPos().getX(), this.universe.getCloudA1().getPos().getY() + this.universe.getCloudA1().height/2, "a1");
 //                }
@@ -140,7 +140,7 @@ public class MainController extends Thread{
 //                }
             }
             if (counter % 220 == 0){
-                this.universe.randomlyAddSyrups(n, universe.getCloudB1(), "b1");
+                this.universe.randomlyAddSyrups((counter-1) % 4, universe.getCloudB1(), "b1");
 //                if (n==0){
 //                    this.universe.addSyrup(this.universe.getCloudB1().getPos().getX(), this.universe.getCloudB1().getPos().getY() + this.universe.getCloudB1().height/2, "b1");
 //                }
@@ -156,7 +156,7 @@ public class MainController extends Thread{
 //                }
             }
             if (counter % 29 == 0){
-                this.universe.randomlyAddSyrups(n, universe.getCloudB2(), "b2");
+                this.universe.randomlyAddSyrups((counter-1) % 4, universe.getCloudB2(), "b2");
 //                if (n==0){
 //                    this.universe.addSyrup(this.universe.getCloudB2().getPos().getX(), this.universe.getCloudB2().getPos().getY() + this.universe.getCloudB2().height/2, "b2");
 //                }
