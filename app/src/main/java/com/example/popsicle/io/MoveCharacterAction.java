@@ -5,6 +5,7 @@ import android.util.Log;
 import com.example.popsicle.HomePage;
 import com.example.popsicle.models.Position;
 import com.example.popsicle.models.Universe;
+import com.example.popsicle.models.whichPlayer;
 
 /**
  * The MoveCharacterAction class implements the ClickAction class.
@@ -19,7 +20,7 @@ public class MoveCharacterAction implements ClickAction {
      * The Universe that contains all our models/elements.
      */
     private Universe universe;
-    // private HomePage homepage;
+    private HomePage homepage;
 
     /**
      * MoveCharacterAction constructor takes the Universe
@@ -44,9 +45,12 @@ public class MoveCharacterAction implements ClickAction {
     public void execute(Position pos) {
         Log.i(TAG, "MoveCharacterAction executed");
         //TODO: if userid is player A condition:
-        universe.CharacterMove(pos, universe.getCharacterA());
+        if (whichPlayer.amIPlayerA){
+            universe.CharacterMove(pos, universe.getCharacterA());
+        }
         //TODO: if userid is player B condition:
-        // universe.CharacterMove(pos, universe.getCharacterB());
-
+        if (whichPlayer.amIPlayerB){
+            universe.CharacterMove(pos, universe.getCharacterB());
+        }
     }
 }
