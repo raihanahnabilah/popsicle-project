@@ -25,7 +25,7 @@ import com.google.firebase.database.ValueEventListener;
  *  Universe handles all the actions that are going on in the game.
  *  It also creates the "Universe" by creating the elements/models in the game,
  *  such as the Popsicles/Candies, Characters, Clouds, Console, and the Syrups.
- *  @author Hana, Valeria, James
+ *  @author Hana, Valeria, James, Sangho
  */
 public class Universe {
 
@@ -58,6 +58,13 @@ public class Universe {
      * Screen width (x) and height (y) of the emulator
      */
     private int screenX, screenY;
+
+    /**
+     * Number of lives that each character has
+     */
+
+    private int characterALives ;
+    private int characterBLives ;
 
     /**
      * Popsicles class in the universe
@@ -117,6 +124,8 @@ public class Universe {
         this.down = new Console("down");
         this.left = new Console("left");
         this.syrups = new Vector<>();
+        this.characterALives = constants.charALives;
+        this.characterBLives = constants.charBLives;
 
     }
 
@@ -295,14 +304,37 @@ public class Universe {
      * the Universe collides with either Character A or Character B. If it
      * collides with either Characters, then the game will be terminated.
      */
-    public void checkSyrupCollision(){
+
+    // Older version
+//    public void checkSyrupCollision(){
+//        for (Syrup syrup: syrups){
+//
+//            if (Rect.intersects(characterA.getCollisionShape(), syrup.getCollisionShape()) ||
+//                    Rect.intersects(characterB.getCollisionShape(), syrup.getCollisionShape())){
+//                this.setGameOver(true);
+//
+//                return;
+//            }
+//        }
+//        castChanges();
+//    }
+    // TODO: Make sure I get the lives part correct
+    public void checkSyrupCollision() {
         for (Syrup syrup: syrups){
+            while(isGameOver != true){
+                if (Rect.intersects(characterA.getCollisionShape(), syrup.getCollisionShape()) && characterALives != 0 ){
+                    characterALives-- ;
+//                Thread.sleep(1000);
+                }
 
-            if (Rect.intersects(characterA.getCollisionShape(), syrup.getCollisionShape()) ||
-                    Rect.intersects(characterB.getCollisionShape(), syrup.getCollisionShape())){
-                this.setGameOver(true);
+                else if (Rect.intersects(characterB.getCollisionShape(), syrup.getCollisionShape()) && characterBLives != 0)  {
+                    characterBLives--;
+                }
 
-                return;
+                else if (characterALives == 0 || characterBLives == 0 ){
+                    this.setGameOver(true);
+                    return;
+                }
             }
         }
         castChanges();

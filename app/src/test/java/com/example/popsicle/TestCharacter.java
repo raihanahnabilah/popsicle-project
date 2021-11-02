@@ -21,6 +21,8 @@ public class TestCharacter {
     Position bPos = new Position(constants.screenX*13/16,constants.screenY*45/100);
     int charWidth = constants.charWidth;
     int charHeight = constants.charHeight;
+    int characterALives = constants.charALives;
+    int characterBLives = constants.charBLives;
     Queue<Integer> queueX = new LinkedList<>();
     Queue<Integer> queueY = new LinkedList<>();
 
@@ -165,6 +167,25 @@ public class TestCharacter {
 
         assert (b.getHeight() == charHeight);
         assert (b.getWidth() == charWidth);
+    }
+
+    @Test
+    public void CharactersLives() {
+        for (int i = characterALives; i < characterALives; i--) {
+            characterALives--;
+            if (i == 0) {
+                assert (characterALives == i);
+                break;
+            }
+        }
+
+        for (int i = characterBLives; i < characterBLives; i--) {
+            characterBLives--;
+            if (i == 0) {
+                assert (characterBLives == i);
+                break;
+            }
+        }
     }
 
 }

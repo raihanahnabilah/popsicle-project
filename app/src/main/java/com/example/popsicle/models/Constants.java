@@ -7,7 +7,7 @@ import android.content.res.Resources;
  * such as the pixel movement that the Syrup or Character moves, the width and height of the
  * elements (characters, clouds, popsicles, syrups, consoles), and the screen size of the
  * emulator device.
- * @author Hana, Valeria
+ * @author Hana, Valeria, Sangho
  */
 public class Constants {
     /**
@@ -81,6 +81,19 @@ public class Constants {
      * The height of the emulator screen
      */
     public static int screenY;
+
+    /**
+     * The lives that character A has
+     * We set it to 3 for now
+     * - this is because of the colission timings
+     */
+    public int charALives = 3;
+
+    /**
+     * The lives that character B has
+     * We set it to 3 for now
+     */
+    public int charBLives = 3;
 
     /**
      * Constants constructor to get the screenX (width) and screenY (height) of

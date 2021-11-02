@@ -10,21 +10,27 @@ import android.util.Log;
 import android.view.SurfaceView;
 import android.view.View;
 import android.view.WindowManager;
+import android.media.MediaPlayer;
+
+import java.util.concurrent.Semaphore;
 
 /**
  * MainActivity class is to create the main game on screen
- * @author Hana
+ * @author Hana, Sangho
  */
 public class MainActivity extends AppCompatActivity{
 
 
     private static final String TAG = "MainActivity";
+    private MediaPlayer backgroundMusic;
 
     /**
      * The onCreate method is to create the main game on screen
      * by finding the surfaceView ID in the mainActivity layout and
      * call the mainController. The MainController is a thread that
      * creates and runs our Universe, IO, and Graphics Renderer.
+     * Also runs the background music when the game starts
+     * and cuts the music when game ends.
      * @param savedInstanceState the savedInstanceState
      */
     @Override
@@ -33,6 +39,13 @@ public class MainActivity extends AppCompatActivity{
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        /**
+         * Playing the background music
+         */
+        MediaPlayer backgroundMusic = MediaPlayer.create(MainActivity.this, R.raw.backgroundmusic);
+        backgroundMusic.setLooping(true);
+        backgroundMusic.start();
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
@@ -51,4 +64,10 @@ public class MainActivity extends AppCompatActivity{
 
     }
 
+    @Override
+    protected void onPause(){
+        super.onPause();
+        backgroundMusic.release();
+        finish();
+    }
 }
