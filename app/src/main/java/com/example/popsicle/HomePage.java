@@ -13,7 +13,7 @@ import android.widget.Button;
 import java.util.Random;
 
 import com.example.popsicle.models.Constants;
-import com.example.popsicle.models.whichPlayer;
+import com.example.popsicle.models.WhichPlayer;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -89,7 +89,7 @@ public class HomePage extends AppCompatActivity {
         createGameButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                whichPlayer whichPlayer = new whichPlayer(true, false);
+                WhichPlayer whichPlayer = new WhichPlayer(true, false);
                 createGameActivity();
                 String savedUserUID = sp.getString("userUID", "");
                 System.out.println("The saved uid is : + " + savedUserUID);
@@ -104,7 +104,7 @@ public class HomePage extends AppCompatActivity {
         joinGameButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                whichPlayer whichPlayer = new whichPlayer(false,true);
+                WhichPlayer whichPlayer = new WhichPlayer(false,true);
                 joinGameActivity();
                 mRootRef.child("isPlayerBHere").setValue(true);
                 mRootRef.child("amIPlayerB").setValue(true);

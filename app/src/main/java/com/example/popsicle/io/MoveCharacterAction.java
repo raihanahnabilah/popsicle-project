@@ -5,7 +5,7 @@ import android.util.Log;
 import com.example.popsicle.HomePage;
 import com.example.popsicle.models.Position;
 import com.example.popsicle.models.Universe;
-import com.example.popsicle.models.whichPlayer;
+import com.example.popsicle.models.WhichPlayer;
 
 /**
  * The MoveCharacterAction class implements the ClickAction class.
@@ -45,11 +45,11 @@ public class MoveCharacterAction implements ClickAction {
     public void execute(Position pos) {
         Log.i(TAG, "MoveCharacterAction executed");
         //TODO: if userid is player A condition:
-        if (whichPlayer.amIPlayerA){
+        if (WhichPlayer.amIPlayerA){
             universe.CharacterMove(pos, universe.getCharacterA());
         }
         //TODO: if userid is player B condition:
-        if (whichPlayer.amIPlayerB){
+        if (WhichPlayer.amIPlayerB){
             universe.CharacterMove(pos, universe.getCharacterB());
         }
     }
