@@ -1,6 +1,16 @@
 package com.example.popsicle.models;
 
 import android.graphics.Rect;
+import android.util.Log;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.LinkedList;
+import java.util.Queue;
 
 /**
  * Character Class is to create the Characters in the Universe.
@@ -12,6 +22,16 @@ import android.graphics.Rect;
  */
 public class Character {
     private static final String TAG = "Character";
+//    /**
+//     * Firebase data reference for our Firebase
+//     */
+//    DatabaseReference mRootRef = FirebaseDatabase.getInstance("https://popsicle-game-default-rtdb.asia-southeast1.firebasedatabase.app").getReference();
+//
+//    /**
+//     * Firebase data reference to store the data under the root child "game"
+//     */
+//    DatabaseReference mGameRef = mRootRef.child("CharXPos");
+//    DatabaseReference mPosRef = mRootRef.child("CharYPos");
 
     /**
      * Position is the position of the Character in the Universe
@@ -79,6 +99,17 @@ public class Character {
     public int getHeight() {
         return height;
     }
+//    /**
+//     * The QueueX to store the x-coordinates of the Characters Position
+//     */
+//    Queue<Integer> queueX = new LinkedList<>();
+//
+//    /**
+//     * The QueueY to store the y-coordinates of the Characters Position
+//     */
+//    Queue<Integer> queueY = new LinkedList<>();
+
+    int livesCounter = 9;
 
     /**
      * Character class constructor that takes the "direction" of the Character.
@@ -133,28 +164,32 @@ public class Character {
      * Moves the Character to the left, using the method from the Position class
      */
     public void moveLeft() {
-            this.pos.addLeft();
+//        readingWoohoo();
+        this.pos.addLeft();
     }
 
     /**
      * Moves the Character to the right, using the method from the Position class
      */
     public void moveRight() {
-            this.pos.addRight();
+//        readingWoohoo();
+        this.pos.addRight();
     }
 
     /**
      * Moves the Character up, using the method from the Position class
      */
     public void moveUp() {
-            this.pos.addUp();
+//        readingWoohoo();
+        this.pos.addUp();
     }
 
     /**
      * Moves the Character down, using the method from the Position class
      */
     public void moveDown() {
-            this.pos.addDown();
+//        readingWoohoo();
+        this.pos.addDown();
     }
 
     /**
@@ -219,5 +254,60 @@ public class Character {
      */
     public void setPos(Position pos) {
         this.pos = pos;
+    }
+
+//    public void readingWoohoo(){
+//        ValueEventListener postListener = new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                // Get Post object and use the values to update the UI
+//                Integer pos = dataSnapshot.getValue(Integer.class);
+//                queueX.add(pos);
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//                // Getting Post failed, log a message
+//                Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
+//            }
+//        };
+//        mGameRef.addListenerForSingleValueEvent(postListener);
+//
+//        ValueEventListener yListener = new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                // Get Post object and use the values to update the UI
+//                Integer pos = dataSnapshot.getValue(Integer.class);
+//                queueY.add(pos);
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//                // Getting Post failed, log a message
+//                Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
+//            }
+//        };
+//        mPosRef.addListenerForSingleValueEvent(yListener);
+//    }
+
+//    public Queue<Integer> getQueueX() {
+//        return queueX;
+//    }
+//
+//    public Queue<Integer> getQueueY() {
+//        return queueY;
+//    }
+
+    public int getLivesCounter() {
+        return livesCounter;
+    }
+
+    public int decrementLives(){
+        this.livesCounter = this.livesCounter - 1;
+        return livesCounter;
+    }
+
+    public int getVisualizedLivesCounter() {
+        return livesCounter/3;
     }
 }
