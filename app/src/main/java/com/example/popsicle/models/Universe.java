@@ -301,6 +301,7 @@ public class Universe {
             if (Rect.intersects(characterA.getCollisionShape(), syrup.getCollisionShape()) ||
                     Rect.intersects(characterB.getCollisionShape(), syrup.getCollisionShape())){
                 this.setGameOver(true);
+
                 return;
             }
         }
@@ -312,6 +313,8 @@ public class Universe {
 
             if (Rect.intersects(characterA.getCollisionShape(), syrup.getCollisionShape())){
                 this.setGameOver(true);
+                mRootRef.child("CharA_Position_X").setValue(screenX/8);
+                mRootRef.child("CharA_Position_Y").setValue((screenY*45)/100);
                 return;
             }
         }
@@ -323,6 +326,8 @@ public class Universe {
 
             if (Rect.intersects(characterB.getCollisionShape(), syrup.getCollisionShape())){
                 this.setGameOver(true);
+                mRootRef.child("CharB_Position_X").setValue(screenX*13/16);
+                mRootRef.child("CharB_Position_Y").setValue((screenY*45)/100);
                 return;
             }
         }
@@ -345,12 +350,16 @@ public class Universe {
     public void checkPopsicleACollision(){
         if (Rect.intersects(characterA.getCollisionShape(), popsicleB.getCollisionShape())){
             this.setGameOver(true);
+            mRootRef.child("CharA_Position_X").setValue(screenX/8);
+            mRootRef.child("CharA_Position_Y").setValue((screenY*45)/100);
             return;
         }
     }
     public void checkPopsicleBCollision(){
         if (Rect.intersects(characterB.getCollisionShape(), popsicleA.getCollisionShape())){
             this.setGameOver(true);
+            mRootRef.child("CharB_Position_X").setValue(screenX*13/16);
+            mRootRef.child("CharB_Position_Y").setValue((screenY*45)/100);
             return;
         }
     }
