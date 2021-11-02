@@ -6,11 +6,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import java.util.Random;
 
+import com.example.popsicle.models.Constants;
+import com.example.popsicle.models.whichPlayer;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -24,8 +27,10 @@ import com.google.firebase.database.ValueEventListener;
  */
 public class HomePage extends AppCompatActivity {
 
+    private static final String TAG = "HomePage";
     DatabaseReference mRootRef = FirebaseDatabase.getInstance("https://popsicle-game-default-rtdb.asia-southeast1.firebasedatabase.app").getReference();
-    DatabaseReference mGameRef = mRootRef.child("game");
+    DatabaseReference mGameRef = mRootRef.child("CharXPos");
+    DatabaseReference mPosRef = mRootRef.child("CharYPos");
 
     /**
      * The createGame button
@@ -51,6 +56,9 @@ public class HomePage extends AppCompatActivity {
      * SharedPreferences for Firebase
      */
     public SharedPreferences sp;
+
+    Boolean isPlayerBBool = false;
+    Boolean isPlayerABool = false;
 
     /**
      * The onCreate method to create the HomePage before users
@@ -81,9 +89,12 @@ public class HomePage extends AppCompatActivity {
         createGameButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                whichPlayer whichPlayer = new whichPlayer(true, false);
                 createGameActivity();
                 String savedUserUID = sp.getString("userUID", "");
                 System.out.println("The saved uid is : + " + savedUserUID);
+                mRootRef.child("isPlayerAHere").setValue(true);
+                mRootRef.child("amIPlayerA").setValue(true);
             }
         });
 
@@ -93,9 +104,50 @@ public class HomePage extends AppCompatActivity {
         joinGameButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                whichPlayer whichPlayer = new whichPlayer(false,true);
                 joinGameActivity();
+                mRootRef.child("isPlayerBHere").setValue(true);
+                mRootRef.child("amIPlayerB").setValue(true);
             }
         });
+
+        ValueEventListener isPlayerBHere = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // Get Post object and use the values to update the UI
+                Boolean isPlayerB = dataSnapshot.getValue(Boolean.class);
+                isPlayerBBool = isPlayerB;
+//                while (isPlayerABool == false) {} // wait
+                if (isPlayerBBool){
+                    startActivity(new Intent(HomePage.this,MainActivity.class));
+                }
+                mRootRef.child("isPlayerAHere").setValue(false);
+                mRootRef.child("isPlayerBHere").setValue(false);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Getting Post failed, log a message
+                Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
+            }
+        };
+        mRootRef.child("isPlayerBHere").addValueEventListener(isPlayerBHere);
+
+//        ValueEventListener isPlayerAHere = new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                // Get Post object and use the values to update the UI
+//                Boolean isPlayerA = dataSnapshot.getValue(Boolean.class);
+//                isPlayerABool = isPlayerA;
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//                // Getting Post failed, log a message
+//                Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
+//            }
+//        };
+//        mRootRef.child("isPlayerAHere").addValueEventListener(isPlayerAHere);
 
         findViewById(R.id.play).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,12 +157,13 @@ public class HomePage extends AppCompatActivity {
         });
     }
 
+
     /**
      * The createGameActivity sets the unique user ID of playerA to the userUID
      * (create the game activity).
      */
     public void createGameActivity() {
-        mGameRef.child("playerA").setValue(userUID);
+        mRootRef.child("playerA").setValue(userUID);
         System.out.println("Clicked create Game");
     }
 
@@ -119,7 +172,7 @@ public class HomePage extends AppCompatActivity {
      * game page (Join game activity)
      */
     public void joinGameActivity() {
-        mGameRef.child("playerB").setValue(userUID);
+        mRootRef.child("playerB").setValue(userUID);
         System.out.println("Clicked join Game");
     }
 
