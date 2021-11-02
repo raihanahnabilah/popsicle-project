@@ -451,7 +451,7 @@ public class Universe {
     // UniverseToFirebaseCharacterB
     public void universeToFirebaseB() {
         mRootRef.child("CharB_Position_X").setValue(this.characterB.getPos().getX());
-        mRootRef.child("CharB_Position_Y").setValue(this.characterA.getPos().getY());
+        mRootRef.child("CharB_Position_Y").setValue(this.characterB.getPos().getY());
     }
 
     public void readCharacter(int x, int y, Character character){
