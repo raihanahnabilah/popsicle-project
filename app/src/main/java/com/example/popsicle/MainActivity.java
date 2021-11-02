@@ -64,10 +64,10 @@ public class MainActivity extends AppCompatActivity{
 
     }
 
-    @Override
-    protected void onPause(){
-        super.onPause();
-        backgroundMusic.release();
-        finish();
-    }
+//    @Override
+//    protected void onPause(){
+//        super.onPause();
+//        backgroundMusic.release();
+//        finish();
+//    }
 }
