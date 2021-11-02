@@ -58,7 +58,6 @@ public class HomePage extends AppCompatActivity {
     public SharedPreferences sp;
 
     Boolean isPlayerBBool = false;
-    Boolean isPlayerABool = false;
 
     /**
      * The onCreate method to create the HomePage before users
@@ -152,6 +151,7 @@ public class HomePage extends AppCompatActivity {
         findViewById(R.id.play).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                WhichPlayer whichPlayer = new WhichPlayer(true, false);
                 startActivity(new Intent(HomePage.this,MainActivity.class));
             }
         });
