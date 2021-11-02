@@ -3,18 +3,23 @@ package com.example.popsicle.models;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Rect;
+import android.util.Log;
 
 import androidx.annotation.NonNull;
 
 import java.util.Collection;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
 import java.util.Vector;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 /**
  *  Universe handles all the actions that are going on in the game.
@@ -25,7 +30,15 @@ import com.google.firebase.database.FirebaseDatabase;
 public class Universe {
 
     public static final String TAG = "Universe";
+    /**
+     * The QueueX to store the x-coordinates of the Characters Position
+     */
+    Queue<Integer> queueX = new LinkedList<>();
 
+    /**
+     * The QueueY to store the y-coordinates of the Characters Position
+     */
+    Queue<Integer> queueY = new LinkedList<>();
     /**
      * Characters class in the universe
      */
@@ -80,7 +93,8 @@ public class Universe {
     /**
      * Firebase data reference to store the data under the root child "game"
      */
-    DatabaseReference mGameRef = mRootRef.child("game");
+//    DatabaseReference mGameRef = mRootRef.child("CharA_Position_X");
+//    DatabaseReference mPosRef = mRootRef.child("CharA_Position_Y");
 
     /**
      * The Universe constructor will create the Characters, Clouds,
@@ -337,25 +351,31 @@ public class Universe {
     public void updateCharacter(){
 
         if (getCharacterA().getMovingRight()){
+            System.out.println("Move Right");
             characterA.moveRight();
+//            readingWoohoo();
             castChanges();
             characterA.setMovingRight(false);
         }
 
         if (getCharacterA().getMovingLeft()){
+            System.out.println("Move Left");
             characterA.moveLeft();
+//            readingWoohoo();
             castChanges();
             characterA.setMovingLeft(false);
         }
 
         if (getCharacterA().getMovingUp()){
             characterA.moveUp();
+//            readingWoohoo();
             castChanges();
             characterA.setMovingUp(false);
         }
 
         if (getCharacterA().getMovingDown()){
             characterA.moveDown();
+//            readingWoohoo();
             castChanges();
             characterA.setMovingDown(false);
         }
@@ -389,18 +409,121 @@ public class Universe {
 
     // UniverseToFirebaseCharacterA
     public void universeToFirebaseA() {
-        mGameRef.child("characterAPosX").setValue(this.characterA.getPos().getX());
-        mGameRef.child("characterAPosY").setValue(this.characterA.getPos().getY());
+//        mGameRef.child("CharacterAPos").setValue(this.characterA.getPos());
+        mRootRef.child("CharA_Position_X").setValue(this.characterA.getPos().getX());
+        mRootRef.child("CharA_Position_Y").setValue(this.characterA.getPos().getY());
     }
 
     // UniverseToFirebaseCharacterB
     public void universeToFirebaseB() {
-        mGameRef.child("characterBPosX").setValue(this.characterB.getPos().getX());
-        mGameRef.child("characterBPosY").setValue(this.characterA.getPos().getY());
+        mRootRef.child("CharB_Position_X").setValue(this.characterB.getPos().getX());
+        mRootRef.child("CharB_Position_Y").setValue(this.characterA.getPos().getY());
     }
 
     public void readCharacter(int x, int y, Character character){
         character.setPos(new Position(x, y));
+    }
+
+//    public void readingWoohoo(){
+//        ValueEventListener postListener = new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                // Get Post object and use the values to update the UI
+//                Integer pos = dataSnapshot.getValue(Integer.class);
+//                queueX.add(pos);
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//                // Getting Post failed, log a message
+//                Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
+//            }
+//        };
+//        mRootRef.child("CharA_Position_X").addListenerForSingleValueEvent(postListener);
+//
+//        ValueEventListener yListener = new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                // Get Post object and use the values to update the UI
+//                Integer pos = dataSnapshot.getValue(Integer.class);
+//                queueY.add(pos);
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//                // Getting Post failed, log a message
+//                Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
+//            }
+//        };
+//        mRootRef.child("CharA_Position_Y").addListenerForSingleValueEvent(yListener);
+//    }
+
+    public void readCharacterBFromCharacterA(){
+        ValueEventListener postListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // Get Post object and use the values to update the UI
+                Integer pos = dataSnapshot.getValue(Integer.class);
+                queueX.add(pos);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Getting Post failed, log a message
+                Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
+            }
+        };
+        mRootRef.child("CharB_Position_X").addListenerForSingleValueEvent(postListener);
+
+        ValueEventListener yListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // Get Post object and use the values to update the UI
+                Integer pos = dataSnapshot.getValue(Integer.class);
+                queueY.add(pos);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Getting Post failed, log a message
+                Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
+            }
+        };
+        mRootRef.child("CharB_Position_Y").addListenerForSingleValueEvent(yListener);
+    }
+
+    public void readCharacterAFromCharacterB(){
+        ValueEventListener postListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // Get Post object and use the values to update the UI
+                Integer pos = dataSnapshot.getValue(Integer.class);
+                queueX.add(pos);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Getting Post failed, log a message
+                Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
+            }
+        };
+        mRootRef.child("CharA_Position_X").addListenerForSingleValueEvent(postListener);
+
+        ValueEventListener yListener = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // Get Post object and use the values to update the UI
+                Integer pos = dataSnapshot.getValue(Integer.class);
+                queueY.add(pos);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Getting Post failed, log a message
+                Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
+            }
+        };
+        mRootRef.child("CharA_Position_Y").addListenerForSingleValueEvent(yListener);
     }
 
     /**
@@ -440,6 +563,13 @@ public class Universe {
         isGameOver = gameOver;
     }
 
+    public Queue<Integer> getQueueX() {
+        return queueX;
+    }
+
+    public Queue<Integer> getQueueY() {
+        return queueY;
+    }
 
     /**
      * Interface Callback is triggered when the universe changes.

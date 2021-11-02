@@ -1,19 +1,48 @@
 package com.example.popsicle;
 
-import android.graphics.Point;
+import android.util.Log;
 import android.view.SurfaceView;
 
+import androidx.annotation.NonNull;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.popsicle.models.Position;
+import com.example.popsicle.models.WhichPlayer;
+import com.example.popsicle.models.WhichPlayer;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.ValueEventListener;
 import com.example.popsicle.io.InputHandler;
 import com.example.popsicle.io.InputListener;
 import com.example.popsicle.io.MoveCharacterAction;
-import com.example.popsicle.models.Position;
 import com.example.popsicle.models.Universe;
 import com.example.popsicle.rendering.GraphicsRenderer;
-import com.google.firebase.database.IgnoreExtraProperties;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+import android.util.Log;
+
+import androidx.annotation.NonNull;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.MutableData;
+import com.google.firebase.database.ServerValue;
+import com.google.firebase.database.Transaction;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.LinkedList;
 import java.util.Queue;
-import java.util.Random;
 
 /**
  * The MainController is a thread that creates and runs our Universe,
@@ -22,6 +51,7 @@ import java.util.Random;
  */
 public class MainController extends Thread{
 
+    private static final String TAG = "mAIN coNTROLLER";
     /**
      * The SurfaceView in our MainActivity
      */
@@ -55,6 +85,23 @@ public class MainController extends Thread{
     Queue<Integer> queueY = new LinkedList<>();
 
     /**
+     * The QueueX to store the x-coordinates of the Characters Position
+     */
+    Queue<Position> queuePos = new LinkedList<>();
+
+    /**
+     * Firebase data reference for our Firebase
+     */
+    DatabaseReference mRootRef = FirebaseDatabase.getInstance("https://popsicle-game-default-rtdb.asia-southeast1.firebasedatabase.app").getReference();
+
+    /**
+     * Firebase data reference to store the data under the root child "game"
+     */
+    DatabaseReference mGameRef = mRootRef.child("CharXPos");
+    DatabaseReference mPosRef = mRootRef.child("CharYPos");
+
+
+    /**
      * The MainController constructor creates the universe, the renderer
      * and the IO of our game.
      * @param activity The MainActivity of our game
@@ -79,6 +126,37 @@ public class MainController extends Thread{
         InputHandler inputHandler = new InputHandler();
         inputHandler.setOnClickAction(new MoveCharacterAction(this.universe));
         inputListener.setCallback(inputHandler);
+
+//        ValueEventListener postListener = new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                // Get Post object and use the values to update the UI
+//                Integer pos = dataSnapshot.getValue(Integer.class);
+//                queueX.add(pos);
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//                // Getting Post failed, log a message
+//                Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
+//            }
+//        };
+//        mGameRef.addValueEventListener(postListener);
+//        ValueEventListener yListener = new ValueEventListener() {
+//            @Override
+//            public void onDataChange(DataSnapshot dataSnapshot) {
+//                // Get Post object and use the values to update the UI
+//                Integer pos = dataSnapshot.getValue(Integer.class);
+//                queueY.add(pos);
+//            }
+//
+//            @Override
+//            public void onCancelled(DatabaseError databaseError) {
+//                // Getting Post failed, log a message
+//                Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
+//            }
+//        };
+//        mPosRef.addValueEventListener(yListener);
     }
 
 //    @IgnoreExtraProperties
@@ -98,6 +176,7 @@ public class MainController extends Thread{
 //        }
 //    }
 
+
     /**
      * The run method to continuously update and draw all elements
      * in our Universe by calling the important methods in our Universe
@@ -112,22 +191,150 @@ public class MainController extends Thread{
         while (this.universe.getPlaying()){
             this.universe.updateCharacter();
             this.universe.syrupSteps();
-            this.universe.checkPopsicleCollision();
+//            this.universe.checkPopsicleCollision();
             this.universe.checkSyrupCollision();
             //READ AND UPDATE FUNCTION
             // TODO: IMPLEMENT IF USER A CONDITION
-            if (!queueX.isEmpty()){
-                this.universe.readCharacter(queueX.remove(), queueY.remove(), universe.getCharacterB());
+//            if (!queuePos.isEmpty()){
+//                this.universe.readCharacterPos(queuePos.remove(), universe.getCharacterB());
+//            }
+
+            if (WhichPlayer.amIPlayerA){
+                // READ CHARACTER B
+                this.universe.universeToFirebaseA();
+                this.universe.readCharacterBFromCharacterA();
+
+//                if(!this.universe.getQueueX().isEmpty()){
+//                    for (int i: universe.getQueueX()){
+//                        System.out.println(i);
+//                    }
+//                }
+//                System.out.println(universe.getQueueX());
+
+                // UPDATE CHARACTER
+                if (!this.universe.getQueueX().isEmpty()) {
+                    if (this.universe.getQueueX().size() > this.universe.getQueueY().size()) {
+                        this.universe.readCharacter(this.universe.getQueueX().remove(), (int) this.universe.getCharacterB().getPos().getY(), universe.getCharacterB());
+                    } else if (this.universe.getQueueX().size() == this.universe.getQueueY().size()) {
+                        this.universe.readCharacter(this.universe.getQueueX().remove(), this.universe.getQueueY().remove(), universe.getCharacterB());
+                    }
+                }
+                if (!this.universe.getQueueY().isEmpty()) {
+                    if (this.universe.getQueueX().size() < this.universe.getQueueY().size()){
+                        this.universe.readCharacter((int) this.universe.getCharacterB().getPos().getX(), this.universe.getQueueY().remove(), universe.getCharacterB());
+                    } else if (this.universe.getQueueX().size() == this.universe.getQueueY().size()){
+                        this.universe.readCharacter(this.universe.getQueueX().remove(), this.universe.getQueueY().remove(), universe.getCharacterB());
+                    }
+                }
+
             }
+
+
+            if (WhichPlayer.amIPlayerB){
+                // READ CHARACTER B
+                this.universe.readCharacterAFromCharacterB();
+                this.universe.universeToFirebaseB();
+
+//                if(!this.universe.getQueueX().isEmpty()){
+//                    for (int i: universe.getQueueX()){
+//                        System.out.println(i);
+//                    }
+//                }
+//                System.out.println(universe.getQueueX());
+
+                // UPDATE CHARACTER
+                if (!this.universe.getQueueX().isEmpty()) {
+                    if (this.universe.getQueueX().size() > this.universe.getQueueY().size()) {
+                        this.universe.readCharacter(this.universe.getQueueX().remove(), (int) this.universe.getCharacterA().getPos().getY(), universe.getCharacterA());
+                    } else if (this.universe.getQueueX().size() == this.universe.getQueueY().size()) {
+                        this.universe.readCharacter(this.universe.getQueueX().remove(), this.universe.getQueueY().remove(), universe.getCharacterA());
+                    }
+                }
+                if (!this.universe.getQueueY().isEmpty()) {
+                    if (this.universe.getQueueX().size() < this.universe.getQueueY().size()){
+                        this.universe.readCharacter((int) this.universe.getCharacterA().getPos().getX(), this.universe.getQueueY().remove(), universe.getCharacterA());
+                    } else if (this.universe.getQueueX().size() == this.universe.getQueueY().size()){
+                        this.universe.readCharacter(this.universe.getQueueX().remove(), this.universe.getQueueY().remove(), universe.getCharacterA());
+                    }
+                }
+
+            }
+
+
+
+
+            //THIS WORKS -- INITALIZING IN THE CHARACTER
+//            for (int i: universe.getCharacterA().getQueueX()){
+//                System.out.println(i);
+//            }
+//
+//            if (!this.universe.getCharacterA().getQueueX().isEmpty()) {
+//                if (this.universe.getCharacterA().getQueueX().size() > this.universe.getCharacterA().getQueueY().size()) {
+//                    this.universe.readCharacter(this.universe.getCharacterA().getQueueX().remove(), (int) this.universe.getCharacterA().getPos().getY(), universe.getCharacterB());
+//                } else if (this.universe.getCharacterA().getQueueX().size() == this.universe.getCharacterA().getQueueY().size()) {
+//                    this.universe.readCharacter(this.universe.getCharacterA().getQueueX().remove(), this.universe.getCharacterA().getQueueY().remove(), universe.getCharacterB());
+//                }
+//            }
+//
+//            if (!this.universe.getCharacterA().getQueueY().isEmpty()) {
+//                if (this.universe.getCharacterA().getQueueX().size() < this.universe.getCharacterA().getQueueY().size()){
+//                    this.universe.readCharacter((int) this.universe.getCharacterA().getPos().getX(), this.universe.getCharacterA().getQueueY().remove(), universe.getCharacterB());
+//                } else if (this.universe.getCharacterA().getQueueX().size() == this.universe.getCharacterA().getQueueY().size()) {
+//                    this.universe.readCharacter(this.universe.getCharacterA().getQueueX().remove(), this.universe.getCharacterA().getQueueY().remove(), universe.getCharacterB());
+//                }
+//            }
+
+//
+//            // THIS WORKS CAN FALLBACK TO THIS -- initializing in the universe
+//            this.universe.readingWoohoo();
+//            if (!this.universe.getQueueX().isEmpty()){
+//                for (int i: universe.getQueueX()){
+//                    System.out.println(i);
+//                }
+//            }
+//
+//
+//            if (!this.universe.getQueueX().isEmpty()) {
+//                if (this.universe.getQueueX().size() > this.universe.getQueueY().size()) {
+//                    this.universe.readCharacter(this.universe.getQueueX().remove(), (int) this.universe.getCharacterA().getPos().getY(), universe.getCharacterB());
+//                } else if (this.universe.getQueueX().size() == this.universe.getQueueY().size()) {
+//                    this.universe.readCharacter(this.universe.getQueueX().remove(), this.universe.getQueueY().remove(), universe.getCharacterB());
+//                }
+//            }
+//
+//            if (!this.universe.getQueueY().isEmpty()) {
+//                if (this.universe.getQueueX().size() < this.universe.getQueueY().size()){
+//                    this.universe.readCharacter((int) this.universe.getCharacterA().getPos().getX(), this.universe.getQueueY().remove(), universe.getCharacterB());
+//                } else if (this.universe.getQueueX().size() == this.universe.getQueueY().size()){
+//                    this.universe.readCharacter(this.universe.getQueueX().remove(), this.universe.getQueueY().remove(), universe.getCharacterB());
+//                }
+//            }
+
+
+
+
+
+
+
+
+//            if (!this.universe.getQueueX().isEmpty() && !this.universe.getQueueY().isEmpty()){
+//                this.universe.readCharacter(this.universe.getQueueX().remove(), this.universe.getQueueY().remove(), universe.getCharacterB());
+////                if (this.universe.getQueueX().size() < this.universe.getQueueY().size()){
+////                    this.universe.readCharacter(this.universe.getQueueX().remove(), (int) this.universe.getCharacterB().getPos().getY(), universe.getCharacterB());
+////                } else if (this.universe.getQueueX().size() > this.universe.getQueueY().size()){
+////                    this.universe.readCharacter((int) this.universe.getCharacterB().getPos().getX(), this.universe.getQueueY().remove(), universe.getCharacterB());
+////                } else if (this.universe.getQueueX().size() == this.universe.getQueueY().size()){
+////                    this.universe.readCharacter(this.universe.getQueueX().remove(), this.universe.getQueueY().remove(), universe.getCharacterB());
+////                }
+//            }
             // TODO: IMPLEMENT IF USER B CONDITION
-            if (!queueX.isEmpty()){
-                this.universe.readCharacter(queueX.remove(), queueY.remove(), universe.getCharacterA());
-            }
+//            if (!queueX.isEmpty()){
+//                this.universe.readCharacter(queueX.remove(), queueY.remove(), universe.getCharacterA());
+//            }
             // WRITE FUNCTION
             // TODO: IMPLEMENT IF USER A CONDITION
-            this.universe.universeToFirebaseA();
             // TODO: IMPLEMENT IF USER b CONDITION
-            this.universe.universeToFirebaseB();
+//            this.universe.universeToFirebaseB();
 
             counter += 1;
 //            Random ran = new Random();
