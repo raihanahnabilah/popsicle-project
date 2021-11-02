@@ -84,7 +84,7 @@ public class Universe {
     /**
      * Boolean isPlaying and isGameOver to either terminate or continue the game
      */
-    Boolean isPlaying = true, isGameOver = false;
+    Boolean isPlaying = true, isGameOver = false, isGameWon = false;
 
     /**
      * Constants class is the important constants for the elements, such as
@@ -319,43 +319,57 @@ public class Universe {
 //        castChanges();
 //    }
     // TODO: Make sure I get the lives part correct
-    public void checkSyrupCollision() {
-        for (Syrup syrup: syrups){
-            while(isGameOver != true){
-                if (Rect.intersects(characterA.getCollisionShape(), syrup.getCollisionShape()) && characterALives != 0 ){
-                    characterALives-- ;
-//                Thread.sleep(1000);
-                }
-
-                else if (Rect.intersects(characterB.getCollisionShape(), syrup.getCollisionShape()) && characterBLives != 0)  {
-                    characterBLives--;
-                }
-
-                else if (characterALives == 0 || characterBLives == 0 ){
-                    this.setGameOver(true);
-                    return;
-                }
-            }
-        }
-        castChanges();
-    }
+//    public void checkSyrupCollision() {
+//        for (Syrup syrup: syrups){
+//            while(isGameOver != true){
+//                if (Rect.intersects(characterA.getCollisionShape(), syrup.getCollisionShape()) && characterA.getLivesCounter() > 0 ){
+//                    characterA.decrementLives();
+////                    characterALives-- ;
+////                Thread.sleep(1000);
+//                }
+//
+//                else if (Rect.intersects(characterB.getCollisionShape(), syrup.getCollisionShape()) && characterB.getLivesCounter() > 0)  {
+//                    characterB.decrementLives();
+////                    characterBLives--;
+//                }
+//
+//                else if (characterALives <= 0 || characterBLives <= 0 ){
+//                    this.setGameOver(true);
+//                    return;
+//                }
+//            }
+//        }
+//        castChanges();
+//    }
 
     public void checkSyrupCollisionA(){
         for (Syrup syrup: syrups){
+            if (Rect.intersects(characterA.getCollisionShape(), syrup.getCollisionShape()) && characterA.getLivesCounter() > 0 ){
+                characterA.decrementLives();
+            }
 
-            if (Rect.intersects(characterA.getCollisionShape(), syrup.getCollisionShape())){
+            else if (characterA.getLivesCounter() <= 0){
                 this.setGameOver(true);
                 mRootRef.child("CharA_Position_X").setValue(screenX/8);
                 mRootRef.child("CharA_Position_Y").setValue((screenY*45)/100);
                 return;
             }
+
+//            if (Rect.intersects(characterA.getCollisionShape(), syrup.getCollisionShape())){
+//                this.setGameOver(true);
+//                mRootRef.child("CharA_Position_X").setValue(screenX/8);
+//                mRootRef.child("CharA_Position_Y").setValue((screenY*45)/100);
+//                return;
+//            }
         }
         castChanges();
     }
 
     public void checkSyrupCollisionB(){
         for (Syrup syrup: syrups){
-
+            if (Rect.intersects(characterB.getCollisionShape(), syrup.getCollisionShape()) && characterB.getLivesCounter() > 0 ){
+                characterB.decrementLives();
+            }
             if (Rect.intersects(characterB.getCollisionShape(), syrup.getCollisionShape())){
                 this.setGameOver(true);
                 mRootRef.child("CharB_Position_X").setValue(screenX*13/16);
@@ -371,17 +385,17 @@ public class Universe {
      * reaches the other's Popsicle first. If it does, the corresponding Character
      * wins and the game will be terminated.
      */
-    public void checkPopsicleCollision(){
-        if (Rect.intersects(characterA.getCollisionShape(), popsicleB.getCollisionShape()) ||
-                Rect.intersects(characterB.getCollisionShape(), popsicleA.getCollisionShape())){
-            this.setGameOver(true);
-            return;
-        }
-    }
+//    public void checkPopsicleCollision(){
+//        if (Rect.intersects(characterA.getCollisionShape(), popsicleB.getCollisionShape()) ||
+//                Rect.intersects(characterB.getCollisionShape(), popsicleA.getCollisionShape())){
+//            this.setGameOver(true);
+//            return;
+//        }
+//    }
 
     public void checkPopsicleACollision(){
         if (Rect.intersects(characterA.getCollisionShape(), popsicleB.getCollisionShape())){
-            this.setGameOver(true);
+            this.setGameWon(true);
             mRootRef.child("CharA_Position_X").setValue(screenX/8);
             mRootRef.child("CharA_Position_Y").setValue((screenY*45)/100);
             return;
@@ -389,7 +403,7 @@ public class Universe {
     }
     public void checkPopsicleBCollision(){
         if (Rect.intersects(characterB.getCollisionShape(), popsicleA.getCollisionShape())){
-            this.setGameOver(true);
+            this.setGameWon(true);
             mRootRef.child("CharB_Position_X").setValue(screenX*13/16);
             mRootRef.child("CharB_Position_Y").setValue((screenY*45)/100);
             return;
@@ -644,6 +658,14 @@ public class Universe {
 
     public Queue<Integer> getQueueY() {
         return queueY;
+    }
+
+    public Boolean getGameWon() {
+        return isGameWon;
+    }
+
+    public void setGameWon(Boolean gameWon) {
+        isGameWon = gameWon;
     }
 
     /**
