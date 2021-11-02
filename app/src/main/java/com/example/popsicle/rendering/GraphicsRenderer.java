@@ -198,13 +198,19 @@ public class GraphicsRenderer implements Universe.Callback, SurfaceHolder.Callba
 
         // Drawing the elements
         if (WhichPlayer.amIPlayerA){
-            canvas.drawText("Live counter: ", screenX/25, screenY/8, elementsPaint);
-            canvas.drawText(Integer.toString(this.universe.getCharacterA().getVisualizedLivesCounter()), screenX/10, screenY/5, elementsPaint);
+            Bitmap scaledCounterCharacterA = Bitmap.createScaledBitmap(this.characterA, Constants.charWidth / 2, Constants.charHeight / 2, true);
+            canvas.drawBitmap(scaledCounterCharacterA, screenX/25, screenY/13, elementsPaint);
+            canvas.drawText(Integer.toString(this.universe.getCharacterA().getVisualizedLivesCounter()), screenX/10, screenY/7, elementsPaint);
+//            canvas.drawText("Live counter: ", screenX/25, screenY/8, elementsPaint);
+//            canvas.drawText(Integer.toString(this.universe.getCharacterA().getVisualizedLivesCounter()), screenX/10, screenY/5, elementsPaint);
         }
 
         if (WhichPlayer.amIPlayerB){
-            canvas.drawText("Live counter: ", screenX/25, screenY/8, elementsPaint);
-            canvas.drawText(Integer.toString(this.universe.getCharacterB().getVisualizedLivesCounter()), screenX/10, screenY/5, elementsPaint);
+            Bitmap scaledCounterCharacterB = Bitmap.createScaledBitmap(this.characterB, Constants.charWidth / 2, Constants.charHeight / 2, true);
+            canvas.drawBitmap(scaledCounterCharacterB, screenX/25, screenY/13, elementsPaint);
+            canvas.drawText(Integer.toString(this.universe.getCharacterB().getVisualizedLivesCounter()), screenX/10, screenY/7, elementsPaint);
+//            canvas.drawText("Live counter: ", screenX/25, screenY/8, elementsPaint);
+//            canvas.drawText(Integer.toString(this.universe.getCharacterB().getVisualizedLivesCounter()), screenX/10, screenY/5, elementsPaint);
         }
 
         canvas.drawBitmap(scaledCharacterA, universe.getCharacterA().getPos().getX(), universe.getCharacterA().getPos().getY(), elementsPaint);
