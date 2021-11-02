@@ -24,7 +24,17 @@
             android:name=".MainActivity"
             android:exported="true"
             android:screenOrientation="landscape"
-            android:theme="@style/Theme.AppCompat.NoActionBar" ></activity>
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name=".GameOver"
+            android:exported="false"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
+        <activity
+            android:name=".GameWon"
+            android:exported="false"
+            android:screenOrientation="landscape"
+            android:theme="@style/Theme.AppCompat.NoActionBar" />
     </application>
 
 </manifest>
