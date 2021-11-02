@@ -5,18 +5,23 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.util.Log;
 import android.view.SurfaceHolder;
 
 import androidx.annotation.NonNull;
 
+import com.example.popsicle.GameOver;
+import com.example.popsicle.GameWon;
 import com.example.popsicle.HomePage;
 import com.example.popsicle.MainActivity;
 import com.example.popsicle.R;
 import com.example.popsicle.models.Constants;
+import com.example.popsicle.models.Position;
 import com.example.popsicle.models.Syrup;
 import com.example.popsicle.models.Universe;
+import com.example.popsicle.models.WhichPlayer;
 
 /**
  * GraphicsRenderer class method is to render the image of the universe
@@ -166,7 +171,7 @@ public class GraphicsRenderer implements Universe.Callback, SurfaceHolder.Callba
      * @param canvas The canvas that is hold by surfaceHolder inside surfaceView
      */
     private void draw(Canvas canvas){
-        Log.d(TAG, "Start drawing the universe");
+//        Log.d(TAG, "Start drawing the universe");
 
         if (universe == null) return;
         if (canvas == null) return;
@@ -175,15 +180,33 @@ public class GraphicsRenderer implements Universe.Callback, SurfaceHolder.Callba
         canvas.drawARGB(255, 133, 123, 192);
         Paint elementsPaint = new Paint();
         elementsPaint.setTextSize(60f);
+        elementsPaint.setColor(Color.WHITE);
 
         if (this.universe.getGameOver()){
+//            canvas.drawText("Game Over.", screenX/2 - 100, screenY/2, elementsPaint);
             this.universe.setPlaying(false);
-            canvas.drawText("Game Over.", screenX/2 - 100, screenY/2, elementsPaint);
             exiting();
             return;
         }
 
+        if (this.universe.getGameWon()){
+//            canvas.drawText("Game Over.", screenX/2 - 100, screenY/2, elementsPaint);
+            this.universe.setPlaying(false);
+            exitingGameWon();
+            return;
+        }
+
         // Drawing the elements
+        if (WhichPlayer.amIPlayerA){
+            canvas.drawText("Live counter: ", screenX/25, screenY/8, elementsPaint);
+            canvas.drawText(Integer.toString(this.universe.getCharacterA().getVisualizedLivesCounter()), screenX/10, screenY/5, elementsPaint);
+        }
+
+        if (WhichPlayer.amIPlayerB){
+            canvas.drawText("Live counter: ", screenX/25, screenY/8, elementsPaint);
+            canvas.drawText(Integer.toString(this.universe.getCharacterB().getVisualizedLivesCounter()), screenX/10, screenY/5, elementsPaint);
+        }
+
         canvas.drawBitmap(scaledCharacterA, universe.getCharacterA().getPos().getX(), universe.getCharacterA().getPos().getY(), elementsPaint);
         canvas.drawBitmap(scaledCharacterB, universe.getCharacterB().getPos().getX(), universe.getCharacterB().getPos().getY(), elementsPaint);
 
@@ -211,11 +234,28 @@ public class GraphicsRenderer implements Universe.Callback, SurfaceHolder.Callba
      * The exiting method to exit from the SurfaceHolder and go to the HomePage when the game
      * is terminated.
      */
-    private void exiting() {
-        activity.startActivity(new Intent(activity, HomePage.class));
-        activity.finish();
-
+    public void exiting() {
+        try {
+            Thread.sleep(3000);
+            activity.startActivity(new Intent(activity, GameOver.class));
+//            activity.startActivity(new Intent(activity, HomePage.class));
+            activity.finish();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
     }
+
+    public void exitingGameWon() {
+        try {
+            Thread.sleep(3000);
+            activity.startActivity(new Intent(activity, GameWon.class));
+//            activity.startActivity(new Intent(activity, HomePage.class));
+            activity.finish();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
 
     /**
      * The universeChanged method is to draw the universe again whenever there
