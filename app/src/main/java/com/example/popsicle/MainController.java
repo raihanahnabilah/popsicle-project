@@ -192,7 +192,7 @@ public class MainController extends Thread{
             this.universe.updateCharacter();
             this.universe.syrupSteps();
 //            this.universe.checkPopsicleCollision();
-            this.universe.checkSyrupCollision();
+//            this.universe.checkSyrupCollision();
             //READ AND UPDATE FUNCTION
             // TODO: IMPLEMENT IF USER A CONDITION
 //            if (!queuePos.isEmpty()){
@@ -203,6 +203,8 @@ public class MainController extends Thread{
                 // READ CHARACTER B
                 this.universe.universeToFirebaseA();
                 this.universe.readCharacterBFromCharacterA();
+                this.universe.checkSyrupCollisionA();
+                this.universe.checkPopsicleACollision();
 
 //                if(!this.universe.getQueueX().isEmpty()){
 //                    for (int i: universe.getQueueX()){
@@ -234,6 +236,8 @@ public class MainController extends Thread{
                 // READ CHARACTER B
                 this.universe.readCharacterAFromCharacterB();
                 this.universe.universeToFirebaseB();
+                this.universe.checkSyrupCollisionB();
+                this.universe.checkPopsicleBCollision();
 
 //                if(!this.universe.getQueueX().isEmpty()){
 //                    for (int i: universe.getQueueX()){

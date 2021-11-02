@@ -307,6 +307,28 @@ public class Universe {
         castChanges();
     }
 
+    public void checkSyrupCollisionA(){
+        for (Syrup syrup: syrups){
+
+            if (Rect.intersects(characterA.getCollisionShape(), syrup.getCollisionShape())){
+                this.setGameOver(true);
+                return;
+            }
+        }
+        castChanges();
+    }
+
+    public void checkSyrupCollisionB(){
+        for (Syrup syrup: syrups){
+
+            if (Rect.intersects(characterB.getCollisionShape(), syrup.getCollisionShape())){
+                this.setGameOver(true);
+                return;
+            }
+        }
+        castChanges();
+    }
+
     /**
      * The checkPopsicleCollision method is to check if any of the Character
      * reaches the other's Popsicle first. If it does, the corresponding Character
@@ -320,6 +342,18 @@ public class Universe {
         }
     }
 
+    public void checkPopsicleACollision(){
+        if (Rect.intersects(characterA.getCollisionShape(), popsicleB.getCollisionShape())){
+            this.setGameOver(true);
+            return;
+        }
+    }
+    public void checkPopsicleBCollision(){
+        if (Rect.intersects(characterB.getCollisionShape(), popsicleA.getCollisionShape())){
+            this.setGameOver(true);
+            return;
+        }
+    }
     /**
      * This method is to add syrups in the universe at random direction. This
      * method is called at the main controller.
