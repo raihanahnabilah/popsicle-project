@@ -94,6 +94,10 @@ public class HomePage extends AppCompatActivity {
                 System.out.println("The saved uid is : + " + savedUserUID);
                 mRootRef.child("isPlayerAHere").setValue(true);
                 mRootRef.child("amIPlayerA").setValue(true);
+                mRootRef.child("isPlayerADead").setValue(false);
+                mRootRef.child("isPlayerBDead").setValue(false);
+                mRootRef.child("isPlayerAWon").setValue(false);
+                mRootRef.child("isPlayerBWon").setValue(false);
             }
         });
 
@@ -122,6 +126,10 @@ public class HomePage extends AppCompatActivity {
                 }
                 mRootRef.child("isPlayerAHere").setValue(false);
                 mRootRef.child("isPlayerBHere").setValue(false);
+                mRootRef.child("isPlayerADead").setValue(false);
+                mRootRef.child("isPlayerBDead").setValue(false);
+                mRootRef.child("isPlayerAWon").setValue(false);
+                mRootRef.child("isPlayerBWon").setValue(false);
             }
 
             @Override
@@ -152,6 +160,10 @@ public class HomePage extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 WhichPlayer whichPlayer = new WhichPlayer(true, false);
+                mRootRef.child("isPlayerADead").setValue(false);
+                mRootRef.child("isPlayerBDead").setValue(false);
+                mRootRef.child("isPlayerAWon").setValue(false);
+                mRootRef.child("isPlayerBWon").setValue(false);
                 startActivity(new Intent(HomePage.this,MainActivity.class));
             }
         });

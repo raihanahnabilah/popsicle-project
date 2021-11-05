@@ -342,6 +342,7 @@ public class Universe {
 //        castChanges();
 //    }
 
+
     public void checkSyrupCollisionA(){
         for (Syrup syrup: syrups){
             if (Rect.intersects(characterA.getCollisionShape(), syrup.getCollisionShape()) && characterA.getLivesCounter() > 0 ){
@@ -350,6 +351,7 @@ public class Universe {
 
             else if (characterA.getLivesCounter() <= 0){
                 this.setGameOver(true);
+                mRootRef.child("isPlayerADead").setValue(true);
                 mRootRef.child("CharA_Position_X").setValue(screenX/8);
                 mRootRef.child("CharA_Position_Y").setValue((screenY*45)/100);
                 return;
@@ -372,6 +374,7 @@ public class Universe {
             }
             if (Rect.intersects(characterB.getCollisionShape(), syrup.getCollisionShape())){
                 this.setGameOver(true);
+                mRootRef.child("isPlayerBDead").setValue(true);
                 mRootRef.child("CharB_Position_X").setValue(screenX*13/16);
                 mRootRef.child("CharB_Position_Y").setValue((screenY*45)/100);
                 return;
@@ -395,6 +398,7 @@ public class Universe {
 
     public void checkPopsicleACollision(){
         if (Rect.intersects(characterA.getCollisionShape(), popsicleB.getCollisionShape())){
+            mRootRef.child("isPlayerAWon").setValue(true);
             this.setGameWon(true);
             mRootRef.child("CharA_Position_X").setValue(screenX/8);
             mRootRef.child("CharA_Position_Y").setValue((screenY*45)/100);
@@ -403,6 +407,7 @@ public class Universe {
     }
     public void checkPopsicleBCollision(){
         if (Rect.intersects(characterB.getCollisionShape(), popsicleA.getCollisionShape())){
+            mRootRef.child("isPlayerBWon").setValue(true);
             this.setGameWon(true);
             mRootRef.child("CharB_Position_X").setValue(screenX*13/16);
             mRootRef.child("CharB_Position_Y").setValue((screenY*45)/100);
@@ -546,6 +551,73 @@ public class Universe {
 //        };
 //        mRootRef.child("CharA_Position_Y").addListenerForSingleValueEvent(yListener);
 //    }
+
+    public void readStatusAFromB(){
+        ValueEventListener playerADead = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // Get Post object and use the values to update the UI
+                Boolean playerAStat = dataSnapshot.getValue(Boolean.class);
+                isGameWon = playerAStat;
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Getting Post failed, log a message
+                Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
+            }
+        };
+        mRootRef.child("isPlayerADead").addListenerForSingleValueEvent(playerADead);
+        ValueEventListener playerAWon = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // Get Post object and use the values to update the UI
+                Boolean playerAWonStat = dataSnapshot.getValue(Boolean.class);
+                isGameOver = playerAWonStat;
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Getting Post failed, log a message
+                Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
+            }
+        };
+        mRootRef.child("isPlayerAWon").addListenerForSingleValueEvent(playerAWon);
+    }
+
+    public void readStatusBFromA(){
+        ValueEventListener playerBDead = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // Get Post object and use the values to update the UI
+                Boolean playerBStat = dataSnapshot.getValue(Boolean.class);
+                isGameWon = playerBStat;
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Getting Post failed, log a message
+                Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
+            }
+        };
+        mRootRef.child("isPlayerBDead").addListenerForSingleValueEvent(playerBDead);
+        ValueEventListener playerBWon = new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                // Get Post object and use the values to update the UI
+                Boolean playerBWonStat = dataSnapshot.getValue(Boolean.class);
+                isGameOver = playerBWonStat;
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+                // Getting Post failed, log a message
+                Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
+            }
+        };
+        mRootRef.child("isPlayerBWon").addListenerForSingleValueEvent(playerBWon);
+    }
+
 
     public void readCharacterBFromCharacterA(){
         ValueEventListener postListener = new ValueEventListener() {

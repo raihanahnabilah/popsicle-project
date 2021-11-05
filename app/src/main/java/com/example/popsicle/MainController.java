@@ -205,6 +205,7 @@ public class MainController extends Thread{
                 this.universe.readCharacterBFromCharacterA();
                 this.universe.checkSyrupCollisionA();
                 this.universe.checkPopsicleACollision();
+                this.universe.readStatusBFromA();
 
 //                if(!this.universe.getQueueX().isEmpty()){
 //                    for (int i: universe.getQueueX()){
@@ -238,6 +239,7 @@ public class MainController extends Thread{
                 this.universe.universeToFirebaseB();
                 this.universe.checkSyrupCollisionB();
                 this.universe.checkPopsicleBCollision();
+                this.universe.readStatusAFromB();
 
 //                if(!this.universe.getQueueX().isEmpty()){
 //                    for (int i: universe.getQueueX()){
