@@ -27,7 +27,6 @@ public class TestUniverseGraphics extends TestCase {
         u.getCharacterA().setMovingUp(true);
         u.getCharacterA().setMovingDown(true);
         u.updateCharacter();
-        u.checkSyrupCollision();
         assert(false == u.getGameOver());
     }
 
