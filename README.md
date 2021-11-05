@@ -24,9 +24,8 @@ To compile this game, you should:
 5. Click `run`. 
 
 To play the game:
-1. If you want to play the game alone, you can simply click the main `Play` button on the game as shown in the picture below
-   ![alt text](https://drive.google.com/file/d/1jeqvwPt--_M6MSAGHo6AQP4FS-GeI9OX/view?usp=sharing)
-2. If you are playing with a friend, one player should click "Player A", and the other player should click "Player B" to start the game
+1. If you want to play the game alone, you can simply click the main `Play` button
+2. If you are playing with a friend, one player should click `Player A`, and the other player should click `Player B` to start the game
 
 ## Documentation
 The JavaDoc documentation is under the Documentation folder in the main branch. 
