@@ -51,7 +51,7 @@ import java.util.Queue;
  */
 public class MainController extends Thread{
 
-    private static final String TAG = "mAIN coNTROLLER";
+    private static final String TAG = "Main Controller";
     /**
      * The SurfaceView in our MainActivity
      */
@@ -72,6 +72,9 @@ public class MainController extends Thread{
      */
     MainActivity activity;
 
+    /**
+     * The savedUserUID gets the user ID from the database.
+     */
     String savedUserUID;
 
     /**
@@ -107,7 +110,9 @@ public class MainController extends Thread{
      * such as updating the Character's position and the Syrup's position,
      * generating the Syrups, and checking if the Popsicle collides with the
      * Character or if the Syrup collides with the Character to terminate the
-     * game.
+     * game. Additionally, it continues to write to and read from the firebase to
+     * continuously update and render the position of one's and the enemy's Character.
+     *
      */
     @Override
     public void run() {

@@ -280,11 +280,11 @@ public class Universe {
     }
 
     /**
-     * The checkSyrupCollision method is to check if any of the Syrups in
-     * the Universe collides with either Character A or Character B. If it
-     * collides with either Characters, then the game will be terminated.
+     * The checkSyrupCollisionA method is to check if any of the Syrups in
+     * the Universe collides with either Character A. If it
+     * collides with the Character, then the game will be terminated with Character B winning
+     * and Character A loosing.
      */
-
     public void checkSyrupCollisionA(){
         for (Syrup syrup: syrups){
             if (Rect.intersects(characterA.getCollisionShape(), syrup.getCollisionShape()) && characterA.getLivesCounter() > 0 ){
@@ -304,6 +304,12 @@ public class Universe {
         castChanges();
     }
 
+    /**
+     * The checkSyrupCollisionB method is to check if any of the Syrups in
+     * the Universe collides with either Character B. If it
+     * collides with the Character, then the game will be terminated with Character A winning
+     * and Character B loosing.
+     */
     public void checkSyrupCollisionB(){
         for (Syrup syrup: syrups){
             if (Rect.intersects(characterB.getCollisionShape(), syrup.getCollisionShape()) && characterB.getLivesCounter() > 0 ){
@@ -322,6 +328,11 @@ public class Universe {
         castChanges();
     }
 
+    /**
+     * The checkPopsicleACollision method is to check if Character A is in close enough proximity to
+     * the popsicle of Character B. If it is the game will be terminated with Character A winning
+     * and Character B loosing.
+     */
     public void checkPopsicleACollision(){
         if (Rect.intersects(characterA.getCollisionShape(), popsicleB.getCollisionShape())){
             mRootRef.child("isPlayerAWon").setValue(true);
@@ -331,6 +342,12 @@ public class Universe {
             return;
         }
     }
+
+    /**
+     * The checkPopsicleBCollision method is to check if Character B is in close enough proximity to
+     * the popsicle of Character A. If it is the game will be terminated with Character B winning
+     * and Character A loosing.
+     */
     public void checkPopsicleBCollision(){
         if (Rect.intersects(characterB.getCollisionShape(), popsicleA.getCollisionShape())){
             mRootRef.child("isPlayerBWon").setValue(true);
@@ -423,20 +440,36 @@ public class Universe {
 
     }
 
+    /**
+     * The universeToFirebaseA method writes the position of Character A to the firebase to be read by Character B
+     */
     public void universeToFirebaseA() {
         mRootRef.child("CharA_Position_X").setValue(this.characterA.getPos().getX());
         mRootRef.child("CharA_Position_Y").setValue(this.characterA.getPos().getY());
     }
 
+    /**
+     * The universeToFirebaseB method writes the position of Character B to the firebase to be read by Character A
+     */
     public void universeToFirebaseB() {
         mRootRef.child("CharB_Position_X").setValue(this.characterB.getPos().getX());
         mRootRef.child("CharB_Position_Y").setValue(this.characterB.getPos().getY());
     }
 
+    /**
+     * The readCharacter sets the position of a given character
+     * @param x x coordinate of the position of the character
+     * @param y y coordinate of the position of the character
+     * @param character character whose position is being given to be set
+     */
     public void readCharacter(int x, int y, Character character){
         character.setPos(new Position(x, y));
     }
 
+    /**
+     * The readStatusAFromB method reads if Character A is dead or has won the game,
+     * so Character B wins or looses accordingly.
+     */
     public void readStatusAFromB(){
         ValueEventListener playerADead = new ValueEventListener() {
             @Override
@@ -466,6 +499,10 @@ public class Universe {
         mRootRef.child("isPlayerAWon").addListenerForSingleValueEvent(playerAWon);
     }
 
+    /**
+     * The readStatusBFromA method reads if Character B is dead or has won the game,
+     * so Character A wins or looses accordingly.
+     */
     public void readStatusBFromA(){
         ValueEventListener playerBDead = new ValueEventListener() {
             @Override
@@ -496,6 +533,10 @@ public class Universe {
     }
 
 
+    /**
+     * The readCharacterBFromCharacterA method reads the position of Character B from the database,
+     * so the screen of the user using Character A can render it accordingly.
+     */
     public void readCharacterBFromCharacterA(){
         ValueEventListener postListener = new ValueEventListener() {
             @Override
@@ -526,6 +567,10 @@ public class Universe {
         mRootRef.child("CharB_Position_Y").addListenerForSingleValueEvent(yListener);
     }
 
+    /**
+     * The readCharacterAFromCharacterB method reads the position of Character A from the database,
+     * so the screen of the user using Character B can render it accordingly.
+     */
     public void readCharacterAFromCharacterB(){
         ValueEventListener postListener = new ValueEventListener() {
             @Override
