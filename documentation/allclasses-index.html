@@ -26,7 +26,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":1,"i1":2,"i2":2,"i3":1,"i4":2,"i5":2,"i6":2,"i7":2,"i8":2,"i9":2,"i10":2,"i11":1,"i12":2,"i13":2,"i14":2,"i15":2,"i16":2,"i17":2,"i18":1};
+var data = {"i0":1,"i1":2,"i2":2,"i3":1,"i4":2,"i5":2,"i6":2,"i7":2,"i8":2,"i9":2,"i10":2,"i11":2,"i12":2,"i13":1,"i14":2,"i15":2,"i16":2,"i17":2,"i18":2,"i19":2,"i20":1,"i21":2};
 var tabs = {65535:["t0","All Classes"],1:["t1","Interface Summary"],2:["t2","Class Summary"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -157,6 +157,18 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
 </th>
 </tr>
 <tr id="i7" class="rowColor">
+<td class="colFirst"><a href="com/example/popsicle/GameOver.html" title="class in com.example.popsicle">GameOver</a></td>
+<th class="colLast" scope="row">
+<div class="block">The GameOver class is the UI that shows that a player has lost the game</div>
+</th>
+</tr>
+<tr id="i8" class="altColor">
+<td class="colFirst"><a href="com/example/popsicle/GameWon.html" title="class in com.example.popsicle">GameWon</a></td>
+<th class="colLast" scope="row">
+<div class="block">The GameWon class is the UI that shows that a player has won the game</div>
+</th>
+</tr>
+<tr id="i9" class="rowColor">
 <td class="colFirst"><a href="com/example/popsicle/rendering/GraphicsRenderer.html" title="class in com.example.popsicle.rendering">GraphicsRenderer</a></td>
 <th class="colLast" scope="row">
 <div class="block">GraphicsRenderer class method is to render the image of the universe
@@ -164,75 +176,81 @@ $('.navPadding').css('padding-top', $('.fixedNav').css("height"));
  Canvas that is hold by the SurfaceHolder inside the SurfaceView.</div>
 </th>
 </tr>
-<tr id="i8" class="altColor">
+<tr id="i10" class="altColor">
 <td class="colFirst"><a href="com/example/popsicle/HomePage.html" title="class in com.example.popsicle">HomePage</a></td>
 <th class="colLast" scope="row">
 <div class="block">HomePage class to creates the HomePage of our
  Game before the users can start the game</div>
 </th>
 </tr>
-<tr id="i9" class="rowColor">
+<tr id="i11" class="rowColor">
 <td class="colFirst"><a href="com/example/popsicle/io/InputHandler.html" title="class in com.example.popsicle.io">InputHandler</a></td>
 <th class="colLast" scope="row">
 <div class="block">InputHandler object is the object that gets the
  input from the inputListener and execute the action.</div>
 </th>
 </tr>
-<tr id="i10" class="altColor">
+<tr id="i12" class="altColor">
 <td class="colFirst"><a href="com/example/popsicle/io/InputListener.html" title="class in com.example.popsicle.io">InputListener</a></td>
 <th class="colLast" scope="row">
 <div class="block">The InputListener object can be add as a Listener for any View object.</div>
 </th>
 </tr>
-<tr id="i11" class="rowColor">
+<tr id="i13" class="rowColor">
 <td class="colFirst"><a href="com/example/popsicle/io/InputListener.Callback.html" title="interface in com.example.popsicle.io">InputListener.Callback</a></td>
 <th class="colLast" scope="row">
 <div class="block">This is the interface a CallBack object has to follow
  in order to be a valid CallBack for the InputListener.</div>
 </th>
 </tr>
-<tr id="i12" class="altColor">
+<tr id="i14" class="altColor">
 <td class="colFirst"><a href="com/example/popsicle/MainActivity.html" title="class in com.example.popsicle">MainActivity</a></td>
 <th class="colLast" scope="row">
 <div class="block">MainActivity class is to create the main game on screen</div>
 </th>
 </tr>
-<tr id="i13" class="rowColor">
+<tr id="i15" class="rowColor">
 <td class="colFirst"><a href="com/example/popsicle/MainController.html" title="class in com.example.popsicle">MainController</a></td>
 <th class="colLast" scope="row">
 <div class="block">The MainController is a thread that creates and runs our Universe,
  IO, and Graphics Renderer at every time.</div>
 </th>
 </tr>
-<tr id="i14" class="altColor">
+<tr id="i16" class="altColor">
 <td class="colFirst"><a href="com/example/popsicle/io/MoveCharacterAction.html" title="class in com.example.popsicle.io">MoveCharacterAction</a></td>
 <th class="colLast" scope="row">
 <div class="block">The MoveCharacterAction class implements the ClickAction class.</div>
 </th>
 </tr>
-<tr id="i15" class="rowColor">
+<tr id="i17" class="rowColor">
 <td class="colFirst"><a href="com/example/popsicle/models/Position.html" title="class in com.example.popsicle.models">Position</a></td>
 <th class="colLast" scope="row">
 <div class="block">Position class to construct the x and y coordinate of all our models classes,
  such as Candy, Character, Clouds, Syrup, and Console</div>
 </th>
 </tr>
-<tr id="i16" class="altColor">
+<tr id="i18" class="altColor">
 <td class="colFirst"><a href="com/example/popsicle/models/Syrup.html" title="class in com.example.popsicle.models">Syrup</a></td>
 <th class="colLast" scope="row">
 <div class="block">Syrup Class is to create the Syrup in the Universe.</div>
 </th>
 </tr>
-<tr id="i17" class="rowColor">
+<tr id="i19" class="rowColor">
 <td class="colFirst"><a href="com/example/popsicle/models/Universe.html" title="class in com.example.popsicle.models">Universe</a></td>
 <th class="colLast" scope="row">
 <div class="block">Universe handles all the actions that are going on in the game.</div>
 </th>
 </tr>
-<tr id="i18" class="altColor">
+<tr id="i20" class="altColor">
 <td class="colFirst"><a href="com/example/popsicle/models/Universe.Callback.html" title="interface in com.example.popsicle.models">Universe.Callback</a></td>
 <th class="colLast" scope="row">
 <div class="block">Interface Callback is triggered when the universe changes.</div>
+</th>
+</tr>
+<tr id="i21" class="rowColor">
+<td class="colFirst"><a href="com/example/popsicle/models/WhichPlayer.html" title="class in com.example.popsicle.models">WhichPlayer</a></td>
+<th class="colLast" scope="row">
+<div class="block">WhichPlayer handles the booleans that will be sent to the database to determine which Character is the user, A or B.</div>
 </th>
 </tr>
 </table>

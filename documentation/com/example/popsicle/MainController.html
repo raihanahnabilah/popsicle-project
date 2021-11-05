@@ -197,8 +197,9 @@ extends java.lang.Thread</pre>
 <th class="colLast" scope="col">Description</th>
 </tr>
 <tr class="altColor">
-<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(com.example.popsicle.MainActivity,android.view.SurfaceView)">MainController</a></span>&#8203;(<a href="MainActivity.html" title="class in com.example.popsicle">MainActivity</a>&nbsp;activity,
-              android.view.SurfaceView&nbsp;sv)</code></th>
+<th class="colConstructorName" scope="row"><code><span class="memberNameLink"><a href="#%3Cinit%3E(com.example.popsicle.MainActivity,android.view.SurfaceView,java.lang.String)">MainController</a></span>&#8203;(<a href="MainActivity.html" title="class in com.example.popsicle">MainActivity</a>&nbsp;activity,
+              android.view.SurfaceView&nbsp;sv,
+              java.lang.String&nbsp;savedUserUID)</code></th>
 <td class="colLast">
 <div class="block">The MainController constructor creates the universe, the renderer
  and the IO of our game.</div>
@@ -265,20 +266,22 @@ extends java.lang.Thread</pre>
 <!--   -->
 </a>
 <h3>Constructor Detail</h3>
-<a id="&lt;init&gt;(com.example.popsicle.MainActivity,android.view.SurfaceView)">
+<a id="&lt;init&gt;(com.example.popsicle.MainActivity,android.view.SurfaceView,java.lang.String)">
 <!--   -->
 </a>
 <ul class="blockListLast">
 <li class="blockList">
 <h4>MainController</h4>
 <pre>public&nbsp;MainController&#8203;(<a href="MainActivity.html" title="class in com.example.popsicle">MainActivity</a>&nbsp;activity,
-                      android.view.SurfaceView&nbsp;sv)</pre>
+                      android.view.SurfaceView&nbsp;sv,
+                      java.lang.String&nbsp;savedUserUID)</pre>
 <div class="block">The MainController constructor creates the universe, the renderer
  and the IO of our game.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>activity</code> - The MainActivity of our game</dd>
 <dd><code>sv</code> - The SurfaceView that holds the game being drawn in the Canvas</dd>
+<dd><code>savedUserUID</code> - the player User ID</dd>
 </dl>
 </li>
 </ul>
@@ -304,7 +307,8 @@ extends java.lang.Thread</pre>
  such as updating the Character's position and the Syrup's position,
  generating the Syrups, and checking if the Popsicle collides with the
  Character or if the Syrup collides with the Character to terminate the
- game.</div>
+ game. Additionally, it continues to write to and read from the firebase to
+ continuously update and render the position of one's and the enemy's Character.</div>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code>run</code>&nbsp;in interface&nbsp;<code>java.lang.Runnable</code></dd>

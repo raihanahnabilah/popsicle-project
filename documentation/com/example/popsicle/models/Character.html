@@ -26,7 +26,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10,"i20":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -181,118 +181,148 @@ extends java.lang.Object</pre>
 <th class="colLast" scope="col">Description</th>
 </tr>
 <tr id="i0" class="altColor">
+<td class="colFirst"><code>int</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#decrementLives()">decrementLives</a></span>()</code></th>
+<td class="colLast">
+<div class="block">The function to decrement the lives of the characters
+ when they got hit by the syrup</div>
+</td>
+</tr>
+<tr id="i1" class="rowColor">
 <td class="colFirst"><code>android.graphics.Rect</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getCollisionShape()">getCollisionShape</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Creates the rectangle of the Character based on the size of the Character picture.</div>
 </td>
 </tr>
-<tr id="i1" class="rowColor">
+<tr id="i2" class="altColor">
 <td class="colFirst"><code>int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getHeight()">getHeight</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Getter function to get the height of the character</div>
 </td>
 </tr>
-<tr id="i2" class="altColor">
+<tr id="i3" class="rowColor">
+<td class="colFirst"><code>int</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getLivesCounter()">getLivesCounter</a></span>()</code></th>
+<td class="colLast">
+<div class="block">The function to get the current number of livesCounter</div>
+</td>
+</tr>
+<tr id="i4" class="altColor">
 <td class="colFirst"><code>java.lang.Boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getMovingDown()">getMovingDown</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Getter function to get the move down boolean</div>
 </td>
 </tr>
-<tr id="i3" class="rowColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code>java.lang.Boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getMovingLeft()">getMovingLeft</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Getter function to get the move left boolean</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i6" class="altColor">
 <td class="colFirst"><code>java.lang.Boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getMovingRight()">getMovingRight</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Getter function to get the move right boolean</div>
 </td>
 </tr>
-<tr id="i5" class="rowColor">
+<tr id="i7" class="rowColor">
 <td class="colFirst"><code>java.lang.Boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getMovingUp()">getMovingUp</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Getter function to get the move up boolean</div>
 </td>
 </tr>
-<tr id="i6" class="altColor">
+<tr id="i8" class="altColor">
 <td class="colFirst"><code><a href="Position.html" title="class in com.example.popsicle.models">Position</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getPos()">getPos</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Getter function for the Character's position</div>
 </td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i9" class="rowColor">
+<td class="colFirst"><code>int</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getVisualizedLivesCounter()">getVisualizedLivesCounter</a></span>()</code></th>
+<td class="colLast">
+<div class="block">The function to get the current number of livesCounter
+ and visualize it on the game.</div>
+</td>
+</tr>
+<tr id="i10" class="altColor">
 <td class="colFirst"><code>int</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getWidth()">getWidth</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Getter function to get the width of the character</div>
 </td>
 </tr>
-<tr id="i8" class="altColor">
+<tr id="i11" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#moveDown()">moveDown</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Moves the Character down, using the method from the Position class</div>
 </td>
 </tr>
-<tr id="i9" class="rowColor">
+<tr id="i12" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#moveLeft()">moveLeft</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Moves the Character to the left, using the method from the Position class</div>
 </td>
 </tr>
-<tr id="i10" class="altColor">
+<tr id="i13" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#moveRight()">moveRight</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Moves the Character to the right, using the method from the Position class</div>
 </td>
 </tr>
-<tr id="i11" class="rowColor">
+<tr id="i14" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#moveUp()">moveUp</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Moves the Character up, using the method from the Position class</div>
 </td>
 </tr>
-<tr id="i12" class="altColor">
+<tr id="i15" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setMovingDown(java.lang.Boolean)">setMovingDown</a></span>&#8203;(java.lang.Boolean&nbsp;movingDown)</code></th>
 <td class="colLast">
 <div class="block">To set whether the Character is moving Down.</div>
 </td>
 </tr>
-<tr id="i13" class="rowColor">
+<tr id="i16" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setMovingLeft(java.lang.Boolean)">setMovingLeft</a></span>&#8203;(java.lang.Boolean&nbsp;movingLeft)</code></th>
 <td class="colLast">
 <div class="block">To set whether the Character is moving Left.</div>
 </td>
 </tr>
-<tr id="i14" class="altColor">
+<tr id="i17" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setMovingRight(java.lang.Boolean)">setMovingRight</a></span>&#8203;(java.lang.Boolean&nbsp;movingRight)</code></th>
 <td class="colLast">
 <div class="block">To set whether the Character is moving Right.</div>
 </td>
 </tr>
-<tr id="i15" class="rowColor">
+<tr id="i18" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setMovingUp(java.lang.Boolean)">setMovingUp</a></span>&#8203;(java.lang.Boolean&nbsp;movingUp)</code></th>
 <td class="colLast">
 <div class="block">To set whether the Character is moving Up.</div>
 </td>
 </tr>
-<tr id="i16" class="altColor">
+<tr id="i19" class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setPos(com.example.popsicle.models.Position)">setPos</a></span>&#8203;(<a href="Position.html" title="class in com.example.popsicle.models">Position</a>&nbsp;pos)</code></th>
+<td class="colLast">
+<div class="block">The setter function to set the position of the Character on the Universe</div>
+</td>
+</tr>
+<tr id="i20" class="altColor">
 <td class="colFirst"><code>java.lang.String</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#toString()">toString</a></span>()</code></th>
 <td class="colLast">
@@ -577,7 +607,7 @@ extends java.lang.Object</pre>
 <a id="setMovingRight(java.lang.Boolean)">
 <!--   -->
 </a>
-<ul class="blockListLast">
+<ul class="blockList">
 <li class="blockList">
 <h4>setMovingRight</h4>
 <pre class="methodSignature">public&nbsp;void&nbsp;setMovingRight&#8203;(java.lang.Boolean&nbsp;movingRight)</pre>
@@ -587,6 +617,69 @@ extends java.lang.Object</pre>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>movingRight</code> - the state of the character moving right (True or False)</dd>
+</dl>
+</li>
+</ul>
+<a id="setPos(com.example.popsicle.models.Position)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setPos</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;setPos&#8203;(<a href="Position.html" title="class in com.example.popsicle.models">Position</a>&nbsp;pos)</pre>
+<div class="block">The setter function to set the position of the Character on the Universe</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>pos</code> - the position of the character</dd>
+</dl>
+</li>
+</ul>
+<a id="getLivesCounter()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getLivesCounter</h4>
+<pre class="methodSignature">public&nbsp;int&nbsp;getLivesCounter()</pre>
+<div class="block">The function to get the current number of livesCounter</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the livesCounter of the characters</dd>
+</dl>
+</li>
+</ul>
+<a id="decrementLives()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>decrementLives</h4>
+<pre class="methodSignature">public&nbsp;int&nbsp;decrementLives()</pre>
+<div class="block">The function to decrement the lives of the characters
+ when they got hit by the syrup</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the livesCounter of the characters</dd>
+</dl>
+</li>
+</ul>
+<a id="getVisualizedLivesCounter()">
+<!--   -->
+</a>
+<ul class="blockListLast">
+<li class="blockList">
+<h4>getVisualizedLivesCounter</h4>
+<pre class="methodSignature">public&nbsp;int&nbsp;getVisualizedLivesCounter()</pre>
+<div class="block">The function to get the current number of livesCounter
+ and visualize it on the game. Remember that our initial
+ livesCounter integer is 9 instead of 3 because
+ Rectangular friction that continuously decrements when a
+ Character collides with Syrup though it will still function
+ exactly like each characters has 3 lives. Hence, in the visualization
+ we divide the livesCounter by 3 to visualize it on our game.</div>
+<dl>
+<dt><span class="returnLabel">Returns:</span></dt>
+<dd>the remaining/current livesCounter of the characters</dd>
 </dl>
 </li>
 </ul>

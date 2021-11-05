@@ -26,7 +26,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10,"i20":10,"i21":10,"i22":10,"i23":10,"i24":10,"i25":10,"i26":10,"i27":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10,"i7":10,"i8":10,"i9":10,"i10":10,"i11":10,"i12":10,"i13":10,"i14":10,"i15":10,"i16":10,"i17":10,"i18":10,"i19":10,"i20":10,"i21":10,"i22":10,"i23":10,"i24":10,"i25":10,"i26":10,"i27":10,"i28":10,"i29":10,"i30":10,"i31":10,"i32":10,"i33":10,"i34":10,"i35":10,"i36":10,"i37":10,"i38":10,"i39":10,"i40":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -181,20 +181,6 @@ extends java.lang.Object</pre>
 <th class="colLast" scope="col">Description</th>
 </tr>
 <tr class="altColor">
-<td class="colFirst"><code>boolean</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isCharacterA">isCharacterA</a></span></code></th>
-<td class="colLast">
-<div class="block">States whether the current player is characterA or characterB</div>
-</td>
-</tr>
-<tr class="rowColor">
-<td class="colFirst"><code>boolean</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#isCharacterB">isCharacterB</a></span></code></th>
-<td class="colLast">
-<div class="block">States whether the current player is characterA or characterB</div>
-</td>
-</tr>
-<tr class="altColor">
 <td class="colFirst"><code>static java.lang.String</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#TAG">TAG</a></span></code></th>
 <td class="colLast">&nbsp;</td>
@@ -277,63 +263,79 @@ extends java.lang.Object</pre>
 </tr>
 <tr id="i4" class="altColor">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#checkPopsicleCollision()">checkPopsicleCollision</a></span>()</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#checkPopsicleACollision()">checkPopsicleACollision</a></span>()</code></th>
 <td class="colLast">
-<div class="block">The checkPopsicleCollision method is to check if any of the Character
- reaches the other's Popsicle first.</div>
+<div class="block">The checkPopsicleACollision method is to check if Character A is in close enough proximity to
+ the popsicle of Character B.</div>
 </td>
 </tr>
 <tr id="i5" class="rowColor">
 <td class="colFirst"><code>void</code></td>
-<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#checkSyrupCollision()">checkSyrupCollision</a></span>()</code></th>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#checkPopsicleBCollision()">checkPopsicleBCollision</a></span>()</code></th>
 <td class="colLast">
-<div class="block">The checkSyrupCollision method is to check if any of the Syrups in
- the Universe collides with either Character A or Character B.</div>
+<div class="block">The checkPopsicleBCollision method is to check if Character B is in close enough proximity to
+ the popsicle of Character A.</div>
 </td>
 </tr>
 <tr id="i6" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#checkSyrupCollisionA()">checkSyrupCollisionA</a></span>()</code></th>
+<td class="colLast">
+<div class="block">The checkSyrupCollisionA method is to check if any of the Syrups in
+ the Universe collides with either Character A.</div>
+</td>
+</tr>
+<tr id="i7" class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#checkSyrupCollisionB()">checkSyrupCollisionB</a></span>()</code></th>
+<td class="colLast">
+<div class="block">The checkSyrupCollisionB method is to check if any of the Syrups in
+ the Universe collides with either Character B.</div>
+</td>
+</tr>
+<tr id="i8" class="altColor">
 <td class="colFirst"><code><a href="Character.html" title="class in com.example.popsicle.models">Character</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getCharacterA()">getCharacterA</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Getter function to get character A class</div>
 </td>
 </tr>
-<tr id="i7" class="rowColor">
+<tr id="i9" class="rowColor">
 <td class="colFirst"><code><a href="Character.html" title="class in com.example.popsicle.models">Character</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getCharacterB()">getCharacterB</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Getter function to get character B class</div>
 </td>
 </tr>
-<tr id="i8" class="altColor">
+<tr id="i10" class="altColor">
 <td class="colFirst"><code><a href="Clouds.html" title="class in com.example.popsicle.models">Clouds</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getCloudA1()">getCloudA1</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Getter function to get cloud A1 class</div>
 </td>
 </tr>
-<tr id="i9" class="rowColor">
+<tr id="i11" class="rowColor">
 <td class="colFirst"><code><a href="Clouds.html" title="class in com.example.popsicle.models">Clouds</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getCloudA2()">getCloudA2</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Getter function to get cloud A2 class</div>
 </td>
 </tr>
-<tr id="i10" class="altColor">
+<tr id="i12" class="altColor">
 <td class="colFirst"><code><a href="Clouds.html" title="class in com.example.popsicle.models">Clouds</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getCloudB1()">getCloudB1</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Getter function to get cloud B1 class</div>
 </td>
 </tr>
-<tr id="i11" class="rowColor">
+<tr id="i13" class="rowColor">
 <td class="colFirst"><code><a href="Clouds.html" title="class in com.example.popsicle.models">Clouds</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getCloudB2()">getCloudB2</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Getter function to get cloud B2 class</div>
 </td>
 </tr>
-<tr id="i12" class="altColor">
+<tr id="i14" class="altColor">
 <td class="colFirst"><code><a href="Constants.html" title="class in com.example.popsicle.models">Constants</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getConstants()">getConstants</a></span>()</code></th>
 <td class="colLast">
@@ -342,70 +344,85 @@ extends java.lang.Object</pre>
  character, from the Constants class</div>
 </td>
 </tr>
-<tr id="i13" class="rowColor">
+<tr id="i15" class="rowColor">
 <td class="colFirst"><code><a href="Console.html" title="class in com.example.popsicle.models">Console</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getDown()">getDown</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Getter function to get console down class</div>
 </td>
 </tr>
-<tr id="i14" class="altColor">
+<tr id="i16" class="altColor">
 <td class="colFirst"><code>java.lang.Boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getGameOver()">getGameOver</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Getter function to get the current state of the isGameOver Boolean.</div>
 </td>
 </tr>
-<tr id="i15" class="rowColor">
+<tr id="i17" class="rowColor">
+<td class="colFirst"><code>java.lang.Boolean</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getGameWon()">getGameWon</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i18" class="altColor">
 <td class="colFirst"><code><a href="Console.html" title="class in com.example.popsicle.models">Console</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getLeft()">getLeft</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Getter function to get console left class</div>
 </td>
 </tr>
-<tr id="i16" class="altColor">
+<tr id="i19" class="rowColor">
 <td class="colFirst"><code>java.lang.Boolean</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getPlaying()">getPlaying</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Getter function to get the current state of the isPlaying Boolean.</div>
 </td>
 </tr>
-<tr id="i17" class="rowColor">
+<tr id="i20" class="altColor">
 <td class="colFirst"><code><a href="Candy.html" title="class in com.example.popsicle.models">Candy</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getPopsicleA()">getPopsicleA</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Getter function to get popsicle A class</div>
 </td>
 </tr>
-<tr id="i18" class="altColor">
+<tr id="i21" class="rowColor">
 <td class="colFirst"><code><a href="Candy.html" title="class in com.example.popsicle.models">Candy</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getPopsicleB()">getPopsicleB</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Getter function to get popsicle B class</div>
 </td>
 </tr>
-<tr id="i19" class="rowColor">
+<tr id="i22" class="altColor">
+<td class="colFirst"><code>java.util.Queue&lt;java.lang.Integer&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getQueueX()">getQueueX</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i23" class="rowColor">
+<td class="colFirst"><code>java.util.Queue&lt;java.lang.Integer&gt;</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getQueueY()">getQueueY</a></span>()</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i24" class="altColor">
 <td class="colFirst"><code><a href="Console.html" title="class in com.example.popsicle.models">Console</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getRight()">getRight</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Getter function to get console right class</div>
 </td>
 </tr>
-<tr id="i20" class="altColor">
+<tr id="i25" class="rowColor">
 <td class="colFirst"><code>java.util.Collection&lt;<a href="Syrup.html" title="class in com.example.popsicle.models">Syrup</a>&gt;</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getSyrups()">getSyrups</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Getter function to get the Collection of Syrups</div>
 </td>
 </tr>
-<tr id="i21" class="rowColor">
+<tr id="i26" class="altColor">
 <td class="colFirst"><code><a href="Console.html" title="class in com.example.popsicle.models">Console</a></code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#getUp()">getUp</a></span>()</code></th>
 <td class="colLast">
 <div class="block">Getter function to get console up class</div>
 </td>
 </tr>
-<tr id="i22" class="altColor">
+<tr id="i27" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#randomlyAddSyrups(int,com.example.popsicle.models.Clouds,java.lang.String)">randomlyAddSyrups</a></span>&#8203;(int&nbsp;n,
                  <a href="Clouds.html" title="class in com.example.popsicle.models">Clouds</a>&nbsp;cloud,
@@ -414,7 +431,48 @@ extends java.lang.Object</pre>
 <div class="block">This method is to add syrups in the universe at random direction.</div>
 </td>
 </tr>
-<tr id="i23" class="rowColor">
+<tr id="i28" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#readCharacter(int,int,com.example.popsicle.models.Character)">readCharacter</a></span>&#8203;(int&nbsp;x,
+             int&nbsp;y,
+             <a href="Character.html" title="class in com.example.popsicle.models">Character</a>&nbsp;character)</code></th>
+<td class="colLast">
+<div class="block">The readCharacter sets the position of a given character</div>
+</td>
+</tr>
+<tr id="i29" class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#readCharacterAFromCharacterB()">readCharacterAFromCharacterB</a></span>()</code></th>
+<td class="colLast">
+<div class="block">The readCharacterAFromCharacterB method reads the position of Character A from the database,
+ so the screen of the user using Character B can render it accordingly.</div>
+</td>
+</tr>
+<tr id="i30" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#readCharacterBFromCharacterA()">readCharacterBFromCharacterA</a></span>()</code></th>
+<td class="colLast">
+<div class="block">The readCharacterBFromCharacterA method reads the position of Character B from the database,
+ so the screen of the user using Character A can render it accordingly.</div>
+</td>
+</tr>
+<tr id="i31" class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#readStatusAFromB()">readStatusAFromB</a></span>()</code></th>
+<td class="colLast">
+<div class="block">The readStatusAFromB method reads if Character A is dead or has won the game,
+ so Character B wins or looses accordingly.</div>
+</td>
+</tr>
+<tr id="i32" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#readStatusBFromA()">readStatusBFromA</a></span>()</code></th>
+<td class="colLast">
+<div class="block">The readStatusBFromA method reads if Character B is dead or has won the game,
+ so Character A wins or looses accordingly.</div>
+</td>
+</tr>
+<tr id="i33" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setCallBack(com.example.popsicle.models.Universe.Callback)">setCallBack</a></span>&#8203;(<a href="Universe.Callback.html" title="interface in com.example.popsicle.models">Universe.Callback</a>&nbsp;c)</code></th>
 <td class="colLast">
@@ -422,21 +480,26 @@ extends java.lang.Object</pre>
  every time changes are made to the Universe.</div>
 </td>
 </tr>
-<tr id="i24" class="altColor">
+<tr id="i34" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setGameOver(java.lang.Boolean)">setGameOver</a></span>&#8203;(java.lang.Boolean&nbsp;gameOver)</code></th>
 <td class="colLast">
 <div class="block">Setter function to set the current state of the isGameOver Boolean.</div>
 </td>
 </tr>
-<tr id="i25" class="rowColor">
+<tr id="i35" class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setGameWon(java.lang.Boolean)">setGameWon</a></span>&#8203;(java.lang.Boolean&nbsp;gameWon)</code></th>
+<td class="colLast">&nbsp;</td>
+</tr>
+<tr id="i36" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#setPlaying(java.lang.Boolean)">setPlaying</a></span>&#8203;(java.lang.Boolean&nbsp;playing)</code></th>
 <td class="colLast">
 <div class="block">Setter function to set the current state of the isPlaying Boolean.</div>
 </td>
 </tr>
-<tr id="i26" class="altColor">
+<tr id="i37" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#syrupSteps()">syrupSteps</a></span>()</code></th>
 <td class="colLast">
@@ -444,7 +507,21 @@ extends java.lang.Object</pre>
  in a certain direction, depending on from which Clouds is the Syrups being shot from</div>
 </td>
 </tr>
-<tr id="i27" class="rowColor">
+<tr id="i38" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#universeToFirebaseA()">universeToFirebaseA</a></span>()</code></th>
+<td class="colLast">
+<div class="block">The universeToFirebaseA method writes the position of Character A to the firebase to be read by Character B</div>
+</td>
+</tr>
+<tr id="i39" class="rowColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#universeToFirebaseB()">universeToFirebaseB</a></span>()</code></th>
+<td class="colLast">
+<div class="block">The universeToFirebaseB method writes the position of Character B to the firebase to be read by Character A</div>
+</td>
+</tr>
+<tr id="i40" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#updateCharacter()">updateCharacter</a></span>()</code></th>
 <td class="colLast">
@@ -480,7 +557,7 @@ extends java.lang.Object</pre>
 <a id="TAG">
 <!--   -->
 </a>
-<ul class="blockList">
+<ul class="blockListLast">
 <li class="blockList">
 <h4>TAG</h4>
 <pre>public static final&nbsp;java.lang.String TAG</pre>
@@ -488,26 +565,6 @@ extends java.lang.Object</pre>
 <dt><span class="seeLabel">See Also:</span></dt>
 <dd><a href="../../../../constant-values.html#com.example.popsicle.models.Universe.TAG">Constant Field Values</a></dd>
 </dl>
-</li>
-</ul>
-<a id="isCharacterA">
-<!--   -->
-</a>
-<ul class="blockList">
-<li class="blockList">
-<h4>isCharacterA</h4>
-<pre>public&nbsp;boolean isCharacterA</pre>
-<div class="block">States whether the current player is characterA or characterB</div>
-</li>
-</ul>
-<a id="isCharacterB">
-<!--   -->
-</a>
-<ul class="blockListLast">
-<li class="blockList">
-<h4>isCharacterB</h4>
-<pre>public&nbsp;boolean isCharacterB</pre>
-<div class="block">States whether the current player is characterA or characterB</div>
 </li>
 </ul>
 </li>
@@ -791,28 +848,54 @@ extends java.lang.Object</pre>
  in a certain direction, depending on from which Clouds is the Syrups being shot from</div>
 </li>
 </ul>
-<a id="checkSyrupCollision()">
+<a id="checkSyrupCollisionA()">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>checkSyrupCollision</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;checkSyrupCollision()</pre>
-<div class="block">The checkSyrupCollision method is to check if any of the Syrups in
- the Universe collides with either Character A or Character B. If it
- collides with either Characters, then the game will be terminated.</div>
+<h4>checkSyrupCollisionA</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;checkSyrupCollisionA()</pre>
+<div class="block">The checkSyrupCollisionA method is to check if any of the Syrups in
+ the Universe collides with either Character A. If it
+ collides with the Character, then the game will be terminated with Character B winning
+ and Character A loosing.</div>
 </li>
 </ul>
-<a id="checkPopsicleCollision()">
+<a id="checkSyrupCollisionB()">
 <!--   -->
 </a>
 <ul class="blockList">
 <li class="blockList">
-<h4>checkPopsicleCollision</h4>
-<pre class="methodSignature">public&nbsp;void&nbsp;checkPopsicleCollision()</pre>
-<div class="block">The checkPopsicleCollision method is to check if any of the Character
- reaches the other's Popsicle first. If it does, the corresponding Character
- wins and the game will be terminated.</div>
+<h4>checkSyrupCollisionB</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;checkSyrupCollisionB()</pre>
+<div class="block">The checkSyrupCollisionB method is to check if any of the Syrups in
+ the Universe collides with either Character B. If it
+ collides with the Character, then the game will be terminated with Character A winning
+ and Character B loosing.</div>
+</li>
+</ul>
+<a id="checkPopsicleACollision()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>checkPopsicleACollision</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;checkPopsicleACollision()</pre>
+<div class="block">The checkPopsicleACollision method is to check if Character A is in close enough proximity to
+ the popsicle of Character B. If it is the game will be terminated with Character A winning
+ and Character B loosing.</div>
+</li>
+</ul>
+<a id="checkPopsicleBCollision()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>checkPopsicleBCollision</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;checkPopsicleBCollision()</pre>
+<div class="block">The checkPopsicleBCollision method is to check if Character B is in close enough proximity to
+ the popsicle of Character A. If it is the game will be terminated with Character B winning
+ and Character A loosing.</div>
 </li>
 </ul>
 <a id="randomlyAddSyrups(int,com.example.popsicle.models.Clouds,java.lang.String)">
@@ -844,6 +927,88 @@ extends java.lang.Object</pre>
 <div class="block">The updateCharacter method is to move the Character either Up, Left, Down, or Right
  depending on which Boolean is set to true after the user clicks on either the
  Up, Left, Down, or Right Console.</div>
+</li>
+</ul>
+<a id="universeToFirebaseA()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>universeToFirebaseA</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;universeToFirebaseA()</pre>
+<div class="block">The universeToFirebaseA method writes the position of Character A to the firebase to be read by Character B</div>
+</li>
+</ul>
+<a id="universeToFirebaseB()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>universeToFirebaseB</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;universeToFirebaseB()</pre>
+<div class="block">The universeToFirebaseB method writes the position of Character B to the firebase to be read by Character A</div>
+</li>
+</ul>
+<a id="readCharacter(int,int,com.example.popsicle.models.Character)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>readCharacter</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;readCharacter&#8203;(int&nbsp;x,
+                          int&nbsp;y,
+                          <a href="Character.html" title="class in com.example.popsicle.models">Character</a>&nbsp;character)</pre>
+<div class="block">The readCharacter sets the position of a given character</div>
+<dl>
+<dt><span class="paramLabel">Parameters:</span></dt>
+<dd><code>x</code> - x coordinate of the position of the character</dd>
+<dd><code>y</code> - y coordinate of the position of the character</dd>
+<dd><code>character</code> - character whose position is being given to be set</dd>
+</dl>
+</li>
+</ul>
+<a id="readStatusAFromB()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>readStatusAFromB</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;readStatusAFromB()</pre>
+<div class="block">The readStatusAFromB method reads if Character A is dead or has won the game,
+ so Character B wins or looses accordingly.</div>
+</li>
+</ul>
+<a id="readStatusBFromA()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>readStatusBFromA</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;readStatusBFromA()</pre>
+<div class="block">The readStatusBFromA method reads if Character B is dead or has won the game,
+ so Character A wins or looses accordingly.</div>
+</li>
+</ul>
+<a id="readCharacterBFromCharacterA()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>readCharacterBFromCharacterA</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;readCharacterBFromCharacterA()</pre>
+<div class="block">The readCharacterBFromCharacterA method reads the position of Character B from the database,
+ so the screen of the user using Character A can render it accordingly.</div>
+</li>
+</ul>
+<a id="readCharacterAFromCharacterB()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>readCharacterAFromCharacterB</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;readCharacterAFromCharacterB()</pre>
+<div class="block">The readCharacterAFromCharacterB method reads the position of Character A from the database,
+ so the screen of the user using Character B can render it accordingly.</div>
 </li>
 </ul>
 <a id="getPlaying()">
@@ -905,6 +1070,42 @@ extends java.lang.Object</pre>
 <dt><span class="paramLabel">Parameters:</span></dt>
 <dd><code>gameOver</code> - the set isGameOver boolean</dd>
 </dl>
+</li>
+</ul>
+<a id="getQueueX()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getQueueX</h4>
+<pre class="methodSignature">public&nbsp;java.util.Queue&lt;java.lang.Integer&gt;&nbsp;getQueueX()</pre>
+</li>
+</ul>
+<a id="getQueueY()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getQueueY</h4>
+<pre class="methodSignature">public&nbsp;java.util.Queue&lt;java.lang.Integer&gt;&nbsp;getQueueY()</pre>
+</li>
+</ul>
+<a id="getGameWon()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>getGameWon</h4>
+<pre class="methodSignature">public&nbsp;java.lang.Boolean&nbsp;getGameWon()</pre>
+</li>
+</ul>
+<a id="setGameWon(java.lang.Boolean)">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>setGameWon</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;setGameWon&#8203;(java.lang.Boolean&nbsp;gameWon)</pre>
 </li>
 </ul>
 <a id="setCallBack(com.example.popsicle.models.Universe.Callback)">

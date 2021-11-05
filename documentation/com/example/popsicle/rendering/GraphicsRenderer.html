@@ -26,7 +26,7 @@
     catch(err) {
     }
 //-->
-var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10};
+var data = {"i0":10,"i1":10,"i2":10,"i3":10,"i4":10,"i5":10,"i6":10};
 var tabs = {65535:["t0","All Methods"],2:["t2","Instance Methods"],8:["t4","Concrete Methods"]};
 var altColor = "altColor";
 var rowColor = "rowColor";
@@ -196,6 +196,22 @@ implements <a href="../models/Universe.Callback.html" title="interface in com.ex
 </tr>
 <tr id="i1" class="rowColor">
 <td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#exiting()">exiting</a></span>()</code></th>
+<td class="colLast">
+<div class="block">The exiting method to exit from the SurfaceHolder and go to the GameOver UI page when
+ a player lost and the game is terminated.</div>
+</td>
+</tr>
+<tr id="i2" class="altColor">
+<td class="colFirst"><code>void</code></td>
+<th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#exitingGameWon()">exitingGameWon</a></span>()</code></th>
+<td class="colLast">
+<div class="block">The exiting method to exit from the SurfaceHolder and go to the GameWon UI page when
+ a player won and the game is terminated.</div>
+</td>
+</tr>
+<tr id="i3" class="rowColor">
+<td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#surfaceChanged(android.view.SurfaceHolder,int,int,int)">surfaceChanged</a></span>&#8203;(android.view.SurfaceHolder&nbsp;surfaceHolder,
               int&nbsp;i,
               int&nbsp;i1,
@@ -205,7 +221,7 @@ implements <a href="../models/Universe.Callback.html" title="interface in com.ex
  to draw the game.</div>
 </td>
 </tr>
-<tr id="i2" class="altColor">
+<tr id="i4" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#surfaceCreated(android.view.SurfaceHolder)">surfaceCreated</a></span>&#8203;(android.view.SurfaceHolder&nbsp;surfaceHolder)</code></th>
 <td class="colLast">
@@ -213,7 +229,7 @@ implements <a href="../models/Universe.Callback.html" title="interface in com.ex
  to draw the game</div>
 </td>
 </tr>
-<tr id="i3" class="rowColor">
+<tr id="i5" class="rowColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#surfaceDestroyed(android.view.SurfaceHolder)">surfaceDestroyed</a></span>&#8203;(android.view.SurfaceHolder&nbsp;surfaceHolder)</code></th>
 <td class="colLast">
@@ -221,7 +237,7 @@ implements <a href="../models/Universe.Callback.html" title="interface in com.ex
  inside the Canvas when the game is ended and terminated.</div>
 </td>
 </tr>
-<tr id="i4" class="altColor">
+<tr id="i6" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <th class="colSecond" scope="row"><code><span class="memberNameLink"><a href="#universeChanged(com.example.popsicle.models.Universe)">universeChanged</a></span>&#8203;(<a href="../models/Universe.html" title="class in com.example.popsicle.models">Universe</a>&nbsp;u)</code></th>
 <td class="colLast">
@@ -351,6 +367,28 @@ implements <a href="../models/Universe.Callback.html" title="interface in com.ex
 <pre class="methodSignature">public&nbsp;void&nbsp;drawSurfaceView()</pre>
 <div class="block">The drawSurfaceView method calls the draw method to draw the universe
  on our canvas.</div>
+</li>
+</ul>
+<a id="exiting()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>exiting</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;exiting()</pre>
+<div class="block">The exiting method to exit from the SurfaceHolder and go to the GameOver UI page when
+ a player lost and the game is terminated.</div>
+</li>
+</ul>
+<a id="exitingGameWon()">
+<!--   -->
+</a>
+<ul class="blockList">
+<li class="blockList">
+<h4>exitingGameWon</h4>
+<pre class="methodSignature">public&nbsp;void&nbsp;exitingGameWon()</pre>
+<div class="block">The exiting method to exit from the SurfaceHolder and go to the GameWon UI page when
+ a player won and the game is terminated.</div>
 </li>
 </ul>
 <a id="universeChanged(com.example.popsicle.models.Universe)">
