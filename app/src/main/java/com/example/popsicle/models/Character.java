@@ -22,16 +22,6 @@ import java.util.Queue;
  */
 public class Character {
     private static final String TAG = "Character";
-//    /**
-//     * Firebase data reference for our Firebase
-//     */
-//    DatabaseReference mRootRef = FirebaseDatabase.getInstance("https://popsicle-game-default-rtdb.asia-southeast1.firebasedatabase.app").getReference();
-//
-//    /**
-//     * Firebase data reference to store the data under the root child "game"
-//     */
-//    DatabaseReference mGameRef = mRootRef.child("CharXPos");
-//    DatabaseReference mPosRef = mRootRef.child("CharYPos");
 
     /**
      * Position is the position of the Character in the Universe
@@ -99,15 +89,6 @@ public class Character {
     public int getHeight() {
         return height;
     }
-//    /**
-//     * The QueueX to store the x-coordinates of the Characters Position
-//     */
-//    Queue<Integer> queueX = new LinkedList<>();
-//
-//    /**
-//     * The QueueY to store the y-coordinates of the Characters Position
-//     */
-//    Queue<Integer> queueY = new LinkedList<>();
 
     int livesCounter = 9;
 
@@ -164,7 +145,6 @@ public class Character {
      * Moves the Character to the left, using the method from the Position class
      */
     public void moveLeft() {
-//        readingWoohoo();
         this.pos.addLeft();
     }
 
@@ -172,7 +152,6 @@ public class Character {
      * Moves the Character to the right, using the method from the Position class
      */
     public void moveRight() {
-//        readingWoohoo();
         this.pos.addRight();
     }
 
@@ -180,7 +159,6 @@ public class Character {
      * Moves the Character up, using the method from the Position class
      */
     public void moveUp() {
-//        readingWoohoo();
         this.pos.addUp();
     }
 
@@ -188,7 +166,6 @@ public class Character {
      * Moves the Character down, using the method from the Position class
      */
     public void moveDown() {
-//        readingWoohoo();
         this.pos.addDown();
     }
 
@@ -255,48 +232,6 @@ public class Character {
     public void setPos(Position pos) {
         this.pos = pos;
     }
-
-//    public void readingWoohoo(){
-//        ValueEventListener postListener = new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                // Get Post object and use the values to update the UI
-//                Integer pos = dataSnapshot.getValue(Integer.class);
-//                queueX.add(pos);
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//                // Getting Post failed, log a message
-//                Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
-//            }
-//        };
-//        mGameRef.addListenerForSingleValueEvent(postListener);
-//
-//        ValueEventListener yListener = new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                // Get Post object and use the values to update the UI
-//                Integer pos = dataSnapshot.getValue(Integer.class);
-//                queueY.add(pos);
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//                // Getting Post failed, log a message
-//                Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
-//            }
-//        };
-//        mPosRef.addListenerForSingleValueEvent(yListener);
-//    }
-
-//    public Queue<Integer> getQueueX() {
-//        return queueX;
-//    }
-//
-//    public Queue<Integer> getQueueY() {
-//        return queueY;
-//    }
 
     public int getLivesCounter() {
         return livesCounter;

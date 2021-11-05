@@ -29,8 +29,6 @@ public class HomePage extends AppCompatActivity {
 
     private static final String TAG = "HomePage";
     DatabaseReference mRootRef = FirebaseDatabase.getInstance("https://popsicle-game-default-rtdb.asia-southeast1.firebasedatabase.app").getReference();
-    DatabaseReference mGameRef = mRootRef.child("CharXPos");
-    DatabaseReference mPosRef = mRootRef.child("CharYPos");
 
     /**
      * The createGame button
@@ -117,10 +115,8 @@ public class HomePage extends AppCompatActivity {
         ValueEventListener isPlayerBHere = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                // Get Post object and use the values to update the UI
                 Boolean isPlayerB = dataSnapshot.getValue(Boolean.class);
                 isPlayerBBool = isPlayerB;
-//                while (isPlayerABool == false) {} // wait
                 if (isPlayerBBool){
                     startActivity(new Intent(HomePage.this,MainActivity.class));
                 }
@@ -139,22 +135,6 @@ public class HomePage extends AppCompatActivity {
             }
         };
         mRootRef.child("isPlayerBHere").addValueEventListener(isPlayerBHere);
-
-//        ValueEventListener isPlayerAHere = new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                // Get Post object and use the values to update the UI
-//                Boolean isPlayerA = dataSnapshot.getValue(Boolean.class);
-//                isPlayerABool = isPlayerA;
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//                // Getting Post failed, log a message
-//                Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
-//            }
-//        };
-//        mRootRef.child("isPlayerAHere").addValueEventListener(isPlayerAHere);
 
         findViewById(R.id.play).setOnClickListener(new View.OnClickListener() {
             @Override

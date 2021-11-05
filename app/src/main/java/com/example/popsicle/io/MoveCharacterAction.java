@@ -20,7 +20,6 @@ public class MoveCharacterAction implements ClickAction {
      * The Universe that contains all our models/elements.
      */
     private Universe universe;
-    private HomePage homepage;
 
     /**
      * MoveCharacterAction constructor takes the Universe
@@ -44,11 +43,9 @@ public class MoveCharacterAction implements ClickAction {
     @Override
     public void execute(Position pos) {
         Log.i(TAG, "MoveCharacterAction executed");
-        //TODO: if userid is player A condition:
         if (WhichPlayer.amIPlayerA){
             universe.CharacterMove(pos, universe.getCharacterA());
         }
-        //TODO: if userid is player B condition:
         if (WhichPlayer.amIPlayerB){
             universe.CharacterMove(pos, universe.getCharacterB());
         }

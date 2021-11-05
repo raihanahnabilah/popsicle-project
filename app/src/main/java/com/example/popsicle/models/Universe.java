@@ -45,11 +45,6 @@ public class Universe {
     private final Character characterA, characterB;
 
     /**
-     * States whether the current player is characterA or characterB
-     */
-    public boolean isCharacterA, isCharacterB;
-
-    /**
      * Clouds class in the universe
      */
     private final Clouds cloudA1, cloudA2, cloudB1, cloudB2;
@@ -58,13 +53,6 @@ public class Universe {
      * Screen width (x) and height (y) of the emulator
      */
     private int screenX, screenY;
-
-    /**
-     * Number of lives that each character has
-     */
-
-    private int characterALives ;
-    private int characterBLives ;
 
     /**
      * Popsicles class in the universe
@@ -98,12 +86,6 @@ public class Universe {
     DatabaseReference mRootRef = FirebaseDatabase.getInstance("https://popsicle-game-default-rtdb.asia-southeast1.firebasedatabase.app").getReference();
 
     /**
-     * Firebase data reference to store the data under the root child "game"
-     */
-//    DatabaseReference mGameRef = mRootRef.child("CharA_Position_X");
-//    DatabaseReference mPosRef = mRootRef.child("CharA_Position_Y");
-
-    /**
      * The Universe constructor will create the Characters, Clouds,
      * Popsicles, Console, and Syrups in the Universe.
      */
@@ -124,8 +106,6 @@ public class Universe {
         this.down = new Console("down");
         this.left = new Console("left");
         this.syrups = new Vector<>();
-        this.characterALives = constants.charALives;
-        this.characterBLives = constants.charBLives;
 
     }
 
@@ -305,44 +285,6 @@ public class Universe {
      * collides with either Characters, then the game will be terminated.
      */
 
-    // Older version
-//    public void checkSyrupCollision(){
-//        for (Syrup syrup: syrups){
-//
-//            if (Rect.intersects(characterA.getCollisionShape(), syrup.getCollisionShape()) ||
-//                    Rect.intersects(characterB.getCollisionShape(), syrup.getCollisionShape())){
-//                this.setGameOver(true);
-//
-//                return;
-//            }
-//        }
-//        castChanges();
-//    }
-    // TODO: Make sure I get the lives part correct
-//    public void checkSyrupCollision() {
-//        for (Syrup syrup: syrups){
-//            while(isGameOver != true){
-//                if (Rect.intersects(characterA.getCollisionShape(), syrup.getCollisionShape()) && characterA.getLivesCounter() > 0 ){
-//                    characterA.decrementLives();
-////                    characterALives-- ;
-////                Thread.sleep(1000);
-//                }
-//
-//                else if (Rect.intersects(characterB.getCollisionShape(), syrup.getCollisionShape()) && characterB.getLivesCounter() > 0)  {
-//                    characterB.decrementLives();
-////                    characterBLives--;
-//                }
-//
-//                else if (characterALives <= 0 || characterBLives <= 0 ){
-//                    this.setGameOver(true);
-//                    return;
-//                }
-//            }
-//        }
-//        castChanges();
-//    }
-
-
     public void checkSyrupCollisionA(){
         for (Syrup syrup: syrups){
             if (Rect.intersects(characterA.getCollisionShape(), syrup.getCollisionShape()) && characterA.getLivesCounter() > 0 ){
@@ -356,13 +298,6 @@ public class Universe {
                 mRootRef.child("CharA_Position_Y").setValue((screenY*45)/100);
                 return;
             }
-
-//            if (Rect.intersects(characterA.getCollisionShape(), syrup.getCollisionShape())){
-//                this.setGameOver(true);
-//                mRootRef.child("CharA_Position_X").setValue(screenX/8);
-//                mRootRef.child("CharA_Position_Y").setValue((screenY*45)/100);
-//                return;
-//            }
         }
         castChanges();
     }
@@ -382,19 +317,6 @@ public class Universe {
         }
         castChanges();
     }
-
-    /**
-     * The checkPopsicleCollision method is to check if any of the Character
-     * reaches the other's Popsicle first. If it does, the corresponding Character
-     * wins and the game will be terminated.
-     */
-//    public void checkPopsicleCollision(){
-//        if (Rect.intersects(characterA.getCollisionShape(), popsicleB.getCollisionShape()) ||
-//                Rect.intersects(characterB.getCollisionShape(), popsicleA.getCollisionShape())){
-//            this.setGameOver(true);
-//            return;
-//        }
-//    }
 
     public void checkPopsicleACollision(){
         if (Rect.intersects(characterA.getCollisionShape(), popsicleB.getCollisionShape())){
@@ -447,7 +369,6 @@ public class Universe {
         if (getCharacterA().getMovingRight()){
             System.out.println("Move Right");
             characterA.moveRight();
-//            readingWoohoo();
             castChanges();
             characterA.setMovingRight(false);
         }
@@ -455,21 +376,18 @@ public class Universe {
         if (getCharacterA().getMovingLeft()){
             System.out.println("Move Left");
             characterA.moveLeft();
-//            readingWoohoo();
             castChanges();
             characterA.setMovingLeft(false);
         }
 
         if (getCharacterA().getMovingUp()){
             characterA.moveUp();
-//            readingWoohoo();
             castChanges();
             characterA.setMovingUp(false);
         }
 
         if (getCharacterA().getMovingDown()){
             characterA.moveDown();
-//            readingWoohoo();
             castChanges();
             characterA.setMovingDown(false);
         }
@@ -501,14 +419,11 @@ public class Universe {
 
     }
 
-    // UniverseToFirebaseCharacterA
     public void universeToFirebaseA() {
-//        mGameRef.child("CharacterAPos").setValue(this.characterA.getPos());
         mRootRef.child("CharA_Position_X").setValue(this.characterA.getPos().getX());
         mRootRef.child("CharA_Position_Y").setValue(this.characterA.getPos().getY());
     }
 
-    // UniverseToFirebaseCharacterB
     public void universeToFirebaseB() {
         mRootRef.child("CharB_Position_X").setValue(this.characterB.getPos().getX());
         mRootRef.child("CharB_Position_Y").setValue(this.characterB.getPos().getY());
@@ -518,52 +433,16 @@ public class Universe {
         character.setPos(new Position(x, y));
     }
 
-//    public void readingWoohoo(){
-//        ValueEventListener postListener = new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                // Get Post object and use the values to update the UI
-//                Integer pos = dataSnapshot.getValue(Integer.class);
-//                queueX.add(pos);
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//                // Getting Post failed, log a message
-//                Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
-//            }
-//        };
-//        mRootRef.child("CharA_Position_X").addListenerForSingleValueEvent(postListener);
-//
-//        ValueEventListener yListener = new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                // Get Post object and use the values to update the UI
-//                Integer pos = dataSnapshot.getValue(Integer.class);
-//                queueY.add(pos);
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//                // Getting Post failed, log a message
-//                Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
-//            }
-//        };
-//        mRootRef.child("CharA_Position_Y").addListenerForSingleValueEvent(yListener);
-//    }
-
     public void readStatusAFromB(){
         ValueEventListener playerADead = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                // Get Post object and use the values to update the UI
                 Boolean playerAStat = dataSnapshot.getValue(Boolean.class);
                 isGameWon = playerAStat;
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                // Getting Post failed, log a message
                 Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
             }
         };
@@ -571,14 +450,12 @@ public class Universe {
         ValueEventListener playerAWon = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                // Get Post object and use the values to update the UI
                 Boolean playerAWonStat = dataSnapshot.getValue(Boolean.class);
                 isGameOver = playerAWonStat;
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                // Getting Post failed, log a message
                 Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
             }
         };
@@ -589,14 +466,12 @@ public class Universe {
         ValueEventListener playerBDead = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                // Get Post object and use the values to update the UI
                 Boolean playerBStat = dataSnapshot.getValue(Boolean.class);
                 isGameWon = playerBStat;
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                // Getting Post failed, log a message
                 Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
             }
         };
@@ -604,14 +479,12 @@ public class Universe {
         ValueEventListener playerBWon = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                // Get Post object and use the values to update the UI
                 Boolean playerBWonStat = dataSnapshot.getValue(Boolean.class);
                 isGameOver = playerBWonStat;
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                // Getting Post failed, log a message
                 Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
             }
         };
@@ -623,14 +496,12 @@ public class Universe {
         ValueEventListener postListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                // Get Post object and use the values to update the UI
                 Integer pos = dataSnapshot.getValue(Integer.class);
                 queueX.add(pos);
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                // Getting Post failed, log a message
                 Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
             }
         };
@@ -639,14 +510,12 @@ public class Universe {
         ValueEventListener yListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                // Get Post object and use the values to update the UI
                 Integer pos = dataSnapshot.getValue(Integer.class);
                 queueY.add(pos);
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                // Getting Post failed, log a message
                 Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
             }
         };
@@ -657,14 +526,12 @@ public class Universe {
         ValueEventListener postListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                // Get Post object and use the values to update the UI
                 Integer pos = dataSnapshot.getValue(Integer.class);
                 queueX.add(pos);
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                // Getting Post failed, log a message
                 Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
             }
         };
@@ -673,14 +540,12 @@ public class Universe {
         ValueEventListener yListener = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                // Get Post object and use the values to update the UI
                 Integer pos = dataSnapshot.getValue(Integer.class);
                 queueY.add(pos);
             }
 
             @Override
             public void onCancelled(DatabaseError databaseError) {
-                // Getting Post failed, log a message
                 Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
             }
         };

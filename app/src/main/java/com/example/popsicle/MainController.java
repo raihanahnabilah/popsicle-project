@@ -75,33 +75,6 @@ public class MainController extends Thread{
     String savedUserUID;
 
     /**
-     * The QueueX to store the x-coordinates of the Characters Position
-     */
-    Queue<Integer> queueX = new LinkedList<>();
-
-    /**
-     * The QueueY to store the y-coordinates of the Characters Position
-     */
-    Queue<Integer> queueY = new LinkedList<>();
-
-    /**
-     * The QueueX to store the x-coordinates of the Characters Position
-     */
-    Queue<Position> queuePos = new LinkedList<>();
-
-    /**
-     * Firebase data reference for our Firebase
-     */
-    DatabaseReference mRootRef = FirebaseDatabase.getInstance("https://popsicle-game-default-rtdb.asia-southeast1.firebasedatabase.app").getReference();
-
-    /**
-     * Firebase data reference to store the data under the root child "game"
-     */
-    DatabaseReference mGameRef = mRootRef.child("CharXPos");
-    DatabaseReference mPosRef = mRootRef.child("CharYPos");
-
-
-    /**
      * The MainController constructor creates the universe, the renderer
      * and the IO of our game.
      * @param activity The MainActivity of our game
@@ -126,56 +99,7 @@ public class MainController extends Thread{
         InputHandler inputHandler = new InputHandler();
         inputHandler.setOnClickAction(new MoveCharacterAction(this.universe));
         inputListener.setCallback(inputHandler);
-
-//        ValueEventListener postListener = new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                // Get Post object and use the values to update the UI
-//                Integer pos = dataSnapshot.getValue(Integer.class);
-//                queueX.add(pos);
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//                // Getting Post failed, log a message
-//                Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
-//            }
-//        };
-//        mGameRef.addValueEventListener(postListener);
-//        ValueEventListener yListener = new ValueEventListener() {
-//            @Override
-//            public void onDataChange(DataSnapshot dataSnapshot) {
-//                // Get Post object and use the values to update the UI
-//                Integer pos = dataSnapshot.getValue(Integer.class);
-//                queueY.add(pos);
-//            }
-//
-//            @Override
-//            public void onCancelled(DatabaseError databaseError) {
-//                // Getting Post failed, log a message
-//                Log.w(TAG, "loadPost:onCancelled", databaseError.toException());
-//            }
-//        };
-//        mPosRef.addValueEventListener(yListener);
     }
-
-//    @IgnoreExtraProperties
-//    public class UniverseData {
-//
-//        public Position characterA;
-//        public Position characterB;
-//        public Position popsicleA;
-//        public Position popsicleB;
-//
-//        public UniverseData() {
-//            // Default constructor required for calls to DataSnapshot.getValue(User.class)
-//        }
-//
-//        public UniverseData() {
-//            this.characterA = this.;
-//        }
-//    }
-
 
     /**
      * The run method to continuously update and draw all elements
@@ -191,30 +115,12 @@ public class MainController extends Thread{
         while (this.universe.getPlaying()){
             this.universe.updateCharacter();
             this.universe.syrupSteps();
-//            this.universe.checkPopsicleCollision();
-//            this.universe.checkSyrupCollision();
-            //READ AND UPDATE FUNCTION
-            // TODO: IMPLEMENT IF USER A CONDITION
-//            if (!queuePos.isEmpty()){
-//                this.universe.readCharacterPos(queuePos.remove(), universe.getCharacterB());
-//            }
-
             if (WhichPlayer.amIPlayerA){
-                // READ CHARACTER B
                 this.universe.universeToFirebaseA();
                 this.universe.readCharacterBFromCharacterA();
                 this.universe.checkSyrupCollisionA();
                 this.universe.checkPopsicleACollision();
                 this.universe.readStatusBFromA();
-
-//                if(!this.universe.getQueueX().isEmpty()){
-//                    for (int i: universe.getQueueX()){
-//                        System.out.println(i);
-//                    }
-//                }
-//                System.out.println(universe.getQueueX());
-
-                // UPDATE CHARACTER
                 if (!this.universe.getQueueX().isEmpty()) {
                     if (this.universe.getQueueX().size() > this.universe.getQueueY().size()) {
                         this.universe.readCharacter(this.universe.getQueueX().remove(), (int) this.universe.getCharacterB().getPos().getY(), universe.getCharacterB());
@@ -229,26 +135,15 @@ public class MainController extends Thread{
                         this.universe.readCharacter(this.universe.getQueueX().remove(), this.universe.getQueueY().remove(), universe.getCharacterB());
                     }
                 }
-
             }
 
 
             if (WhichPlayer.amIPlayerB){
-                // READ CHARACTER B
                 this.universe.readCharacterAFromCharacterB();
                 this.universe.universeToFirebaseB();
                 this.universe.checkSyrupCollisionB();
                 this.universe.checkPopsicleBCollision();
                 this.universe.readStatusAFromB();
-
-//                if(!this.universe.getQueueX().isEmpty()){
-//                    for (int i: universe.getQueueX()){
-//                        System.out.println(i);
-//                    }
-//                }
-//                System.out.println(universe.getQueueX());
-
-                // UPDATE CHARACTER
                 if (!this.universe.getQueueX().isEmpty()) {
                     if (this.universe.getQueueX().size() > this.universe.getQueueY().size()) {
                         this.universe.readCharacter(this.universe.getQueueX().remove(), (int) this.universe.getCharacterA().getPos().getY(), universe.getCharacterA());
@@ -263,88 +158,8 @@ public class MainController extends Thread{
                         this.universe.readCharacter(this.universe.getQueueX().remove(), this.universe.getQueueY().remove(), universe.getCharacterA());
                     }
                 }
-
             }
-
-
-
-
-            //THIS WORKS -- INITALIZING IN THE CHARACTER
-//            for (int i: universe.getCharacterA().getQueueX()){
-//                System.out.println(i);
-//            }
-//
-//            if (!this.universe.getCharacterA().getQueueX().isEmpty()) {
-//                if (this.universe.getCharacterA().getQueueX().size() > this.universe.getCharacterA().getQueueY().size()) {
-//                    this.universe.readCharacter(this.universe.getCharacterA().getQueueX().remove(), (int) this.universe.getCharacterA().getPos().getY(), universe.getCharacterB());
-//                } else if (this.universe.getCharacterA().getQueueX().size() == this.universe.getCharacterA().getQueueY().size()) {
-//                    this.universe.readCharacter(this.universe.getCharacterA().getQueueX().remove(), this.universe.getCharacterA().getQueueY().remove(), universe.getCharacterB());
-//                }
-//            }
-//
-//            if (!this.universe.getCharacterA().getQueueY().isEmpty()) {
-//                if (this.universe.getCharacterA().getQueueX().size() < this.universe.getCharacterA().getQueueY().size()){
-//                    this.universe.readCharacter((int) this.universe.getCharacterA().getPos().getX(), this.universe.getCharacterA().getQueueY().remove(), universe.getCharacterB());
-//                } else if (this.universe.getCharacterA().getQueueX().size() == this.universe.getCharacterA().getQueueY().size()) {
-//                    this.universe.readCharacter(this.universe.getCharacterA().getQueueX().remove(), this.universe.getCharacterA().getQueueY().remove(), universe.getCharacterB());
-//                }
-//            }
-
-//
-//            // THIS WORKS CAN FALLBACK TO THIS -- initializing in the universe
-//            this.universe.readingWoohoo();
-//            if (!this.universe.getQueueX().isEmpty()){
-//                for (int i: universe.getQueueX()){
-//                    System.out.println(i);
-//                }
-//            }
-//
-//
-//            if (!this.universe.getQueueX().isEmpty()) {
-//                if (this.universe.getQueueX().size() > this.universe.getQueueY().size()) {
-//                    this.universe.readCharacter(this.universe.getQueueX().remove(), (int) this.universe.getCharacterA().getPos().getY(), universe.getCharacterB());
-//                } else if (this.universe.getQueueX().size() == this.universe.getQueueY().size()) {
-//                    this.universe.readCharacter(this.universe.getQueueX().remove(), this.universe.getQueueY().remove(), universe.getCharacterB());
-//                }
-//            }
-//
-//            if (!this.universe.getQueueY().isEmpty()) {
-//                if (this.universe.getQueueX().size() < this.universe.getQueueY().size()){
-//                    this.universe.readCharacter((int) this.universe.getCharacterA().getPos().getX(), this.universe.getQueueY().remove(), universe.getCharacterB());
-//                } else if (this.universe.getQueueX().size() == this.universe.getQueueY().size()){
-//                    this.universe.readCharacter(this.universe.getQueueX().remove(), this.universe.getQueueY().remove(), universe.getCharacterB());
-//                }
-//            }
-
-
-
-
-
-
-
-
-//            if (!this.universe.getQueueX().isEmpty() && !this.universe.getQueueY().isEmpty()){
-//                this.universe.readCharacter(this.universe.getQueueX().remove(), this.universe.getQueueY().remove(), universe.getCharacterB());
-////                if (this.universe.getQueueX().size() < this.universe.getQueueY().size()){
-////                    this.universe.readCharacter(this.universe.getQueueX().remove(), (int) this.universe.getCharacterB().getPos().getY(), universe.getCharacterB());
-////                } else if (this.universe.getQueueX().size() > this.universe.getQueueY().size()){
-////                    this.universe.readCharacter((int) this.universe.getCharacterB().getPos().getX(), this.universe.getQueueY().remove(), universe.getCharacterB());
-////                } else if (this.universe.getQueueX().size() == this.universe.getQueueY().size()){
-////                    this.universe.readCharacter(this.universe.getQueueX().remove(), this.universe.getQueueY().remove(), universe.getCharacterB());
-////                }
-//            }
-            // TODO: IMPLEMENT IF USER B CONDITION
-//            if (!queueX.isEmpty()){
-//                this.universe.readCharacter(queueX.remove(), queueY.remove(), universe.getCharacterA());
-//            }
-            // WRITE FUNCTION
-            // TODO: IMPLEMENT IF USER A CONDITION
-            // TODO: IMPLEMENT IF USER b CONDITION
-//            this.universe.universeToFirebaseB();
-
             counter += 1;
-//            Random ran = new Random();
-//            int n = ran.nextInt(4);
             if (counter % 30 == 0){
                 this.universe.randomlyAddSyrups((counter-1) % 4, universe.getCloudA2(), "a2");
             }
