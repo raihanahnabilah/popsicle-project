@@ -43,6 +43,16 @@ public class Character {
     Boolean isMovingUp = false, isMovingDown = false, isMovingLeft = false, isMovingRight = false;
 
     /**
+     * LivesCounter is the lives counter of each character/player.
+     * It is written as 9 instead of 3 because of the Rectangular
+     * friction that continuously decrements when a Character
+     * collides with Syrup. However, it will function exactly
+     * like each characters has 3 lives, and it will show so
+     * in the visualization of the livesCounter in the game.
+     */
+    int livesCounter = 9;
+
+    /**
      * Getter function to get the move up boolean
      * @return Boolean of isMovingUp
      */
@@ -89,8 +99,6 @@ public class Character {
     public int getHeight() {
         return height;
     }
-
-    int livesCounter = 9;
 
     /**
      * Character class constructor that takes the "direction" of the Character.
@@ -233,15 +241,32 @@ public class Character {
         this.pos = pos;
     }
 
+    /**
+     * The function to get the current number of livesCounter
+     */
     public int getLivesCounter() {
         return livesCounter;
     }
 
+    /**
+     * The function to decrement the lives of the characters
+     * when they got hit by the syrup
+     */
     public int decrementLives(){
         this.livesCounter = this.livesCounter - 1;
         return livesCounter;
     }
 
+    /**
+     * The function to get the current number of livesCounter
+     * and visualize it on the game. Remember that our initial
+     * livesCounter integer is 9 instead of 3 because
+     * Rectangular friction that continuously decrements when a
+     * Character collides with Syrup though it will still function
+     * exactly like each characters has 3 lives. Hence, in the visualization
+     * we divide the livesCounter by 3 to visualize it on our game.
+     * @return the remaining/current livesCounter of the characters
+     */
     public int getVisualizedLivesCounter() {
         return livesCounter/3;
     }

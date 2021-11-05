@@ -233,8 +233,8 @@ public class GraphicsRenderer implements Universe.Callback, SurfaceHolder.Callba
     }
 
     /**
-     * The exiting method to exit from the SurfaceHolder and go to the HomePage when the game
-     * is terminated.
+     * The exiting method to exit from the SurfaceHolder and go to the GameOver UI page when
+     * a player lost and the game is terminated.
      */
     public void exiting() {
         try {
@@ -247,6 +247,10 @@ public class GraphicsRenderer implements Universe.Callback, SurfaceHolder.Callba
         }
     }
 
+    /**
+     * The exiting method to exit from the SurfaceHolder and go to the GameWon UI page when
+     * a player won and the game is terminated.
+     */
     public void exitingGameWon() {
         try {
             Thread.sleep(3000);

@@ -20,8 +20,11 @@ import java.util.concurrent.Semaphore;
  */
 public class MainActivity extends AppCompatActivity{
 
-
     private static final String TAG = "MainActivity";
+
+    /**
+     * The MediaPlayer to play the background music
+     */
     private MediaPlayer backgroundMusic;
 
     /**
@@ -29,8 +32,7 @@ public class MainActivity extends AppCompatActivity{
      * by finding the surfaceView ID in the mainActivity layout and
      * call the mainController. The MainController is a thread that
      * creates and runs our Universe, IO, and Graphics Renderer.
-     * Also runs the background music when the game starts
-     * and cuts the music when game ends.
+     * Also runs the background music when the game starts.
      * @param savedInstanceState the savedInstanceState
      */
     @Override
@@ -40,10 +42,8 @@ public class MainActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        /**
-         * Playing the background music
-         */
-        MediaPlayer backgroundMusic = MediaPlayer.create(MainActivity.this, R.raw.backgroundmusic);
+        // Playing the background music
+        backgroundMusic = MediaPlayer.create(MainActivity.this, R.raw.backgroundmusic);
         backgroundMusic.setLooping(true);
         backgroundMusic.start();
 

@@ -28,6 +28,10 @@ import com.google.firebase.database.ValueEventListener;
 public class HomePage extends AppCompatActivity {
 
     private static final String TAG = "HomePage";
+
+    /**
+     * The FirebaseDatabase to store our data in the firebase
+     */
     DatabaseReference mRootRef = FirebaseDatabase.getInstance("https://popsicle-game-default-rtdb.asia-southeast1.firebasedatabase.app").getReference();
 
     /**
@@ -55,11 +59,17 @@ public class HomePage extends AppCompatActivity {
      */
     public SharedPreferences sp;
 
+    /**
+     * The Boolean on whether or not player B has joined the game
+     */
     Boolean isPlayerBBool = false;
 
     /**
      * The onCreate method to create the HomePage before users
-     * begin the game.
+     * begin the game. It is also the method where we determined
+     * who is playerA and playerB by clicking the corresponding buttons.
+     * Once playerA has clicked the "Player A" button, playerB will
+     * then click the "Player B" button and triggers to begin the game.
      * @param savedInstanceState the savedInstanceState
      */
     @Override
@@ -80,8 +90,7 @@ public class HomePage extends AppCompatActivity {
         editor.putString("userUID", userUID);
         editor.commit();
 
-        // This states that if you click the createGameButton, you call the createGameActivity() method
-        // and thus you get sent to the create game page
+        // This states that if you click player A button
         createGameButton = (Button) findViewById(R.id.button);
         createGameButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,8 +108,7 @@ public class HomePage extends AppCompatActivity {
             }
         });
 
-        // This states that if you click the joinGameButton, you call the joinGameActivity() method
-        // and thus you get sent to the join game page
+        // This states that if you click the player B button
         joinGameButton = (Button) findViewById(R.id.button2);
         joinGameButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,6 +120,8 @@ public class HomePage extends AppCompatActivity {
             }
         });
 
+        // This is to listen if player B has clicked the player B button
+        // to trigger beginning the game
         ValueEventListener isPlayerBHere = new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
@@ -136,6 +146,7 @@ public class HomePage extends AppCompatActivity {
         };
         mRootRef.child("isPlayerBHere").addValueEventListener(isPlayerBHere);
 
+        // This is if the user decided to play alone by clicking the main "Play" button
         findViewById(R.id.play).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

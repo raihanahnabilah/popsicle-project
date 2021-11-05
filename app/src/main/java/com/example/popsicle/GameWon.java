@@ -7,8 +7,16 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 
+/**
+ * The GameWon class is the UI that shows that a player has won the game
+ */
 public class GameWon extends AppCompatActivity {
 
+    /**
+     * The onCreate method to create the User Interface that shows
+     * that a player has won the game.
+     * @param savedInstanceState the savedInstanceState
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
