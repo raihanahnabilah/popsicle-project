@@ -21,29 +21,13 @@ public class TestCharacter {
     Position bPos = new Position(constants.screenX*13/16,constants.screenY*45/100);
     int charWidth = constants.charWidth;
     int charHeight = constants.charHeight;
-    int characterALives = constants.charALives;
-    int characterBLives = constants.charBLives;
-    Queue<Integer> queueX = new LinkedList<>();
-    Queue<Integer> queueY = new LinkedList<>();
-
-    //TODO: SAMPLE ADDING QUEUE AND REMOVING FROM QUEUE
-    @Test
-    public void CharacterPositionQueue(){
-        System.out.println(b.getPos());
-        queueX.add(4);
-        queueX.add(8);
-        queueY.add(5);
-        queueY.add(10);
-        b.setPos(new Position(queueX.remove(), queueY.remove()));
-        System.out.println(b.getPos());
-        b.setPos(new Position(queueX.remove(), queueY.remove()));
-        System.out.println(b.getPos());
-    }
 
     @Test
     public void CreateCharactersInCorrectPosition(){
         assert (a.getPos().getX() == aPos.getX());
         assert (a.getPos().getY() == aPos.getY());
+        System.out.println(a.getPos());
+        System.out.println(b.getPos());
 
         assert (b.getPos().getX() == bPos.getX());
         assert (b.getPos().getY() == bPos.getY());
@@ -167,25 +151,6 @@ public class TestCharacter {
 
         assert (b.getHeight() == charHeight);
         assert (b.getWidth() == charWidth);
-    }
-
-    @Test
-    public void CharactersLives() {
-        for (int i = characterALives; i < characterALives; i--) {
-            characterALives--;
-            if (i == 0) {
-                assert (characterALives == i);
-                break;
-            }
-        }
-
-        for (int i = characterBLives; i < characterBLives; i--) {
-            characterBLives--;
-            if (i == 0) {
-                assert (characterBLives == i);
-                break;
-            }
-        }
     }
 
 }
