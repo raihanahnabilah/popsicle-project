@@ -18,7 +18,8 @@ import java.util.Collection;
 
 /**
  * TestUniverseGraphics class
- * The following class does the Unit Testing of all the methods in the Universe class.
+ * The following class does the Unit Testing of almost all the methods in the Universe class,
+ * with the exception of the Collision and the Firebase methods.
  */
 @RunWith(AndroidJUnit4.class)
 public class TestUniverseGraphics extends TestCase {
@@ -126,6 +127,39 @@ public class TestUniverseGraphics extends TestCase {
         Position afterMoveDown = new Position(beforeMoveDown.getX(), beforeMoveDown.getY() - 20);
         assert(u.getCharacterA().getPos().getX() == afterMoveDown.getX());
         assert(u.getCharacterA().getPos().getY() == afterMoveDown.getY());
+    }
+
+    /**
+     * Testing for the randomlyAddedSyrups method!
+     * Given a cloud, direction, and n integer, it will indeed generate a syrup
+     * and trigger the addSyrup method.
+     */
+    @Test
+    public void testingRandomlyAddedSyrups(){
+        assertEquals(0, u.getSyrups().size());
+        u.randomlyAddSyrups(0, u.getCloudA1(), "a1");
+        assertEquals(1, u.getSyrups().size());
+        u.randomlyAddSyrups(1, u.getCloudA2(), "a2");
+        u.randomlyAddSyrups(2, u.getCloudB1(), "b1");
+        u.randomlyAddSyrups(3, u.getCloudB2(), "b2");
+        assertEquals(4, u.getSyrups().size());
+    }
+
+    /**
+     * Testing the readCharacter method for the universe
+     * to continuously update the opponent's character's position that is read
+     * from the database
+     */
+    @Test
+    public void testingReadCharacter(){
+        u.readCharacter(500, 500, u.getCharacterA());
+        Position A = new Position(500, 500);
+        assert(A.getX() == u.getCharacterA().getPos().getX());
+        assert(A.getY() == u.getCharacterA().getPos().getY());
+        u.readCharacter(500, 500, u.getCharacterB());
+        Position B = new Position(500, 500);
+        assert(B.getX() == u.getCharacterB().getPos().getX());
+        assert(B.getY() == u.getCharacterB().getPos().getY());
     }
 
     public void tearDown() throws Exception {
